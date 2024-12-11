@@ -8,6 +8,7 @@ import { checkTypeEvaluation, ENUM_SCORE_STUDENT } from '@/utils/validations/tra
 import useQueryTranscript from '@/hooks/api/useQueryTranscript';
 import { convertListGroupStudentScore } from '@/utils/convertDataTable';
 import TranscriptOfGroupStudent from './Transcript';
+import useComment from '@/hooks/api/useQueryComment';
 
 function ScoreStudentPage() {
   const [currentDataRow, setCurrentDataRow] = useState(null);
@@ -18,7 +19,6 @@ function ScoreStudentPage() {
   const { data, isSuccess } = hanleGetEvalutaionsForScoring(checkTypeEvaluation(typeScoreStudent));
   const { data: groups, isLoading: loadingGrStudent } =
     handleGetUnTranscriptGroupStudentsByType(typeScoreStudent);
-    
   const handleRowClick = (params: any) => {
     setCurrentDataRow(params.row);
     setCurrentRowSelectId(params.id);

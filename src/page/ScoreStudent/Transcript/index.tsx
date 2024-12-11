@@ -1,6 +1,8 @@
 import { StyledTableCell, StyledTableRow } from '@/components/iframe/PageWord/style';
+import CustomTextField from '@/components/ui/CustomTextField';
 import ScoreInput from '@/components/ui/ScoreInput';
 import SekeletonUI from '@/components/ui/Sekeleton';
+import useComment from '@/hooks/api/useQueryComment';
 import useMemberGroupStudent from '@/hooks/api/useQueryMemberGroupStudent';
 import { useTerm } from '@/hooks/api/useQueryTerm';
 import useTranscript from '@/hooks/api/useQueryTranscript';
@@ -108,7 +110,6 @@ function TranscriptOfGroupStudent(props: any) {
   const { handleGetMemberInGroupStudent } = useMemberGroupStudent();
   const {
     data: memberFetch,
-    isLoading: loadingMembers,
     isFetching: fetchingMembers,
     isSuccess: successMember,
     refetch: refetchMembers,
@@ -182,6 +183,24 @@ function TranscriptOfGroupStudent(props: any) {
     }
   }, [successCreate, successUpdate]);
 
+  const [comment, setComment] = useState<string>('Chưa có nhận xét');
+  const [commentId, setCommentId] = useState<string>(null);
+  const { onCreateComment, onUpdateComment, handleGetComment } = useComment();
+  const { mutate: handleCreateComment, isSuccess: successCreateComment } = onCreateComment();
+  const { mutate: handleUpdateComment, isSuccess: successUpdatecomment } = onUpdateComment();
+  const { data: fetchComment, isSuccess: successFetchComment } = handleGetComment(
+    transcriptType,
+    groupStudent.id,
+  );
+
+  useEffect(() => {
+    if (fetchComment) {
+      setComment(
+        `${fetchComment?.comment?.content ? fetchComment?.comment?.content : 'Chưa có nhận xét'}`,
+      );
+      setCommentId(`${fetchComment?.comment?.id}`);
+    }
+  }, [fetchingTranscript, fetchComment, fetchingMembers, groupStudent.id]);
   return (
     <>
       {loadingTranscript || fetchingTranscript ? (
@@ -369,7 +388,33 @@ function TranscriptOfGroupStudent(props: any) {
                     </StyledTableRow>
                   </TableBody>
                 )}
-                <Box mt={4} justifyContent={'end'} display={'flex'}>
+                <Box mt={4} justifyContent={'end'} alignItems={'center'} display={'flex'}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 4, mr: 10 }}>
+                    <CustomTextField
+                      placeholder='Chưa có nhận xét'
+                      sx={{ width: 500, mt: 8 }}
+                      onChange={(e) => setComment(e.target.value)}
+                      value={comment}
+                    />
+                    <Button
+                      onClick={() =>
+                        !commentId
+                          ? handleCreateComment({
+                              type: transcriptType,
+                              groupStudentId: groupStudent?.id,
+                              content: comment,
+                            })
+                          : handleUpdateComment({
+                              id: commentId,
+                              content: comment,
+                            })
+                      }
+                      color='error'
+                      variant='contained'
+                    >
+                      Nhận xét
+                    </Button>
+                  </Box>
                   <Button
                     onClick={handleSubmit}
                     color={initTranscripts.isExistTranscripts ? 'warning' : 'primary'}

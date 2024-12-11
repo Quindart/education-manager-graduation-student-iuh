@@ -21,6 +21,7 @@ export interface ResponseType {
     statistic?: { [key: string]: number | null };
     params?: ParamsType,
     count?: number,
+    comment?: any,
     reports?: any[],
     lecturer: Lecturer,
     status?: number,

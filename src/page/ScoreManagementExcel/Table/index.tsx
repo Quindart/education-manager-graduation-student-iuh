@@ -3,15 +3,7 @@ import {
   checkVietNamTypeEvaluation,
 } from '@/utils/validations/transcript.validation';
 import { Box, Button, Link, TableBody, TableHead, Tooltip, Typography } from '@mui/material';
-import React, {
-  HTMLAttributes,
-  HtmlHTMLAttributes,
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import useTranscript from '@/hooks/api/useQueryTranscript';
 import { StyledTableCell, StyledTableRow } from '@/components/iframe/PageWord/style';
 import ScoreInput from '@/components/ui/ScoreInput';
@@ -20,6 +12,7 @@ import { EnumStatusStudent } from '@/types/enum';
 import { useTerm } from '@/hooks/api/useQueryTerm';
 import SekeletonTable from '@/components/ui/Sekeleton';
 import ExportExcelButton from '@/components/ui/Export';
+import CommentModal from '../Modal/CommentModal';
 
 const NO_SCORE_STATUS_LIST = [
   EnumStatusStudent.FAIL_ADVISOR,
@@ -64,6 +57,7 @@ const convertTotalOfEvaluationsByStd = (groupStudents: any[]) => {
 const columnsExcelTranscripts = (evaluations, type) => {
   const init = [
     { header: 'Mã nhóm', key: 'groupName', width: 10 },
+    { header: 'Tên đề tài', key: 'topicName', width: 60 },
     { header: 'Mã sinh viên', key: 'username', width: 12 },
     { header: 'Họ và tên', key: 'studentName', width: 30 },
   ];
@@ -189,170 +183,237 @@ function TableScoreManagement({ typeScoreStudent }: any) {
     }
   }, [successCreate, successUpdate]);
   const columnsExcel = columnsExcelTranscripts(evaluationFetch?.evaluations, typeScoreStudent);
+
+  //Modal
+  const [openCommentModal, setOpenCommentModal] = useState({
+    groupName: '',
+    groupId: '',
+    type: '',
+    topicName: '',
+    isOpen: false,
+  });
+  const handleOpenCommentModal = (
+    groupName: string,
+    groupId: string,
+    topicName: string,
+    type: string,
+  ) => {
+    setOpenCommentModal({
+      groupName,
+      groupId,
+      type,
+      topicName,
+      isOpen: true,
+    });
+  };
+  const handleCloseCommentModal = () => {
+    setOpenCommentModal((pre) => ({ ...pre, isOpen: false }));
+  };
   return (
-    <Box>
-      <Box sx={{ display: 'flex', justifyContent: 'end', mb: 4 }}>
-        <ExportExcelButton
-          headerSetup={columnsExcel}
-          data={grScoresToExportExcel(groupTranscripts?.transcripts)}
-          entity='transcriptsOfLecturerScoring'
-          label='Xuất bảng điểm'
-        />
-      </Box>
-      {isLoading ? (
-        <SekeletonTable />
-      ) : (
-        <Box>
-          {/* Table head -> loading CLO của evalution */}
-          <TableHead sx={{ bgcolor: '#132e65' }}>
-            <StyledTableCell sx={{ color: 'grey.300', width: '5%', fontSize: 14 }}>
-              Thông tin nhóm sinh viên
-            </StyledTableCell>
-            <StyledTableCell sx={{ color: 'grey.300', width: '3%', fontSize: 14 }}>
-              Họ tên sinh viên
-            </StyledTableCell>
-            <>
-              {evaluationFetch?.evaluations
-                ?.sort((a, b) => a.key.localeCompare(b.key))
-                .map((evaluation: any) => (
-                  <StyledTableCell
-                    key={evaluation._id}
-                    sx={{ color: 'grey.300', width: '1%', fontSize: 14 }}
-                  >
-                    {evaluation?.key} ({evaluation?.scoreMax})
-                  </StyledTableCell>
-                ))}
-            </>
-            <StyledTableCell sx={{ color: 'grey.300', width: '3%', fontSize: 14 }}>
-              Tổng điểm
-            </StyledTableCell>
-            <StyledTableCell sx={{ color: 'grey.300', width: '1%', fontSize: 14 }}>
-              Chức năng
-            </StyledTableCell>
-          </TableHead>
-          {/* Table body -> rows loading groupStudents */}{' '}
-          {convertRowStudents(groupTranscripts?.transcripts)?.length > 0 ? (
-            <TableBody>
-              {convertRowStudents(groupTranscripts?.transcripts)?.map(
-                (rows: any, index: number) => {
-                  return (
-                    <StyledTableRow>
-                      <StyledTableCell
-                        sx={{
-                          color: 'grey.700',
-                          backgroundColor: rows?.colorRow,
-                          width: '28%',
-                          padding: 2,
-                        }}
-                      >
-                        <Typography color='grey.700' mb={1} fontWeight={'bold'}>
-                          {' '}
-                          Nhóm {rows?.groupName}
-                        </Typography>
-                        <Typography color='grey.700'>
-                          {' '}
-                          {rows?.topicName}
-                          <>
-                            {rows?.link ? (
-                              <Link
-                                href={`${rows?.link}`}
-                                sx={{ fontStyle: 'italic', fontWeight: 500, cursor: 'pointer' }}
-                                mx={2}
-                                target='_blank'
-                              >
-                                Xem tài liệu{' '}
-                              </Link>
-                            ) : (
-                              <Typography mx={2} component={'span'} variant='body1' color='initial'>
-                                (Chưa nộp tài liệu)
-                              </Typography>
-                            )}
-                          </>
-                        </Typography>
-                      </StyledTableCell>
-                      <StyledTableCell sx={{ color: 'grey.600', width: '10%', fontSize: 14 }}>
-                        {rows?.fullName}
-                      </StyledTableCell>
-                      <>
-                        {rows?.evaluations.map((evaluation: any, index: number) => (
-                          <Tooltip title={`${evaluation.key}: ${evaluation.name}`}>
-                            <StyledTableCell
-                              sx={{
-                                color: 'grey.700',
-                                width: '1%',
-                                p: 0,
-                                ':hover': {
-                                  background: 'rgb(234, 240, 245)',
-                                  transition: 'all 0.3s ease 0s',
-                                },
-                              }}
-                            >
-                              <ScoreInput
-                                handleChangeScore={handleChangeScore}
-                                evaluationId={evaluation.id}
-                                studentId={rows?.id}
-                                oldScore={evaluation.score}
-                                scoreMax={evaluation.scoreMax}
-                              />
-                            </StyledTableCell>
-                          </Tooltip>
-                        ))}
-                      </>
-                      <StyledTableCell sx={{ color: 'success.dark', width: '1%' }}>
-                        {totalScores(
-                          totalList
-                            ?.find((std) => std.id === rows?.id)
-                            ?.evaluations.map((e) => e.score),
-                        )}
-                      </StyledTableCell>
-                      <StyledTableCell sx={{ color: 'grey.700', width: '1%', fontSize: 14 }}>
-                        {rows?.isScored ? (
-                          <Button
-                            onClick={() => handleSubmitUpdateTranscipts(rows?.id)}
-                            color='warning'
-                            disabled={NO_SCORE_STATUS_LIST?.some(
-                              (status) => status === `${rows?.studentStatus}`,
-                            )}
-                            startIcon={<Icon icon={'emojione-monotone:writing-hand'} />}
-                          >
-                            Cập nhật
-                          </Button>
-                        ) : (
-                          <Button
-                            onClick={() => handleSubmitCreateTranscipts(rows?.id)}
-                            startIcon={<Icon icon={'emojione-monotone:writing-hand'} />}
-                          >
-                            Chấm
-                          </Button>
-                        )}
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  );
-                },
-              )}
-            </TableBody>
-          ) : (
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '100%',
-                py: 20,
-              }}
-            >
-              <Box>
-                <img src='/images/nodata.webp' width={200} height={200} alt='' />
-                <Typography variant='body1' textAlign={'center'} color='grey.600'>
-                  Bảng điểm trống
-                </Typography>
-              </Box>
-            </Box>
-          )}
+    <>
+      <Box>
+        <Box sx={{ display: 'flex', justifyContent: 'end', mb: 4 }}>
+          <ExportExcelButton
+            headerSetup={columnsExcel}
+            data={grScoresToExportExcel(groupTranscripts?.transcripts)}
+            entity='transcriptsOfLecturerScoring'
+            label='Xuất bảng điểm'
+          />
         </Box>
-      )}
-    </Box>
+        {isLoading ? (
+          <SekeletonTable />
+        ) : (
+          <Box>
+            {/* Table head -> loading CLO của evalution */}
+            <TableHead sx={{ bgcolor: '#132e65' }}>
+              <StyledTableCell sx={{ color: 'grey.300', width: '5%', fontSize: 14 }}>
+                Thông tin nhóm sinh viên
+              </StyledTableCell>
+              <StyledTableCell sx={{ color: 'grey.300', width: '3%', fontSize: 14 }}>
+                Họ tên sinh viên
+              </StyledTableCell>
+              <>
+                {evaluationFetch?.evaluations
+                  ?.sort((a, b) => a.key.localeCompare(b.key))
+                  .map((evaluation: any) => (
+                    <StyledTableCell
+                      key={evaluation._id}
+                      sx={{ color: 'grey.300', width: '1%', fontSize: 14 }}
+                    >
+                      {evaluation?.key} ({evaluation?.scoreMax})
+                    </StyledTableCell>
+                  ))}
+              </>
+              <StyledTableCell sx={{ color: 'grey.300', width: '3%', fontSize: 14 }}>
+                Tổng điểm
+              </StyledTableCell>
+              <StyledTableCell sx={{ color: 'grey.300', width: '1%', fontSize: 14 }}>
+                Chức năng
+              </StyledTableCell>
+            </TableHead>
+            {/* Table body -> rows loading groupStudents */}{' '}
+            {convertRowStudents(groupTranscripts?.transcripts)?.length > 0 ? (
+              <TableBody>
+                {convertRowStudents(groupTranscripts?.transcripts)?.map(
+                  (rows: any, index: number) => {
+                    return (
+                      <StyledTableRow>
+                        <StyledTableCell
+                          sx={{
+                            color: 'grey.700',
+                            backgroundColor: rows?.colorRow,
+                            width: '28%',
+                            padding: 2,
+                          }}
+                        >
+                          <Typography color='grey.700' mb={1} fontWeight={'bold'}>
+                            {' '}
+                            Nhóm {rows?.groupName}
+                          </Typography>
+                          <Typography color='grey.700'>
+                            {' '}
+                            {rows?.topicName}
+                            <>
+                              {rows?.link ? (
+                                <Link
+                                  href={`${rows?.link}`}
+                                  sx={{ fontStyle: 'italic', fontWeight: 500, cursor: 'pointer' }}
+                                  mx={2}
+                                  target='_blank'
+                                >
+                                  Xem tài liệu{' '}
+                                </Link>
+                              ) : (
+                                <Typography
+                                  mx={2}
+                                  component={'span'}
+                                  variant='body1'
+                                  color='initial'
+                                >
+                                  (Chưa nộp tài liệu)
+                                </Typography>
+                              )}
+                            </>
+                          </Typography>
+                        </StyledTableCell>
+                        <StyledTableCell sx={{ color: 'grey.600', width: '10%', fontSize: 12 }}>
+                          {rows?.isAdmin ? (
+                            <Typography variant='body2' color='primary.main'>
+                              Trưởng nhóm
+                            </Typography>
+                          ) : (
+                            ''
+                          )}
+                          {rows?.fullName}
+                        </StyledTableCell>
+                        <>
+                          {rows?.evaluations.map((evaluation: any, index: number) => (
+                            <Tooltip title={`${evaluation.key}: ${evaluation.name}`}>
+                              <StyledTableCell
+                                sx={{
+                                  color: 'grey.700',
+                                  width: '1%',
+                                  p: 0,
+                                  ':hover': {
+                                    background: 'rgb(234, 240, 245)',
+                                    transition: 'all 0.3s ease 0s',
+                                  },
+                                }}
+                              >
+                                <ScoreInput
+                                  handleChangeScore={handleChangeScore}
+                                  evaluationId={evaluation.id}
+                                  studentId={rows?.id}
+                                  oldScore={evaluation.score}
+                                  scoreMax={evaluation.scoreMax}
+                                />
+                              </StyledTableCell>
+                            </Tooltip>
+                          ))}
+                        </>
+                        <StyledTableCell sx={{ color: 'success.dark', width: '1%' }}>
+                          {totalScores(
+                            totalList
+                              ?.find((std) => std.id === rows?.id)
+                              ?.evaluations.map((e) => e.score),
+                          )}
+                        </StyledTableCell>
+                        <StyledTableCell sx={{ color: 'grey.700', width: '3%', fontSize: 14 }}>
+                          {rows?.isScored ? (
+                            <Button
+                              onClick={() => handleSubmitUpdateTranscipts(rows?.id)}
+                              color='warning'
+                              disabled={NO_SCORE_STATUS_LIST?.some(
+                                (status) => status === `${rows?.studentStatus}`,
+                              )}
+                              startIcon={<Icon icon={'emojione-monotone:writing-hand'} />}
+                            >
+                              Cập nhật
+                            </Button>
+                          ) : (
+                            <Button
+                              onClick={() => handleSubmitCreateTranscipts(rows?.id)}
+                              startIcon={<Icon icon={'emojione-monotone:writing-hand'} />}
+                            >
+                              Chấm
+                            </Button>
+                          )}
+                          {rows?.isAdmin ? (
+                            <Tooltip title={`Nhận xét nhóm ${rows?.groupName}`}>
+                              <Button
+                                onClick={() =>
+                                  handleOpenCommentModal(
+                                    rows?.groupName,
+                                    rows?.groupStudentId,
+                                    rows?.topicName,
+                                    typeScoreStudent,
+                                  )
+                                }
+                                color='primary'
+                              >
+                                Nhận xét
+                              </Button>
+                            </Tooltip>
+                          ) : (
+                            ''
+                          )}
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    );
+                  },
+                )}
+              </TableBody>
+            ) : (
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '100%',
+                  py: 20,
+                }}
+              >
+                <Box>
+                  <img src='/images/nodata.webp' width={200} height={200} alt='' />
+                  <Typography variant='body1' textAlign={'center'} color='grey.600'>
+                    Bảng điểm trống
+                  </Typography>
+                </Box>
+              </Box>
+            )}
+          </Box>
+        )}
+      </Box>
+      <CommentModal
+        onClose={handleCloseCommentModal}
+        open={openCommentModal.isOpen}
+        type={openCommentModal.type}
+        topicName={openCommentModal.topicName}
+        groupId={openCommentModal.groupId}
+        groupName={openCommentModal.groupName}
+      />
+    </>
   );
 }
 
