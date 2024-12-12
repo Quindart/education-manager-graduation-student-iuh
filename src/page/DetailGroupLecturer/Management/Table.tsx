@@ -21,21 +21,21 @@ const LecturerColumns: GridColDef[] = [
     headerName: 'Tên giảng viên',
     field: 'fullName',
     flex: 0.6,
-    headerAlign: 'center',
+    headerAlign: 'left',
   },
   {
     headerName: 'Chuyên ngành',
     field: 'majorName',
     flex: 1,
     align: 'left',
-    headerAlign: 'center',
+    headerAlign: 'left',
   },
   {
     headerName: 'Trình độ',
     field: 'degree',
     flex: 1,
     align: 'left',
-    headerAlign: 'center',
+    headerAlign: 'left',
     renderCell: (params: any) => {
       return <Box>{checkDegree(params?.row?.degree)}</Box>;
     },

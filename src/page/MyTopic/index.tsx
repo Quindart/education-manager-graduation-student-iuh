@@ -1,7 +1,7 @@
 import SekeletonUI from '@/components/ui/Sekeleton';
 import TitleManager from '@/components/ui/Title';
 import { Box, Paper } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import TableManagamentTopic from '../Topic/Table';
 import { useTopic } from '@/hooks/api/useQueryTopic';
 import { removeVietnameseTones } from '@/utils/search';
@@ -25,7 +25,14 @@ export const handleSearch = (data: any[], typeSearch: string, keywords: string) 
 function MyTopic() {
   const { handleTopicsByMe } = useTopic();
   const { data, isLoading, isFetching } = handleTopicsByMe();
-  const { getQueryField } = useParams();
+  const [sort, setSort] = useState('ASC');
+  const [typeSearch, setTypeSearch] = useState('name');
+  useEffect(() => {
+    setTypeSort(sort);
+    onTypeSearchChange(typeSearch);
+  }, [sort, typeSearch]);
+  const { onSearchChange, getQueryField, onTypeSearchChange, setTypeSort } = useParams();
+
   return (
     <Box>
       <Paper sx={{ py: 10, px: 10 }} elevation={0}>

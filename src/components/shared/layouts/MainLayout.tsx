@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import AdminSidebar from '../Sidebar';
 import Navbar from '../Navbar';
@@ -9,12 +9,22 @@ import { getValueFromLocalStorage } from '@/utils/localStorage';
 import BreadCrumbRouting from '@/components/ui/BreadCrumb';
 import useSidebar from '@/hooks/ui/useSidebar';
 import GlobalLoading from '@/components/ui/Loading/GlobalLoading';
+import { useSnackbar } from 'notistack';
+import { useMajor } from '@/hooks/api/useQueryMajor';
 
 function MainLayout() {
   const { handleGetMe, lecturerStore } = useAuth();
+  const { majorStore } = useMajor();
   const { isLoading, isFetching } = handleGetMe();
   const { isOpen } = useSidebar();
 
+  const { enqueueSnackbar } = useSnackbar();
+  useEffect(() => {
+    if (majorStore.currentMajor)
+      enqueueSnackbar(`Xin chào, bạn đang đăng nhập vào ngành ${majorStore?.currentMajor?.name}`, {
+        variant: 'success',
+      });
+  }, [majorStore?.currentMajor]);
   return (
     <>
       {isLoading || isFetching ? (

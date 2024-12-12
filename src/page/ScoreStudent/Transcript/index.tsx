@@ -141,11 +141,15 @@ function TranscriptOfGroupStudent(props: any) {
         isExistTranscripts: transcriptFetch.transcripts.length > 0,
         transcripts:
           transcriptFetch.transcripts.length > 0
-            ? transcriptFetch.transcripts.sort((a, b) =>
-                a.evaluationKey.localeCompare(b.evaluationKey),
+            ? transcriptFetch.transcripts.sort(
+                (a, b) =>
+                  parseInt(a.evaluationKey.split('LO')[1]) -
+                  parseInt(b.evaluationKey.split('LO')[1]),
               )
-            : convertEvaluations(evaluations, memberFetch?.members).sort((a, b) =>
-                a.evaluationKey.localeCompare(b.evaluationKey),
+            : convertEvaluations(evaluations, memberFetch?.members).sort(
+                (a, b) =>
+                  parseInt(a.evaluationKey.split('LO')[1]) -
+                  parseInt(b.evaluationKey.split('LO')[1]),
               ),
       }));
       setScoreStudent(handleTotalScores(transcriptFetch?.transcripts));
@@ -398,7 +402,7 @@ function TranscriptOfGroupStudent(props: any) {
                     />
                     <Button
                       onClick={() =>
-                        !commentId
+                        !fetchComment?.comment?.id
                           ? handleCreateComment({
                               type: transcriptType,
                               groupStudentId: groupStudent?.id,

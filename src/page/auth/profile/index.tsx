@@ -124,6 +124,7 @@ function ProfilePage() {
                         <DropDown
                           label='Trình độ'
                           value={values.degree}
+                          disabled
                           onChange={(e) => {
                             setFieldValue('degree', e.target.value);
                           }}

@@ -52,7 +52,7 @@ function CreateGroupStudentNotifyForm() {
 
   //[Hooks]
   const [isSubmit, setIsSubmit] = useState(false);
-  const [currentGroupStudent, setCurrentGroupStudent] = useState<{ label: string; id: string }>({
+  const [currentGroupStudent, setCurrentGroupStudent] = useState<{ label?: string; id?: string }>({
     label: '',
     id: '',
   });
@@ -67,7 +67,11 @@ function CreateGroupStudentNotifyForm() {
       content: values.content,
     };
     if (values.typeQuantitySended === 'many') {
-      // createManyGroupStudents(dataSend);
+      let data = {
+        ...dataSend,
+        groupStudentIds: convertToDropValue(fetchGroupStudents?.groupStudents).map((l) => l.id),
+      };
+      createFewGroupStudent(data);
     } else if (values.typeQuantitySended === 'few') {
       if (listGroupStudent.length === 0) {
         enqueueSnackbar('Chưa có thông tin nhóm sinh viên nhận thông báo.', { variant: 'error' });
@@ -107,6 +111,13 @@ function CreateGroupStudentNotifyForm() {
     }
   }, [successFewGroupStudent]);
 
+  useEffect(() => {
+    setCurrentGroupStudent({
+      label: '',
+      id: '',
+    });
+    setListGroupStudent([]);
+  }, [typeGroup]);
   return (
     <Box>
       <Formik

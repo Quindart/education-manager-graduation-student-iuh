@@ -1,5 +1,6 @@
 import { checktTypeGroupLecturer } from '@/utils/validations/groupLecturer.validation';
 import { Card, CardContent, CardMedia, Typography, CardActions, Box } from '@mui/material';
+import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 
 function CardGroupLecturer(props: any) {
@@ -20,34 +21,59 @@ function CardGroupLecturer(props: any) {
           cursor: 'pointer',
           border: '1px solid #DAE9FAFF',
         },
-        minHeight: 200,
-        maxHeight: 300,
+        minHeight: 240,
       }}
     >
       <CardMedia
         component='img'
         alt='green iguana'
-        height={75}
+        height={100}
         width={100}
         sx={{
           objectFit: 'contain',
         }}
         image='/images/group_student_3.webp'
       />
-      <CardContent>
-        <Typography gutterBottom variant='h5' color='primary' fontWeight={600} component='div'>
+      <CardContent sx={{ px: 6, py: 4 }}>
+        <Typography gutterBottom fontSize={14} color='primary.dark' fontWeight={600} variant='h6'>
           {checktTypeGroupLecturer(group.type.toLowerCase())} {group.name}
         </Typography>
-        <Typography variant='h6' fontWeight={'bold'} color=''>
-          Thành viên
+
+        <Typography fontWeight={500} color='primary.dark'>
+          Thành viên :
         </Typography>
-        {group?.members.map((mem: any, index) => (
-          <Box mx={2} mb={2}>
-            <Typography variant='h6' color='grey.600'>
-              {mem.username} - {mem.fullName}
+        <Box>
+          {group?.members.map((mem) => (
+            <Typography variant='body1' color='text.grey.500'>
+              {mem.username} {' - '}
+              {mem.fullName}
             </Typography>
-          </Box>
-        ))}
+          ))}
+        </Box>
+
+        <Typography mt={4} fontWeight={500} color='primary.dark'>
+          Thông tin chi tiết:
+        </Typography>
+        <Typography mt={2}>
+          <Typography variant='body1' component={'span'} fontWeight={'bold'} color='grey.600'>
+            Bắt đầu:{' '}
+          </Typography>
+          {group.startDate
+            ? dayjs(group.startDate).format('DD/MM/YYYY hh:mm:ss A')
+            : 'Chưa cập nhật'}
+        </Typography>
+        <Typography mb={2}>
+          <Typography variant='body1' component={'span'} fontWeight={'bold'} color='grey.600'>
+            Kết thúc:{' '}
+          </Typography>
+          {group.endDate ? dayjs(group.endDate).format('DD/MM/YYYY hh:mm:ss A') : 'Chưa cập nhật'}
+        </Typography>
+        <Typography fontWeight={'bold'}>
+          <Typography variant='body1' component={'span'} fontWeight={'bold'} color='grey.600'>
+            Địa điểm:{' '}
+          </Typography>
+          {group.location ? group.location : 'Chưa cập nhật'}
+        </Typography>
       </CardContent>
       <CardActions sx={{ justifyContent: 'space-between' }}>
         <Box></Box>

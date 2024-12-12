@@ -196,10 +196,8 @@ function TableStudentInGroup({ members }: any) {
             minHeight={350}
             rowHeight={80}
             columns={basicColumns}
-            totalItems={1}
-            totalPages={1}
-            page={1}
-            handleChangePage={() => {}}
+            totalItems={members?.length}
+            isPanigation={false}
             disableColumnFilter
           />
         </Box>

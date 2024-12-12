@@ -14,7 +14,7 @@ import useParams from '@/hooks/ui/useParams';
 
 const SEARCH_FIELD = {
   name: 'tên đề tài',
-  key: 'mã đề tài',
+  key: 'Mã nhóm',
 };
 
 function SearchInput({ sx }: BoxProps) {
@@ -30,9 +30,10 @@ function SearchInput({ sx }: BoxProps) {
 
   return (
     <Box sx={{ ...sx, display: 'flex', gap: 3, width: '100%' }}>
-      <FormControl sx={{ width: 180, padding: 0 }}>
+      <FormControl sx={{ width: 150, padding: 0 }}>
         <Select
           size='small'
+          id='search-type'
           value={typeSearch}
           defaultValue='name'
           onChange={(e) => setTypeSearch(e.target.value)}
@@ -44,10 +45,10 @@ function SearchInput({ sx }: BoxProps) {
 
       <TextField
         variant='outlined'
-        placeholder={`Tìm kiếm theo ${SEARCH_FIELD[typeSearch]}`}
         fullWidth
         defaultValue={getQueryField('keywords')}
         size='small'
+        placeholder='Tìm kiếm đề theo tên hoặc mã đề tài'
         onChange={onSearchChange}
         InputProps={{
           startAdornment: (

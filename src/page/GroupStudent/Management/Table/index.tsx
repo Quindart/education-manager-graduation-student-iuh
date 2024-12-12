@@ -156,6 +156,7 @@ function TableManagamentGroupStudent(props: any) {
         columns={basicColumns}
         totalItems={totalItems}
         isPanigation={false}
+        
         disableColumnFilter
       />
       <DeleteGroupStudentModal

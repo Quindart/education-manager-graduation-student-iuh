@@ -35,10 +35,10 @@ export const DROP_ENUM_QUANTITY_NOTI = [
   },
 ];
 export const DROP_ENUM_QUANTITY_NOTI_FEW = [
-  // {
-  //   _id: 'many',
-  //   name: 'Tất cả',
-  // },
+  {
+    _id: 'many',
+    name: 'Tất cả',
+  },
   {
     _id: 'few',
     name: 'Một hoặc nhiều',

@@ -70,7 +70,7 @@ const columnsExcelTranscripts = (evaluations, type) => {
         width: 10,
       };
     })
-    .sort((a, b) => a.key.localeCompare(b.key));
+    .sort((a, b) => parseInt(a.key.split('LO')[1]) - parseInt(b.key.split('LO')[1]));
   const totalScores = {
     header: `Tổng điểm (${checkVietNamTypeEvaluation(type)})`,
     key: 'totalScores',
@@ -89,7 +89,7 @@ const grScoresToExportExcel = (tranScripts) => {
         topicName: transcript.topicName,
       };
       transcript?.evaluations
-        .sort((a, b) => a.key.localeCompare(b.key))
+        .sort((a, b) => parseInt(a.key.split('LO')[1]) - parseInt(b.key.split('LO')[1]))
         .map((evaluation) => {
           student = {
             ...student,
@@ -234,7 +234,7 @@ function TableScoreManagement({ typeScoreStudent }: any) {
               </StyledTableCell>
               <>
                 {evaluationFetch?.evaluations
-                  ?.sort((a, b) => a.key.localeCompare(b.key))
+                  ?.sort((a, b) => parseInt(a.key.split('LO')[1]) - parseInt(b.key.split('LO')[1]))
                   .map((evaluation: any) => (
                     <StyledTableCell
                       key={evaluation._id}

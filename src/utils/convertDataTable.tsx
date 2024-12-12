@@ -82,9 +82,12 @@ export const convertEvalutationTable = (evalutation: any[]) => {
         ...Evalutation,
       });
     });
-    return newEvalutations.sort((a, b) => a.key.localeCompare(b.key));
+    return newEvalutations.sort(
+      (a, b) => parseInt(a.key.split('LO')[1]) - parseInt(b.key.split('LO')[1]),
+    );
   }
 };
+
 
 export const convertGroupMembersTable = (groupMember: any[]) => {
   if (groupMember === undefined) return [];

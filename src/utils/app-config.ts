@@ -93,7 +93,7 @@ export const APP_ROUTES = {
     REGISTER: '/auth/register',
     PROFILE: '/profile',
     LOGIN: '/auth/login',
-    ROLE: '/',
+    ROLE: '/auth/role',
     UPDATE_PASS: '/profile/update-password',
     FORGOT: '/auth/forgot-password'
   },

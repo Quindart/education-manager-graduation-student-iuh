@@ -14,7 +14,7 @@ import useParams from '@/hooks/ui/useParams';
 
 const SEARCH_FIELD = {
   topicName: 'tên đề tài',
-  key: 'mã đề tài',
+  key: 'Mã nhóm',
 };
 
 function SearchInput({ sx }: BoxProps) {
@@ -39,7 +39,7 @@ function SearchInput({ sx }: BoxProps) {
           onChange={(e) => setTypeSearch(e.target.value)}
         >
           <MenuItem value='topicName'>Tên đề tài</MenuItem>
-          <MenuItem value='key'>Mã đề tài</MenuItem>
+          <MenuItem value='name'>Mã nhóm</MenuItem>
         </Select>
       </FormControl>
 

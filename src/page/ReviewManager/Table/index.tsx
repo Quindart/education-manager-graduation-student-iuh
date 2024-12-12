@@ -7,6 +7,9 @@ import EditEvaluationModal from '../Modal/Edit';
 import DeleteEvaluationModal from '../Modal/Delete';
 import { stripHtmlTags } from '@/utils/convertHtmlText';
 
+const splitLine = (str) => {
+  return str.split(';');
+};
 function TableManagerReviewScore(props: any) {
   const { rows, termId, type, currentRole } = props;
 
@@ -65,7 +68,11 @@ function TableManagerReviewScore(props: any) {
       renderCell(params) {
         return (
           <Typography variant='body1' color='initial'>
-            {stripHtmlTags(params?.value)}
+            {splitLine(stripHtmlTags(params?.value)).map((line: string) => (
+              <Typography variant='body1' color='initial'>
+                {line}
+              </Typography>
+            ))}
           </Typography>
         );
       },
@@ -130,7 +137,11 @@ function TableManagerReviewScore(props: any) {
       renderCell(params) {
         return (
           <Typography variant='body1' color='initial'>
-            {stripHtmlTags(params?.value)}
+            {splitLine(stripHtmlTags(params?.value)).map((line: string) => (
+              <Typography variant='body1' mb={2} color='initial'>
+                {line}
+              </Typography>
+            ))}
           </Typography>
         );
       },
@@ -143,7 +154,7 @@ function TableManagerReviewScore(props: any) {
         sx={{
           bgcolor: 'white',
         }}
-        rowHeight={200}
+        rowHeight={250}
         minHeight={350}
         columns={currentRole.includes('all') ? allRoleColumns : basicColumns}
         totalItems={rows.length}

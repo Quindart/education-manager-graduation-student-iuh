@@ -3,7 +3,7 @@ import Modal from '@/components/ui/Modal';
 import useComment from '@/hooks/api/useQueryComment';
 import { Icon } from '@iconify/react';
 import { Box, Button, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 function CommentModal(props: any) {
   const { onClose, open, type, groupId, topicName, groupName } = props;
@@ -13,16 +13,15 @@ function CommentModal(props: any) {
   const { mutate: handleCreateComment, isSuccess: successCreateComment } = onCreateComment();
   const { mutate: handleUpdateComment, isSuccess: successUpdatecomment } = onUpdateComment();
   const { data: fetchComment, isSuccess: successFetchComment } = handleGetComment(type, groupId);
-  console.log('🚀 ~ CommentModal ~ groupId:', groupId);
-  console.log('🚀 ~ CommentModal ~ type:', type);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (fetchComment) {
       setComment(
         `${fetchComment?.comment?.content ? fetchComment?.comment?.content : 'Chưa có nhận xét'}`,
       );
       setCommentId(`${fetchComment?.comment?.id}`);
     }
-  }, [groupId, type]);
+  }, [groupId, fetchComment]);
+
   useEffect(() => {
     if (successUpdatecomment || successUpdatecomment) {
       onClose();
@@ -71,7 +70,7 @@ function CommentModal(props: any) {
           <Button
             sx={{ width: '50%' }}
             onClick={() => {
-              !commentId
+              !fetchComment?.comment?.id
                 ? handleCreateComment({
                     type: type,
                     groupStudentId: groupId,
