@@ -1,14 +1,7 @@
-import {
-  checkTypeEvaluation,
-  checkVietNamTypeEvaluation,
-} from '@/utils/validations/transcript.validation';
-import { Box, Button, Link, TableBody, TableHead, Tooltip, Typography } from '@mui/material';
-
+import { checkVietNamTypeEvaluation } from '@/utils/validations/transcript.validation';
+import { Box, Link, TableBody, TableHead, Typography } from '@mui/material';
 import useTranscript from '@/hooks/api/useQueryTranscript';
 import { StyledTableCell, StyledTableRow } from '@/components/iframe/PageWord/style';
-import ScoreInput from '@/components/ui/ScoreInput';
-import { Icon } from '@iconify/react';
-import { EnumStatusStudent } from '@/types/enum';
 import { useTerm } from '@/hooks/api/useQueryTerm';
 import SekeletonTable from '@/components/ui/Sekeleton';
 import ExportExcelButton from '@/components/ui/Export';
@@ -41,6 +34,7 @@ const columnsExcelTranscripts = (evaluations, type) => {
     { header: 'Mã nhóm', key: 'groupName', width: 10 },
     { header: 'Mã sinh viên', key: 'username', width: 12 },
     { header: 'Họ và tên', key: 'studentName', width: 30 },
+    { header: 'Giảng viên chấm điểm', key: 'lecturerName', width: 30 },
   ];
   if (!evaluations) return [...init];
   const evalColumns = evaluations
@@ -68,6 +62,7 @@ const grScoresToExportExcel = (tranScripts) => {
         studentName: transcript.fullName,
         groupName: transcript.groupName,
         topicName: transcript.topicName,
+        lecturerName: transcript.lecturerName ? transcript.lecturerName : '',
       };
       transcript?.evaluations
         .sort((a, b) => a.key.localeCompare(b.key))
@@ -84,14 +79,13 @@ const grScoresToExportExcel = (tranScripts) => {
     })
     .flat();
 };
+
 function TableScoreManagement({ typeScoreStudent }: any) {
   const { termStore } = useTerm();
   const termId = termStore.currentTerm.id;
   //[Handler update/ create transcript of group student]
   const { handleExportTranscripts, hanleGetEvalutaionsForScoring } = useTranscript();
-  const { data: evaluationFetch } = hanleGetEvalutaionsForScoring(
-    typeScoreStudent,
-  );
+  const { data: evaluationFetch } = hanleGetEvalutaionsForScoring(typeScoreStudent);
   //![Get group student need score]
   const { data: groupTranscripts, isLoading } = handleExportTranscripts(typeScoreStudent);
   const columnsExcel = columnsExcelTranscripts(evaluationFetch?.evaluations, typeScoreStudent);
@@ -171,6 +165,14 @@ function TableScoreManagement({ typeScoreStudent }: any) {
                             )}
                           </>
                         </Typography>
+                        {rows?.lecturerName && (
+                          <Typography variant='body1' fontWeight={'500'} color='success.main'>
+                            Giảng viên chấm điểm:
+                            <Typography variant='body1' mx={2} component={'span'} color='grey.600'>
+                              {rows?.lecturerName}
+                            </Typography>
+                          </Typography>
+                        )}
                       </StyledTableCell>
                       <StyledTableCell sx={{ color: 'grey.600', width: '10%', fontSize: 14 }}>
                         {rows?.fullName}

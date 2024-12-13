@@ -52,7 +52,7 @@ function DetailArticleModal({ open, onClose, articleId }) {
             <Typography
               component={'a'}
               my={10}
-              href={`${env.API_URL}/${fetchArticle?.article.link}`}
+              href={`${env.API_URL}${fetchArticle?.article.link}`}
               target='_blank'
               variant='body1'
               color='primary'

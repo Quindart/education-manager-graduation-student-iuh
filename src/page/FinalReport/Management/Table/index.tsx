@@ -70,7 +70,7 @@ function TableFinalReportManagement(props: Props) {
         renderCell: (params) => (
           <Typography
             component={'a'}
-            href={`${env.API_URL}/${params.value}`}
+            href={`${env.API_URL}${params.value}`}
             target='_blank'
             variant='body1'
             color='primary'
@@ -153,7 +153,7 @@ function TableFinalReportManagement(props: Props) {
         renderCell: (params) => (
           <Typography
             component={'a'}
-            href={`${env.API_URL}/${params.value}`}
+            href={`${env.API_URL}${params.value}`}
             target='_blank'
             variant='body1'
             color='primary'

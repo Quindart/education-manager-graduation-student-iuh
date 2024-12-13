@@ -72,7 +72,7 @@ function TableArticleManagement(props: Props) {
   const basicColumns: GridColDef[] = useMemo(
     () => [
       {
-        headerName: 'Thông tin sinh viên nộp báo',
+        headerName: 'Thông tin sinh viên',
         field: 'fullName',
         flex: 0.7,
         align: 'left',

@@ -51,7 +51,7 @@ const LecturerColumns: GridColDef[] = [
     renderCell: (params: any) => {
       return (
         <Link sx={{ cursor: 'pointer' }} href={params?.value}>
-          {params?.value ? params.value : 'Chưa cập nhật'}
+          {params?.value ? 'Xem chi tiết' : 'Chưa cập nhật'}
         </Link>
       );
     },
@@ -88,7 +88,7 @@ const HeadLecturerColumns: GridColDef[] = [
     renderCell: (params: any) => {
       return (
         <Link sx={{ cursor: 'pointer' }} href={params?.value}>
-          {params?.value ? params.value : 'Chưa cập nhật'}
+          {params?.value ? 'Xem chi tiết' : 'Chưa cập nhật'}
         </Link>
       );
     },

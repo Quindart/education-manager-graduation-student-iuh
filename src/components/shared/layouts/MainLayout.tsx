@@ -14,13 +14,12 @@ import { useMajor } from '@/hooks/api/useQueryMajor';
 
 function MainLayout() {
   const { handleGetMe, lecturerStore } = useAuth();
-  const { majorStore } = useMajor();
   const { isLoading, isFetching } = handleGetMe();
   const { isOpen } = useSidebar();
-
+  const { majorStore } = useMajor();
   const { enqueueSnackbar } = useSnackbar();
   useEffect(() => {
-    if (majorStore.currentMajor)
+    if (majorStore.currentMajor.majorName !== '')
       enqueueSnackbar(`Xin chào, bạn đang đăng nhập vào ngành ${majorStore?.currentMajor?.name}`, {
         variant: 'success',
       });
