@@ -170,8 +170,25 @@ function TableScoreManagement({ typeScoreStudent }: any) {
 
   //!Handle submit
   const handleSubmitCreateTranscipts = (id: string) => {
+    const preTranscripts = evaluationFetch?.evaluations?.map((e) => {
+      return {
+        studentId: id,
+        evaluationId: e.id,
+        score: 0,
+        termId: termId,
+      };
+    });
     const transcript = scoreStds.filter((scoreStd) => scoreStd.studentId === id);
-    createTranscripts(transcript);
+
+    const dataSend = preTranscripts.map((e) => {
+      let eId = e?.evaluationId;
+      let evlHaveScore = transcript?.find((e) => e.evaluationId === eId);
+      if (evlHaveScore) {
+        e.score = evlHaveScore.score;
+      }
+      return e;
+    });
+    createTranscripts(dataSend);
   };
   const handleSubmitUpdateTranscipts = (id: string) => {
     const transcript = scoreStds.filter((scoreStd) => scoreStd.studentId === id);
