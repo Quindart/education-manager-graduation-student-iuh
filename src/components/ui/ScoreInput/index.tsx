@@ -25,12 +25,12 @@ function ScoreInput(props: ScoreInputPropsType) {
   }, [oldScore]);
 
   const handleSetPoint = (scoreInput: string) => {
-    const regex = /^\d+$/;
+    const regex = /^\d+(\.\d+)?$/;
     if (scoreInput === '') {
       setErrorMess('Không bỏ trống');
     } else if (!regex.test(scoreInput)) {
-      setErrorMess('Điểm phải là số nguyên dương');
-    } else if (parseInt(scoreInput, 10) > scoreMax) {
+      setErrorMess('Điểm phải là số');
+    } else if (parseFloat(scoreInput) > scoreMax) {
       setErrorMess(`Điểm  <= ${scoreMax}`);
     } else {
       setErrorMess('');
