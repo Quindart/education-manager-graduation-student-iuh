@@ -32,7 +32,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
             alignment: 'center',
             children: [
               new TextRun({
-                text: 'INDUSTRIAL UNIVERSITY OF HO CHI MINH CITY',
+                text: 'TRƯỜNG ĐH CÔNG NGHIỆP TP. HCM',
                 bold: true,
                 size: 28,
               }),
@@ -42,7 +42,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
             alignment: 'center',
             children: [
               new TextRun({
-                text: '\nFACULTY OF INFORMATION TECHNOLOGY',
+                text: '\nKHOA CÔNG NGHỆ THÔNG TIN',
                 size: 28,
               }),
             ],
@@ -61,7 +61,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
             spacing: { before: 300, after: 300 },
             children: [
               new TextRun({
-                text: 'CAPSTONE PROJECT EVALUATION FORM',
+                text: 'PHIẾU ĐÁNH GIÁ KHÓA LUẬN TỐT NGHIỆP',
                 bold: true,
                 size: 28,
               }),
@@ -71,7 +71,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
             spacing: { after: 200 },
             children: [
               new TextRun({
-                text: '1. Topic name: ' + `${topic?.name}`,
+                text: '1.Tên đề tài:  ' + `${topic?.name}`,
                 size: 24,
               }),
             ],
@@ -79,7 +79,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
           new Paragraph({
             children: [
               new TextRun({
-                text: '2. Instructors:  ' + `${lecturerSupportName}`,
+                text: '2. Giáo viên hướng dẫn:   ' + `${lecturerSupportName}`,
                 size: 24,
               }),
             ],
@@ -87,7 +87,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
           new Paragraph({
             children: [
               new TextRun({
-                text: '3. Team: ' + `${groupStudentName}`,
+                text: '3. Nhóm thực hiện:  ' + `${groupStudentName}`,
                 size: 24,
               }),
             ],
@@ -95,7 +95,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
           new Paragraph({
             children: [
               new TextRun({
-                text: `     Student code 1: ${groupMember && groupMember[0]?.student?.username}                                                First student name:  ${groupMember && groupMember[0]?.student?.fullName}`,
+                text: ` Mã SV 1:  ${groupMember && groupMember[0]?.student?.username}                                                Họ tên sinh viên 1:  ${groupMember && groupMember[0]?.student?.fullName}`,
                 size: 24,
               }),
             ],
@@ -103,7 +103,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
           new Paragraph({
             children: [
               new TextRun({
-                text: `     Student code 2: ${groupMember && groupMember[1]?.student?.username}                                                First student name:  ${groupMember && groupMember[1]?.student?.fullName}                                                      `,
+                text: ` Mã SV 2: ${groupMember && groupMember[1]?.student?.username}                                                  Họ tên sinh viên 2:   ${groupMember && groupMember[1]?.student?.fullName}                                                      `,
                 size: 24,
               }),
             ],
@@ -111,7 +111,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
           new Paragraph({
             children: [
               new TextRun({
-                text: `4. Evaluator's full name: ${lecturerToScoreName}`,
+                text: `4. Họ và tên người đánh giá:  ${lecturerToScoreName}`,
                 size: 24,
               }),
             ],
@@ -119,7 +119,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
           new Paragraph({
             children: [
               new TextRun({
-                text: '5. Role of the evaluator:   Instructor ',
+                text: '5. Vai trò của người đánh giá:   Hướng dẫn ',
                 size: 24,
               }),
             ],
@@ -128,7 +128,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
             alignment: 'center',
             children: [
               new TextRun({
-                text: 'CONTENTS',
+                text: 'NỘI DUNG ĐÁNH GIÁ',
                 bold: true,
                 size: 24,
               }),
@@ -145,13 +145,13 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
             rows: [
               new TableRow({
                 height: {
-                  value: 722,
+                  value: 800,
                   rule: HeightRule.EXACT,
                 },
                 children: [
                   new TableCell({
                     width: {
-                      size: 5,
+                      size: 8,
                       type: WidthType.PERCENTAGE,
                     },
                     shading: {
@@ -161,7 +161,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
                     verticalAlign: VerticalAlign.CENTER,
                     children: [
                       new Paragraph({
-                        children: [new TextRun({ text: 'CLO', size: 23 })],
+                        children: [new TextRun({ text: 'LO', size: 26 })],
                         alignment: 'center',
                       }),
                     ],
@@ -178,7 +178,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
                     verticalAlign: VerticalAlign.CENTER,
                     children: [
                       new Paragraph({
-                        children: [new TextRun({ text: 'Content', size: 23 })],
+                        children: [new TextRun({ text: 'Nội dung', size: 23 })],
                         alignment: 'center',
                       }),
                     ],
@@ -195,7 +195,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
                     },
                     children: [
                       new Paragraph({
-                        children: [new TextRun({ text: 'Max point', size: 23 })],
+                        children: [new TextRun({ text: 'Điểm tối đa', size: 20 })],
                         alignment: 'center',
                       }),
                     ],
@@ -212,7 +212,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
                     },
                     children: [
                       new Paragraph({
-                        children: [new TextRun({ text: 'Score student 1', size: 23 })],
+                        children: [new TextRun({ text: 'Điểm đánh giá sinh viên 1', size: 23 })],
                         alignment: 'center',
                       }),
                     ],
@@ -229,7 +229,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
                     },
                     children: [
                       new Paragraph({
-                        children: [new TextRun({ text: 'Score student 2', size: 23 })],
+                        children: [new TextRun({ text: 'Điểm đánh giá sinh viên 2', size: 23 })],
                         alignment: 'center',
                       }),
                     ],
@@ -248,8 +248,8 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
                       new Paragraph({
                         alignment: 'center',
                         children: [
-                          new TextRun({ text: 'NOTES ', size: 20 }),
-                          new TextRun({ text: '(if applicable)', size: 23 }),
+                          new TextRun({ text: 'Nhận xét  ', size: 20 }),
+                          new TextRun({ text: '(nếu có)', size: 23 }),
                         ],
                       }),
                     ],
@@ -260,7 +260,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
                 (row: any, index: number) =>
                   new TableRow({
                     height: {
-                      value: 700,
+                      value: 900,
                       rule: HeightRule.EXACT,
                     },
                     children: [
@@ -407,7 +407,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
             spacing: { before: 200 },
             children: [
               new TextRun({
-                text: 'Other comments:',
+                text: 'Các ý kiến khác: ',
                 size: 24,
                 bold: true,
               }),
@@ -442,7 +442,7 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
             alignment: 'center',
             children: [
               new TextRun({
-                text: '                                                                                                   Ho Chi Minh City, date    month     year   \n',
+                text: '                                                                                                   TP. Hồ Chí Minh, ngày      tháng      năm    \n',
                 italics: true,
                 size: 24,
               }),
@@ -450,11 +450,20 @@ export default function docTranscriptAdvisor(evaluations: any, topic: any, lectu
           }),
           new Paragraph({
             alignment: 'center',
-
             children: [
               new TextRun({
-                text: '                                                                                                                      Evaluator',
+                text: '                                                                                                                      Người đánh giá',
                 bold: true,
+                size: 24,
+              }),
+            ],
+          }),
+          new Paragraph({
+            alignment: 'center',
+            spacing: { before: 600 },
+            children: [
+              new TextRun({
+                text: `                                                                                                                       ${lecturerSupportName}`,
                 size: 24,
               }),
             ],
