@@ -35,7 +35,7 @@ const convertRowStudents = (groupStudents: any[]) => {
   return groupStudents?.map((student: any, index: number) => {
     return {
       ...student,
-      isScored: student?.evaluations.some((std: any) => std.score > 0),
+      isScored: student?.evaluations.some((std: any) => std.score >= 0),
       colorRow: randomColor(index),
       totalScores: totalScores(student?.evaluations.map((std: any) => std.score)),
     };
