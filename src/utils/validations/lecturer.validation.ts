@@ -1,8 +1,25 @@
 import { EnumIndustryKey, EnumRole } from "@/types/enum";
 
+// exports.checkDegree = (degree) => {
+//     switch (degree) {
+//         case 'BACHELOR':
+//             return 'NCS';
+//         case 'MASTER':
+//             return 'ThS';
+//         case 'DOCTOR':
+//             return 'TS';
+//         case 'PROFESSOR':
+//             return 'PGS. TS';
+//         default:
+//             return 'ThS';
+//     }
+// };
+
 export const checkDegree = (value: string) => {
-    if (value === 'MASTER') return 'Tiến sĩ';
-    if (value === 'DOCTOR') return 'Thạc sĩ';
+    if (value === 'MASTER') return 'Thạc sĩ';
+    if (value === 'DOCTOR') return 'Tiến sĩ';
+    if (value === 'PROFESSOR') return 'Phó giáo sư. Tiến sĩ';
+    if (value === 'DOCTOR') return 'Tiến sĩ';
     return;
 };
 export const checkIndustry = (value: string) => {

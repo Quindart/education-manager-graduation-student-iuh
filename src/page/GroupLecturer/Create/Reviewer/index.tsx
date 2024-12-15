@@ -148,7 +148,7 @@ function CreateInstructorGroupPage() {
         sx={{
           flex: 1,
           px: 6,
-          height: 400,
+          minHeight: 400,
           pb: 10,
         }}
         onDragLeave={(e: any) => handleOnDragLeave(e)}
@@ -182,7 +182,7 @@ function CreateInstructorGroupPage() {
             {dataLecturerGradingAssembly?.length > 0 && (
               <>
                 <Box>
-                  <Box sx={{ justifyContent: 'end', display: 'flex' }}>
+                  <Box sx={{ justifyContent: 'end', display: 'flex', flexWrap: 'wrap' }}>
                     {getUniqueKeywords(dataLecturerGradingAssembly).map((keyword: any) => (
                       <ChipTag sx={{ mx: 1, my: 2 }} color='info' size='small' label={keyword} />
                     ))}

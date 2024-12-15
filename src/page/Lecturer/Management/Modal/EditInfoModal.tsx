@@ -42,8 +42,9 @@ const RoleLecturerDrop = [
 ];
 
 const DEGREE_DROP_VALUE = [
-  { name: 'Tiến sĩ', _id: 'MASTER' },
-  { name: 'Thạc sĩ', _id: 'DOCTOR' },
+  { name: 'Tiến sĩ', _id: 'DOCTOR' },
+  { name: 'Thạc sĩ', _id: 'MASTER' },
+  { name: 'Phó giáo sư', _id: 'PROFESSOR' },
 ];
 
 function EditInfoModal(props: any) {
