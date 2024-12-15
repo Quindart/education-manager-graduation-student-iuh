@@ -28,14 +28,13 @@ function randomColor(index: number) {
 }
 const totalScores = (scores: any[]) => {
   if (!scores) return 0;
-  return scores.reduce((score1, score2) => score1 + score2, 0);
+  return scores.reduce((score1, score2) => parseFloat(score1 + score2), 0);
 };
 const convertRowStudents = (groupStudents: any[]) => {
   if (groupStudents?.length === 0) return [];
   return groupStudents?.map((student: any, index: number) => {
     return {
       ...student,
-      isScored: student?.evaluations.some((std: any) => std.score >= 0),
       colorRow: randomColor(index),
       totalScores: totalScores(student?.evaluations.map((std: any) => std.score)),
     };
@@ -159,7 +158,7 @@ function TableScoreManagement({ typeScoreStudent }: any) {
         if (std.id === id) {
           std.evaluations.map((evaluation) => {
             if (evaluation.id === evaluationId) {
-              evaluation.score = parseInt(score);
+              evaluation.score = parseFloat(score);
             }
           });
         }
