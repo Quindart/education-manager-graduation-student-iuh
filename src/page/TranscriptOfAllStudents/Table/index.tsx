@@ -114,16 +114,18 @@ function TableScoreManagement({ typeScoreStudent }: any) {
     <>
       <Box>
         <Box sx={{ display: 'flex', justifyContent: 'end', gap: 4, mb: 4 }}>
-          <Button
-            disabled={data?.evaluations.length < 1}
-            size='small'
-            color='primary'
-            variant='contained'
-            onClick={handleOpenExportModal}
-            startIcon={<Icon width={20} icon='material-symbols:export-notes' />}
-          >
-            Xuất phiếu {checkVietNamTypeEvaluation(typeScoreStudent)}
-          </Button>
+          {typeScoreStudent !== 'ADVISOR' && (
+            <Button
+              disabled={data?.evaluations.length < 1}
+              size='small'
+              color='primary'
+              variant='contained'
+              onClick={handleOpenExportModal}
+              startIcon={<Icon width={20} icon='material-symbols:export-notes' />}
+            >
+              Xuất phiếu {checkVietNamTypeEvaluation(typeScoreStudent)}
+            </Button>
+          )}
           <ExportExcelButton
             headerSetup={columnsExcel}
             data={grScoresToExportExcel(groupTranscripts?.transcripts)}
