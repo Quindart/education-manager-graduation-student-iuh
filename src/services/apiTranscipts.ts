@@ -12,9 +12,16 @@ const URL = `/api/v1/transcripts`
 export const getSatisticPoints = async (termId: string): Promise<ResponseType> => {
     return await axiosConfig.get(`${URL}/statistic?termId=${termId}`)
 }
+//HEAD_LECTURER 
 export const getTranscriptsToExport = async (termId: string, type: string): Promise<ResponseType> => {
     return await axiosConfig.get(`${URL}/export?termId=${termId}&type=${type}`)
 }
+
+export const getTotalAllTranscripts = async (termId: string): Promise<ResponseType> => {
+    return await axiosConfig.get(`${URL}/all?termId=${termId}`)
+}
+
+//LECTURER
 export const getTranscriptsByTypeAssign = async (termId: string, type: string): Promise<ResponseType> => {
     return await axiosConfig.get(`${URL}/assign?termId=${termId}&type=${type}`)
 }

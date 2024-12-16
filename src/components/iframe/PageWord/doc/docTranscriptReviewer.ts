@@ -36,7 +36,7 @@ export default function docTranscriptReviewer({
                         spacing: { after: lineSpacing },
                         children: [
                             new TextRun({
-                                text: 'INDUSTRIAL UNIVERSITY OF HO CHI MINH CITY',
+                                text: 'TRƯỜNG ĐH CÔNG NGHIỆP TP. HCM',
                                 bold: true,
                                 size: 28,
                             }),
@@ -47,7 +47,7 @@ export default function docTranscriptReviewer({
                         spacing: { after: lineSpacing },
                         children: [
                             new TextRun({
-                                text: '\nFACULTY OF INFORMATION TECHNOLOGY',
+                                text: '\nKHOA CÔNG NGHỆ THÔNG TIN',
                                 size: 28,
                             }),
                         ],
@@ -67,7 +67,7 @@ export default function docTranscriptReviewer({
                         spacing: { before: 200, after: 200 },
                         children: [
                             new TextRun({
-                                text: 'CAPSTONE PROJECT EVALUATION FORM',
+                                text: 'PHIẾU ĐÁNH GIÁ KHÓA LUẬN TỐT NGHIỆP',
                                 bold: true,
                                 size: 28,
                             }),
@@ -77,7 +77,7 @@ export default function docTranscriptReviewer({
                         spacing: { after: lineSpacing },
                         children: [
                             new TextRun({
-                                text: `1. Topic name: ${topicName} `,
+                                text: `1. Tên đề tài: ${topicName} `,
                                 size: 24,
                             }),
                         ],
@@ -86,7 +86,7 @@ export default function docTranscriptReviewer({
                         spacing: { after: lineSpacing },
                         children: [
                             new TextRun({
-                                text: `2. Instructors: ${lecturerSupport}`,
+                                text: `2. Giáo viên hướng dẫn : ${lecturerSupport}`,
                                 size: 24,
                             }),
                         ],
@@ -95,7 +95,7 @@ export default function docTranscriptReviewer({
                         spacing: { after: lineSpacing },
                         children: [
                             new TextRun({
-                                text: `3. Team: ${groupStudentName}`,
+                                text: `3. Nhóm thực hiện: ${groupStudentName}`,
                                 size: 24,
                             }),
                         ],
@@ -104,7 +104,7 @@ export default function docTranscriptReviewer({
                         spacing: { after: lineSpacing },
                         children: [
                             new TextRun({
-                                text: `     Student code 1: ${students && students[0]?.username}                                              First student name: ${students && students[0]?.fullName}`,
+                                text: `      Mã SV 1: ${students && students[0]?.username}                                              Họ tên sinh viên 1: ${students && students[0]?.fullName}`,
                                 size: 24,
                             }),
                         ],
@@ -113,7 +113,7 @@ export default function docTranscriptReviewer({
                         spacing: { after: lineSpacing },
                         children: [
                             new TextRun({
-                                text: `     Student code 2: ${students && students[1]?.username}                                              Second student name: ${students && students[1]?.fullName}`,
+                                text: `      Mã SV 2: ${students && students[1]?.username}                                              Họ tên sinh viên 2: ${students && students[1]?.fullName}`,
                                 size: 24,
                             }),
                         ],
@@ -122,7 +122,7 @@ export default function docTranscriptReviewer({
                         spacing: { after: lineSpacing },
                         children: [
                             new TextRun({
-                                text: `4. Evaluator's full name: ${fileType === 'many' ? nameEvaluatorExport : evaluatorFullName}`,
+                                text: ` 4. Họ và tên người đánh giá : ${fileType === 'many' ? nameEvaluatorExport : evaluatorFullName}`,
                                 size: 24,
                             }),
                         ],
@@ -131,7 +131,7 @@ export default function docTranscriptReviewer({
                         spacing: { after: lineSpacing },
                         children: [
                             new TextRun({
-                                text: '5. Role of the evaluator:  Reviewer ',
+                                text: '5. Vai trò của người đánh giá: Thành viên HĐ',
                                 size: 24,
                             }),
                         ],
@@ -141,7 +141,7 @@ export default function docTranscriptReviewer({
                         spacing: { after: lineSpacing },
                         children: [
                             new TextRun({
-                                text: 'CONTENTS',
+                                text: 'NỘI DUNG',
                                 bold: true,
                                 size: 24,
                             }),
@@ -156,13 +156,13 @@ export default function docTranscriptReviewer({
                         rows: [
                             new TableRow({
                                 height: {
-                                    value: 722,
+                                    value: 820,
                                     rule: HeightRule.EXACT,
                                 },
                                 children: [
                                     new TableCell({
                                         width: {
-                                            size: 5,
+                                            size: 8,
                                             type: WidthType.PERCENTAGE,
                                         },
                                         shading: {
@@ -170,11 +170,11 @@ export default function docTranscriptReviewer({
                                             color: "#d9ecfb",
                                         },
                                         verticalAlign: VerticalAlign.CENTER,
-                                        children: [new Paragraph({ children: [new TextRun({ text: 'CLO', size: 23 })], alignment: 'center', })],
+                                        children: [new Paragraph({ children: [new TextRun({ text: 'LO', size: 20 })], alignment: 'center', })],
                                     }),
                                     new TableCell({
                                         width: {
-                                            size: 40,
+                                            size: 30,
                                             type: WidthType.PERCENTAGE,
                                         },
                                         shading: {
@@ -182,31 +182,31 @@ export default function docTranscriptReviewer({
                                             color: "#d9ecfb",
                                         },
                                         verticalAlign: VerticalAlign.CENTER,
-                                        children: [new Paragraph({ children: [new TextRun({ text: 'Content', size: 23 })], alignment: 'center', })]
+                                        children: [new Paragraph({ children: [new TextRun({ text: 'Nội dung', size: 20 })], alignment: 'center', })]
                                     }),
                                     new TableCell({
                                         verticalAlign: VerticalAlign.CENTER,
                                         width: {
-                                            size: 15,
-                                            type: WidthType.PERCENTAGE,
-                                        },
-                                        shading: {
-                                            type: ShadingType.SOLID,
-                                            color: "#d9ecfb",
-                                        },
-                                        children: [new Paragraph({ children: [new TextRun({ text: 'Max point', size: 23 })], alignment: 'center' })]
-                                    }),
-                                    new TableCell({
-                                        width: {
-                                            type: WidthType.PERCENTAGE,
                                             size: 10,
+                                            type: WidthType.PERCENTAGE,
+                                        },
+                                        shading: {
+                                            type: ShadingType.SOLID,
+                                            color: "#d9ecfb",
+                                        },
+                                        children: [new Paragraph({ children: [new TextRun({ text: 'Điểm tối đa', size: 20 })], alignment: 'center' })]
+                                    }),
+                                    new TableCell({
+                                        width: {
+                                            type: WidthType.PERCENTAGE,
+                                            size: 12,
                                         },
                                         verticalAlign: VerticalAlign.CENTER,
                                         shading: {
                                             type: ShadingType.SOLID,
                                             color: "#d9ecfb",
                                         },
-                                        children: [new Paragraph({ children: [new TextRun({ text: 'Score student 1', size: 23 })], alignment: 'center', })]
+                                        children: [new Paragraph({ children: [new TextRun({ text: 'Điểm đánh giá sinh viên 1', size: 20 })], alignment: 'center', })]
                                     }),
                                     new TableCell({
                                         verticalAlign: VerticalAlign.CENTER,
@@ -216,9 +216,9 @@ export default function docTranscriptReviewer({
                                         },
                                         width: {
                                             type: WidthType.PERCENTAGE,
-                                            size: 10,
+                                            size: 12,
                                         },
-                                        children: [new Paragraph({ children: [new TextRun({ text: 'Score student 2', size: 23 })], alignment: 'center', })]
+                                        children: [new Paragraph({ children: [new TextRun({ text: 'Điểm đánh giá sinh viên 2', size: 20 })], alignment: 'center', })]
                                     }),
                                     new TableCell({
                                         width: {
@@ -232,7 +232,7 @@ export default function docTranscriptReviewer({
                                         verticalAlign: VerticalAlign.CENTER,
                                         children: [new Paragraph({
                                             alignment: 'center',
-                                            children: [new TextRun({ text: 'NOTES ', size: 20 }), new TextRun({ text: '(if applicable)', size: 23 })]
+                                            children: [new TextRun({ text: 'Nhận xét', size: 20 }), new TextRun({ text: '(nếu có)', size: 20 })]
                                         })]
                                     }),
                                 ],
@@ -240,7 +240,7 @@ export default function docTranscriptReviewer({
                             ...rows.map((row, index) => (
                                 new TableRow({
                                     height: {
-                                        value: 700,
+                                        value: 800,
                                         rule: HeightRule.EXACT,
                                     },
                                     children: [
@@ -273,7 +273,7 @@ export default function docTranscriptReviewer({
                                             type: WidthType.PERCENTAGE,
                                         },
                                         verticalAlign: VerticalAlign.CENTER,
-                                        children: [new Paragraph({ children: [new TextRun({ text: 'Total', size: 23, bold: true })], alignment: 'center', })]
+                                        children: [new Paragraph({ children: [new TextRun({ text: 'Cộng', size: 23, bold: true })], alignment: 'center', })]
                                     }),
                                     new TableCell({
                                         width: {
@@ -315,7 +315,7 @@ export default function docTranscriptReviewer({
                         spacing: { before: 200 },
                         children: [
                             new TextRun({
-                                text: 'Other comments:',
+                                text: '  Các góp ý cho khóa luận:',
                                 size: 24,
                                 bold: true,
                             }),
@@ -350,7 +350,7 @@ export default function docTranscriptReviewer({
                         alignment: 'center',
                         children: [
                             new TextRun({
-                                text: '                                                                                                   Ho Chi Minh City, date    month     year   \n',
+                                text: '                                                                                                   TP. Hồ Chí Minh, ngày     tháng      năm    \n',
                                 italics: true,
                                 size: 24,
                             }),
@@ -362,8 +362,18 @@ export default function docTranscriptReviewer({
 
                         children: [
                             new TextRun({
-                                text: '                                                                                                                    Evaluator',
+                                text: '                                                                                                                    Người đánh giá',
                                 bold: true,
+                                size: 24,
+                            }),
+                        ],
+                    }),
+                    new Paragraph({
+                        alignment: 'center',
+                        spacing: { before: 800 },
+                        children: [
+                            new TextRun({
+                                text: `                                                                                                                        ${fileType === 'many' ? nameEvaluatorExport : evaluatorFullName}`,
                                 size: 24,
                             }),
                         ],

@@ -93,7 +93,24 @@ const HEADER_TYPE = {
     { header: 'Điểm PB2', key: 'Điểm PB2', width: 20 },
     { header: 'Trung bình (HD, PB)', key: 'Trung bình (HD, PB)', width: 20 },
   ],
-
+  allTotalTranscripts: [
+    { header: 'Mã sinh viên', key: 'username', width: 15 },
+    { header: 'Họ và tên', key: 'fullName', width: 26 },
+    { header: 'Tên nhóm', key: 'groupName', width: 15 },
+    { header: 'Tên đề tài', key: 'topicName', width: 50 },
+    { header: 'GVHD', key: 'GVHD', width: 20 },
+    { header: 'Điểm GVHD', key: 'Điểm GVHD', width: 10 },
+    { header: 'GVPB1', key: 'GVPB1', width: 20 },
+    { header: 'GVPB2', key: 'GVPB2', width: 20 },
+    { header: 'GVHĐ1', key: 'GVHĐ1', width: 20 },
+    { header: 'GVHĐ2', key: 'GVHĐ2', width: 20 },
+    { header: 'GVHĐ3', key: 'GVHĐ3', width: 20 },
+    { header: 'Điểm GVPB1', key: 'Điểm GVPB1', width: 10 },
+    { header: 'Điểm GVPB2', key: 'Điểm GVPB2', width: 10 },
+    { header: 'Điểm GVHĐ1', key: 'Điểm GVHĐ1', width: 10 },
+    { header: 'Điểm GVHĐ2', key: 'Điểm GVHĐ2', width: 10 },
+    { header: 'Điểm GVHĐ3', key: 'Điểm GVHĐ3', width: 10 },
+  ],
   demoScoreStudents: [
     { header: 'Mã số', key: 'Mã số', width: 12 },
     { header: 'Lớp học', key: 'Lớp học', width: 15 },
@@ -129,7 +146,8 @@ interface ExportExcelPropsType extends BoxProps {
     | 'transcript'
     | 'demoScoreStudents'
     | 'assignLecturerTerm'
-    | 'transcriptsOfLecturerScoring';
+    | 'transcriptsOfLecturerScoring'
+    | 'allTotalTranscripts';
   data: any;
   headerSetup?: any[];
   disabled?: boolean;
@@ -181,6 +199,9 @@ const entityFileName = (entity: string, termName: string, majorName: string) => 
       break;
     case 'transcriptsOfLecturerScoring':
       text = 'Bảng điểm chấm KLTN';
+      break;
+    case 'allTotalTranscripts':
+      text = 'Bảng điểm tổng Kết';
       break;
   }
   return text + ' ' + termName;

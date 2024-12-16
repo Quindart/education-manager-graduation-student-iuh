@@ -26,10 +26,10 @@ export const checkTypeEvaluation = (typeScore: string) => {
   else return 'REVIEWER';
 };
 export const checkVietNamTypeEvaluation = (typeScore: string) => {
-  if (typeScore === 'REPORT_COUNCIL' || typeScore === 'REPORT_POSTER') {
-    return 'Phản biện';
+  if (typeScore === 'REPORT_COUNCIL' || typeScore === 'REPORT_POSTER' || typeScore === 'REPORT') {
+    return 'Hội đồng';
   } else if (typeScore === 'ADVISOR') return 'Hướng dẫn';
-  else return 'Hội đồng';
+  else return 'Phản biện';
 };
 
 export const getNameStatus = (value: string) => {

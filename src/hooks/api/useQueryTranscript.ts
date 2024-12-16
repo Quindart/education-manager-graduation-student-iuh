@@ -1,8 +1,9 @@
 import { useMutation, useQuery } from "react-query"
 import { useTerm } from "./useQueryTerm"
-import { BodyEvaluation, createTranscripts, getEvaluationsForScoring, getTranscriptByGroupStudent, getTranscriptOfStudentInGroup, getTranscriptsByTypeAssign, getTranscriptsByTypeEvaluation, getTranscriptsToExport, getUnTranscriptGroupStudentsByType, updateTranscript } from "@/services/apiTranscipts"
+import { BodyEvaluation, createTranscripts, getEvaluationsForScoring, getTotalAllTranscripts, getTranscriptByGroupStudent, getTranscriptOfStudentInGroup, getTranscriptsByTypeAssign, getTranscriptsByTypeEvaluation, getTranscriptsToExport, getUnTranscriptGroupStudentsByType, updateTranscript } from "@/services/apiTranscipts"
 import { useSnackbar } from "notistack"
 import { queryClient } from "@/providers/ReactQueryClientProvider"
+
 export enum QueryKeysScoreStudent {
     getEvaluationsForScoring = 'getEvaluationsForScoring',
     getUnTranscriptGroupStudentsByType = 'getUnTranscriptGroupStudentsByType',
@@ -10,7 +11,8 @@ export enum QueryKeysScoreStudent {
     getTranscriptsByGroupStudent = "getTranscriptsByGroupStudent",
     getTranscriptOfStudentInGroup = "getTranscriptOfStudentInGroup",
     getTranscriptExport = "getTranscriptExport",
-    getTranscriptsByTypeAssign = "getTranscriptsByTypeAssign"
+    getTranscriptsByTypeAssign = "getTranscriptsByTypeAssign",
+    getTotalAllTranscripts = "getTotalAllTranscripts"
 }
 
 const useTranscript = () => {
@@ -57,7 +59,7 @@ const useTranscript = () => {
                 enqueueSnackbar("Lưu điểm thành công", { variant: "success" })
                 queryClient.invalidateQueries([QueryKeysScoreStudent.getTranscriptsByGroupStudent, groupStudentId])
                 queryClient.invalidateQueries(QueryKeysScoreStudent.getTranscriptsByTypeAssign)
-
+                queryClient.invalidateQueries(QueryKeysScoreStudent.getTotalAllTranscripts)
             },
             onError(error) {
                 enqueueSnackbar("Thất bại, vui lòng thử lại", { variant: "error" })
@@ -71,6 +73,7 @@ const useTranscript = () => {
                 enqueueSnackbar("Lưu điểm thành công", { variant: "success" })
                 queryClient.invalidateQueries(QueryKeysScoreStudent.getTranscriptsByGroupStudent)
                 queryClient.invalidateQueries(QueryKeysScoreStudent.getTranscriptsByTypeAssign)
+                queryClient.invalidateQueries(QueryKeysScoreStudent.getTotalAllTranscripts)
             },
             onError(error) {
                 enqueueSnackbar("Thất bại, vui lòng thử lại", { variant: "error" })
@@ -87,6 +90,7 @@ const useTranscript = () => {
                 queryClient.invalidateQueries(QueryKeysScoreStudent.getTranscriptOfStudentInGroup)
                 queryClient.invalidateQueries(QueryKeysScoreStudent.getTranscriptExport)
                 queryClient.invalidateQueries(QueryKeysScoreStudent.getTranscriptsByTypeAssign)
+                queryClient.invalidateQueries(QueryKeysScoreStudent.getTotalAllTranscripts)
             }
         })
     }
@@ -97,12 +101,17 @@ const useTranscript = () => {
 
         })
     }
+
+    const handleExportAllTranscripts = () => {
+        return useQuery([QueryKeysScoreStudent.getTotalAllTranscripts, termStore.currentTerm.id], () => getTotalAllTranscripts(termStore.currentTerm.id))
+    }
     return {
         handleGetTranscriptsByGroupStudent,
         handleGetTranscriptsByTypeEvaluation,
         hanleGetEvalutaionsForScoring,
         handleGetTranscriptOfStudentInGroup,
         handleExportTranscripts,
+        handleExportAllTranscripts,
         handleGetTranscriptByTypeAssign,
         onCreateTranscriptTypeExcelUI,
         onCreateTranscripts,

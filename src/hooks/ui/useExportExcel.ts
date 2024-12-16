@@ -5,6 +5,7 @@ import { GroupStudentClassExportExcel } from "@/components/ui/Export/Entity/Grou
 import { LecturerClassExportExcel } from "@/components/ui/Export/Entity/Lecturer";
 import { StudentClassExportExcel } from "@/components/ui/Export/Entity/Student";
 import { TopicClassExportExcel } from "@/components/ui/Export/Entity/Topic";
+import { TotalAllTranscripts } from "@/components/ui/Export/Entity/TotalAllTranscipts";
 import { TranscriptExcel } from "@/components/ui/Export/Entity/Transcript";
 import { TranscriptOfLecturerScoring } from "@/components/ui/Export/Entity/TranscriptsOfLecturerScoring";
 import { useSnackbar } from "notistack";
@@ -106,6 +107,16 @@ const useExportExcel = () => {
                 TranscriptOfLecturerScoringExport.setData(data)
                 TranscriptOfLecturerScoringExport.customizeSheet()
                 TranscriptOfLecturerScoringExport.onExport()
+                break;
+            case 'allTotalTranscripts':
+                const totalAllTranscripts = new TotalAllTranscripts(
+                    fileName,
+                    sheetName,
+                    headerColumn,
+                )
+                totalAllTranscripts.setData(data)
+                totalAllTranscripts.customizeSheet()
+                totalAllTranscripts.onExport()
         }
     }
     return {

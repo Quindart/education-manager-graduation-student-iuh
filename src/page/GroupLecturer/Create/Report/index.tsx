@@ -174,7 +174,7 @@ function CreateReportGroupPage() {
           />
         </Box>
         <Box>
-          <Box sx={{ justifyContent: 'end', display: 'flex' }}>
+          <Box sx={{ justifyContent: 'end', display: 'flex', flexWrap: 'wrap', gap: 2 }}>
             {getUniqueKeywords(dataLecturerGradingAssembly).map((keyword: any) => (
               <>
                 <ChipTag
