@@ -68,6 +68,7 @@ const grScoresToExportExcel = (tranScripts) => {
         groupName: transcript.groupName,
         topicName: transcript.topicName,
         lecturerName: transcript.lecturerName ? transcript.lecturerName : '',
+        status: transcript.status,
       };
       transcript?.evaluations
         .sort((a, b) => a.key.localeCompare(b.key))
@@ -226,6 +227,11 @@ function TableScoreManagement({ typeScoreStudent }: any) {
                         </StyledTableCell>
                         <StyledTableCell sx={{ color: 'grey.600', width: '10%', fontSize: 14 }}>
                           {rows?.fullName}
+                          {rows.status.split('_')[0] === 'FAIL' && (
+                            <Typography variant='body1' color='error'>
+                              -Không chấm-
+                            </Typography>
+                          )}
                         </StyledTableCell>
                         <>
                           {rows?.evaluations.map((evaluation: any, index: number) => (

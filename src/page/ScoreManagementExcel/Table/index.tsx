@@ -86,6 +86,7 @@ const grScoresToExportExcel = (tranScripts) => {
         studentName: transcript.fullName,
         groupName: transcript.groupName,
         topicName: transcript.topicName,
+        status: transcript.status,
       };
       transcript?.evaluations
         .sort((a, b) => parseInt(a.key.split('LO')[1]) - parseInt(b.key.split('LO')[1]))
@@ -320,7 +321,12 @@ function TableScoreManagement({ typeScoreStudent, isInTimeScore }: any) {
                           ) : (
                             ''
                           )}
-                          {rows?.fullName}
+                          {rows?.fullName} sá
+                          {rows.status.split('_')[0] === 'FAIL' && (
+                            <Typography variant='body1' color='error'>
+                              -Không chấm-
+                            </Typography>
+                          )}
                         </StyledTableCell>
                         <>
                           {rows?.evaluations.map((evaluation: any, index: number) => (
