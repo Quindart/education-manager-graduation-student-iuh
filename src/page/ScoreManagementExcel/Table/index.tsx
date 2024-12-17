@@ -321,7 +321,7 @@ function TableScoreManagement({ typeScoreStudent, isInTimeScore }: any) {
                           ) : (
                             ''
                           )}
-                          {rows?.fullName} sá
+                          {rows?.fullName}
                           {rows.status.split('_')[0] === 'FAIL' && (
                             <Typography variant='body1' color='error'>
                               -Không chấm-
@@ -347,6 +347,7 @@ function TableScoreManagement({ typeScoreStudent, isInTimeScore }: any) {
                                   evaluationId={evaluation.id}
                                   studentId={rows?.id}
                                   oldScore={evaluation.score}
+                                  disabled={!isInTimeScore}
                                   scoreMax={evaluation.scoreMax}
                                 />
                               </StyledTableCell>

@@ -10,13 +10,16 @@ function ScoreManagementExcel() {
   const { termStore } = useTerm();
   const [typeScoreStudent, setTypeScoreStudent] = useState<string>(`${ENUM_SCORE_STUDENT[0]?._id}`);
   const checkTimeToScored = (type) => {
-    if (type === 'REVIEWER' && termStore.partCurrentTerm.isDiscussion === true) return true;
+    if (
+      (type === 'REVIEWER' || type === 'ADVISOR') &&
+      termStore.partCurrentTerm.isDiscussion === true
+    )
+      return true;
     if (
       (type === 'REPORT' || type === 'REPORT_POSTER' || type === 'REPORT_COUNCIL') &&
       termStore.partCurrentTerm.isReport === true
     )
       return true;
-    if (type === 'ADVISOR') return true;
     return false;
   };
   const handleChangeTypeScoreStudent = (typeScoreStudent: string) => {
