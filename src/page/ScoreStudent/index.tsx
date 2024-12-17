@@ -9,9 +9,12 @@ import useQueryTranscript from '@/hooks/api/useQueryTranscript';
 import { convertListGroupStudentScore } from '@/utils/convertDataTable';
 import TranscriptOfGroupStudent from './Transcript';
 import useComment from '@/hooks/api/useQueryComment';
+import { useTerm } from '@/hooks/api/useQueryTerm';
+// isDiscussion
 
 function ScoreStudentPage() {
   const [currentDataRow, setCurrentDataRow] = useState(null);
+
   const [currentRowSelectId, setCurrentRowSelectId] = useState('');
   const [typeScoreStudent, setTypeScoreStudent] = useState<string>(`${ENUM_SCORE_STUDENT[0]?._id}`);
   const { hanleGetEvalutaionsForScoring, handleGetUnTranscriptGroupStudentsByType } =
@@ -23,6 +26,7 @@ function ScoreStudentPage() {
     setCurrentDataRow(params.row);
     setCurrentRowSelectId(params.id);
   };
+
   return (
     <Paper sx={{ py: 4, px: 5 }} elevation={0}>
       <Box display='flex' gap={5} pb={4}>

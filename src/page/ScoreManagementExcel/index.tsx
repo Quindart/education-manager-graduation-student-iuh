@@ -4,10 +4,21 @@ import TableScoreManagement from './Table';
 import { ENUM_SCORE_STUDENT } from '@/utils/validations/transcript.validation';
 import TitleManager from '@/components/ui/Title';
 import DropDown from '@/components/ui/Dropdown';
+import { useTerm } from '@/hooks/api/useQueryTerm';
 
 function ScoreManagementExcel() {
+  const { termStore } = useTerm();
   const [typeScoreStudent, setTypeScoreStudent] = useState<string>(`${ENUM_SCORE_STUDENT[0]?._id}`);
-
+  const checkTimeToScored = (type) => {
+    if (type === 'REVIEWER' && termStore.partCurrentTerm.isDiscussion === true) return true;
+    if (
+      (type === 'REPORT' || type === 'REPORT_POSTER' || type === 'REPORT_COUNCIL') &&
+      termStore.partCurrentTerm.isReport === true
+    )
+      return true;
+    if (type === 'ADVISOR') return true;
+    return false;
+  };
   const handleChangeTypeScoreStudent = (typeScoreStudent: string) => {
     setTypeScoreStudent(typeScoreStudent);
   };
@@ -27,7 +38,10 @@ function ScoreManagementExcel() {
         </Box>
       </Box>
       <Box>
-        <TableScoreManagement typeScoreStudent={typeScoreStudent} />
+        <TableScoreManagement
+          isInTimeScore={checkTimeToScored(typeScoreStudent)}
+          typeScoreStudent={typeScoreStudent}
+        />
       </Box>
     </Paper>
   );

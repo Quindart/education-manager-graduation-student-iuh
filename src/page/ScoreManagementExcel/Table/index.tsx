@@ -103,7 +103,7 @@ const grScoresToExportExcel = (tranScripts) => {
     .flat();
 };
 
-function TableScoreManagement({ typeScoreStudent }: any) {
+function TableScoreManagement({ typeScoreStudent, isInTimeScore }: any) {
   const { termStore } = useTerm();
   const termId = termStore.currentTerm.id;
   //[Handler update/ create transcript of group student]
@@ -359,9 +359,7 @@ function TableScoreManagement({ typeScoreStudent }: any) {
                             <Button
                               onClick={() => handleSubmitUpdateTranscipts(rows?.id)}
                               color='warning'
-                              disabled={NO_SCORE_STATUS_LIST?.some(
-                                (status) => status === `${rows?.studentStatus}`,
-                              )}
+                              disabled={!isInTimeScore}
                               startIcon={<Icon icon={'emojione-monotone:writing-hand'} />}
                             >
                               Cập nhật
@@ -370,6 +368,7 @@ function TableScoreManagement({ typeScoreStudent }: any) {
                             <Button
                               onClick={() => handleSubmitCreateTranscipts(rows?.id)}
                               startIcon={<Icon icon={'emojione-monotone:writing-hand'} />}
+                              disabled={!isInTimeScore}
                             >
                               Chấm
                             </Button>
@@ -385,6 +384,7 @@ function TableScoreManagement({ typeScoreStudent }: any) {
                                     typeScoreStudent,
                                   )
                                 }
+                                disabled={!isInTimeScore}
                                 color='primary'
                               >
                                 Nhận xét
