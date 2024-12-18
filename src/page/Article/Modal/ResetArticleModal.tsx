@@ -12,7 +12,7 @@ function ResetArticleModal(props: ModalStatusArticleProps) {
   const [comment, setComment] = useState('Reset duyệt bài báo.');
   const { mutate: updateAccept } = onUpdateStatusArticle(articleId as string);
   const handleSubmit = () => {
-    updateAccept({ status: 'PENDING', comment: comment, bonusScore: 1 });
+    updateAccept({ status: 'PENDING', comment: comment, bonusScore: 0 });
     onClose();
   };
   return (
