@@ -45,6 +45,7 @@ function AddModal(props: any) {
             target: '',
             standardOutput: 'Cập nhật yêu cầu đầu ra',
             requireInput: 'Cập nhật yêu cầu đầu vào',
+            lecturerId: `${lecturerStore.me.user.id}`,
           }}
         >
           {({ handleSubmit, values, errors, touched, handleBlur, handleChange, setFieldValue }) => (
