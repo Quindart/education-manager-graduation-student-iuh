@@ -1,3 +1,5 @@
+import { EnumRoleOfMemberCouncil, EnumRoleOfMemberPoster } from "@/types/enum";
+
 export const checktTypeGroupLecturer = (type: string) => {
     switch (type) {
         case 'reviewer':
@@ -38,3 +40,18 @@ export const ENUM_GROUP_LECTURER = [
         _id: 'report_council',
     },
 ];
+export const checkMemberType = (type: string) => {
+    switch (type) {
+        case EnumRoleOfMemberCouncil.PRESIDENT:
+            return 'Chủ tịch';
+        case EnumRoleOfMemberCouncil.VICE_PRESIDENT:
+            return 'Ủy viên';
+        case EnumRoleOfMemberCouncil.SECRETARY:
+            return 'Thư ký';
+        case EnumRoleOfMemberPoster.MEMBER_ONE:
+            return 'Thành viên 1';
+        case EnumRoleOfMemberPoster.MEMBER_TWO:
+            return 'Thành viên 2';
+    }
+    return;
+}   

@@ -15,7 +15,7 @@ function docTranscriptCouncil({
 }: any) {
     const rows = convertRowEvaluations(evaluations);
     const fileName = 'Phiếu chấm Nhóm sv_' + groupStudentName + '_' + evaluatorFullName
-    const lineSpacing = 200
+    const lineSpacing = 80
     const isLecturer = role === RoleCheck.LECTURER
     const nameEvaluatorExport = isLecturer ? evaluatorFullName : evaluatorFullName.split('_')[1]
 
@@ -25,8 +25,8 @@ function docTranscriptCouncil({
                 properties: {
                     page: {
                         margin: {
-                            top: 720, // 0.5 inch
-                            bottom: 720, // 0.5 inch
+                            top: 600, // 0.5 inch
+                            bottom: 500, // 0.5 inch
                             left: 720, // 0.5 inch
                             right: 720, // 0.5 inch
                         },
@@ -35,7 +35,7 @@ function docTranscriptCouncil({
                 children: [
                     new Paragraph({
                         alignment: 'center',
-                        spacing: { after: lineSpacing },
+                        spacing: { after: 80 },
                         children: [
                             new TextRun({
                                 text: 'TRƯỜNG ĐH CÔNG NGHIỆP TP. HCM',
@@ -46,7 +46,7 @@ function docTranscriptCouncil({
                     }),
                     new Paragraph({
                         alignment: 'center',
-                        spacing: { after: lineSpacing },
+                        spacing: { after: 80 },
                         children: [
                             new TextRun({
                                 text: '\nKHOA CÔNG NGHỆ THÔNG TIN',
@@ -56,7 +56,7 @@ function docTranscriptCouncil({
                     }),
                     new Paragraph({
                         alignment: 'center',
-                        spacing: { after: lineSpacing },
+                        spacing: { after: 50 },
                         children: [
                             new TextRun({
                                 text: '=======//======',
@@ -66,7 +66,7 @@ function docTranscriptCouncil({
                     }),
                     new Paragraph({
                         alignment: 'center',
-                        spacing: { before: 200, after: 200 },
+                        spacing: { before: 50, after: 50 },
                         children: [
                             new TextRun({
                                 text: 'PHIẾU ĐÁNH GIÁ KHÓA LUẬN TỐT NGHIỆP',
@@ -164,7 +164,7 @@ function docTranscriptCouncil({
                                 children: [
                                     new TableCell({
                                         width: {
-                                            size: 8,
+                                            size: 6,
                                             type: WidthType.PERCENTAGE,
                                         },
                                         shading: {
@@ -176,7 +176,7 @@ function docTranscriptCouncil({
                                     }),
                                     new TableCell({
                                         width: {
-                                            size: 30,
+                                            size: 40,
                                             type: WidthType.PERCENTAGE,
                                         },
                                         shading: {
@@ -189,7 +189,7 @@ function docTranscriptCouncil({
                                     new TableCell({
                                         verticalAlign: VerticalAlign.CENTER,
                                         width: {
-                                            size: 10,
+                                            size: 6,
                                             type: WidthType.PERCENTAGE,
                                         },
                                         shading: {
@@ -348,7 +348,7 @@ function docTranscriptCouncil({
                         ],
                     }),
                     new Paragraph({
-                        spacing: { before: 200, after: 150 },
+                        spacing: { before: 100, after: 100 },
                         alignment: 'center',
                         children: [
                             new TextRun({

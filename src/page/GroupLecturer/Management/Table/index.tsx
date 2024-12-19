@@ -8,6 +8,7 @@ import { Icon } from '@iconify/react';
 import DeleteGroupModal from '../Modal/DeleteGroupModal';
 import dayjs from 'dayjs';
 import EditInfoGroupModal from '../Modal/EditInfoGroupModal';
+import { checkMemberType } from '@/utils/validations/groupLecturer.validation';
 
 function TableManagamentGroupLecturer(props: any) {
   const { rows, totalItems, totalPages, page, handelChangePage, groupType, ...rest } = props;
@@ -88,7 +89,7 @@ function TableManagamentGroupLecturer(props: any) {
             {params.row.members.map((mem: any, index: number) => (
               <Box component={'div'} my={2}>
                 <Typography mr={4} component={'span'}>
-                  {mem.username}
+                  {checkMemberType(mem.position)}
                 </Typography>
                 {' - '}
                 <Typography ml={4} component={'span'} width={100} color='initial'>

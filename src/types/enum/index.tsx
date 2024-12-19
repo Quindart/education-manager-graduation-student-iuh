@@ -59,6 +59,16 @@ enum EnumStatusStudent {
   PASS_REVIEWER = 'PASS_REVIEWER',
   PASS_REPORT = 'PASS_REPORT',
 }
+enum EnumRoleOfMemberCouncil {
+  PRESIDENT = 'PRESIDENT',
+  VICE_PRESIDENT = 'VICE_PRESIDENT',
+  SECRETARY = 'SECRETARY',
+}
+enum EnumRoleOfMemberPoster {
+  MEMBER_ONE = 'MEMBER_ONE',
+  MEMBER_TWO = 'MEMBER_TWO',
+}
+
 export {
   EnumRole,
   EnumGender,
@@ -67,4 +77,6 @@ export {
   EnumIndustryKey,
   EnumAnalysis,
   EnumStatusStudent,
+  EnumRoleOfMemberPoster,
+  EnumRoleOfMemberCouncil,
 };

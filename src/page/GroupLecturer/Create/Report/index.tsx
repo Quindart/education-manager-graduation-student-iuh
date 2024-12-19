@@ -18,10 +18,94 @@ import {
   convertLecturerGroup,
   handleSearch,
 } from '@/page/GroupLecturer/Context';
-
-import { INDUSTRIES } from '@/utils/constants';
 import ChipTag from '@/components/ui/Badge';
-import { checkIndustry } from '@/utils/validations/lecturer.validation';
+
+const checkColorByIndex = (index: number) => {
+  if (index == 1) return '#c36d0c';
+  if (index == 2) return '#ca2a2a';
+  if (index == 3) return '#168b0c';
+};
+const checkRoleOfMember = (type: 'report_poster' | 'report_council' | string, index: number) => {
+  if (type === 'report_poster') {
+    return ` Thành viên ${index}`;
+  }
+  if (index === 1) return 'Chủ tịch';
+  if (index === 2) return 'Ủy viên';
+  if (index === 3) return 'Thư ký';
+};
+
+const NoMemberPosterContent = () => {
+  return (
+    <>
+      <Typography
+        variant='body1'
+        px={10}
+        py={4}
+        width={'100%'}
+        bgcolor={'#fff0df'}
+        color='grey.600'
+      >
+        Thành viên 1
+      </Typography>
+      <Typography
+        variant='body1'
+        px={10}
+        py={4}
+        width={'100%'}
+        bgcolor={'#fee2e2'}
+        color='grey.600'
+      >
+        Thành viên 2
+      </Typography>
+      <Typography
+        variant='body1'
+        px={10}
+        py={4}
+        width={'100%'}
+        bgcolor={'#f4fff3'}
+        color='grey.600'
+      >
+        Thành viên 3
+      </Typography>
+    </>
+  );
+};
+const NoMemberCouncilContent = () => {
+  return (
+    <>
+      <Typography
+        variant='body1'
+        px={10}
+        py={4}
+        width={'100%'}
+        bgcolor={'#fff0df'}
+        color='grey.600'
+      >
+        Chủ tịch
+      </Typography>
+      <Typography
+        variant='body1'
+        px={10}
+        py={4}
+        width={'100%'}
+        bgcolor={'#fee2e2'}
+        color='grey.600'
+      >
+        Ủy viên
+      </Typography>
+      <Typography
+        variant='body1'
+        px={10}
+        py={4}
+        width={'100%'}
+        bgcolor={'#f4fff3'}
+        color='grey.600'
+      >
+        Thư ký
+      </Typography>
+    </>
+  );
+};
 
 function CreateReportGroupPage() {
   const [currentGroup, setCurrentGroup] = useState<string>(
@@ -53,7 +137,7 @@ function CreateReportGroupPage() {
 
   useEffect(() => {
     setTask(convertLecturerGroup(listLecturersKey?.lecturerTerms));
-  }, [successCreate, listLecturersDefault, listLecturersKey]);
+  }, [successCreate, listLecturersDefault, listLecturersKey, currentGroup]);
 
   const handleOnDrageStart = (evt: any) => {
     let element = evt.currentTarget;
@@ -107,6 +191,7 @@ function CreateReportGroupPage() {
   const changeSearch = (s: string) => {
     setKeywords(s);
   };
+
   return (
     <Box display={'flex'} gap={5} justifyContent={'space-between'}>
       <Paper
@@ -158,6 +243,7 @@ function CreateReportGroupPage() {
           height: 500,
           py: 10,
         }}
+        elevation={0}
         onDragLeave={(e: any) => handleOnDragLeave(e)}
         onDragEnter={(e) => handleOnDragEnter(e)}
         onDragEnd={(e) => handleOnDrageEnd(e)}
@@ -193,20 +279,26 @@ function CreateReportGroupPage() {
               display={'flex'}
               flexDirection={'column'}
               justifyContent={'center'}
-              gap={10}
+              gap={4}
               alignItems={'center'}
               height={300}
             >
               {' '}
-              <img width={150} src='/images/nodata.webp' />
+              {/* <img width={150} src='/images/nodata.webp' /> */}
               <Typography color='grey.600' variant='h6' mt={1}>
-                Để chọn giảng viên cần tạo nhóm, vui lòng kéo thả vào bảng này
+                Để chọn giảng viên cần tạo nhóm, vui lòng kéo thả vào bảng này. *Lưu ý: chức vụ của
+                giảng viên đảm nhận trong nhóm chấm tuân theo thứ tự ở phía bên dưới:
               </Typography>
+              {currentGroup === 'report_council' ? (
+                <NoMemberCouncilContent />
+              ) : (
+                <NoMemberPosterContent />
+              )}
             </Box>
           </Box>
         ) : (
           <Box sx={{ height: 500 }}>
-            {dataLecturerGradingAssembly?.map((task: any) => (
+            {dataLecturerGradingAssembly?.map((task: any, index: number) => (
               <Paper
                 sx={{
                   display: 'flex',
@@ -217,7 +309,6 @@ function CreateReportGroupPage() {
                   cursor: 'pointer',
                   boxSizing: 'border-box',
                   border: '2px solid #fefefe',
-
                   ':hover': {
                     border: '2px solid #00B1A2',
                     boxShadow: '1px 1px 1px 1px #E6E6E6',
@@ -232,6 +323,9 @@ function CreateReportGroupPage() {
                 onDragEnd={(e) => handleOnDrageStart(e)}
               >
                 <Box px={10}>
+                  <Typography variant='body1' color={checkColorByIndex(index + 1)}>
+                    {checkRoleOfMember(currentGroup, index + 1)}
+                  </Typography>
                   <Typography variant='h6' fontWeight={600} color='grey.700'>
                     Giảng viên
                     <Typography mx={4} fontSize={14} component='span'>

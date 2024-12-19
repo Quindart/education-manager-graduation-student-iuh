@@ -131,6 +131,7 @@ function InfoOtherGroupFile({ evaluations, changeCurrentGrLecturers, typeEvaluat
         fetchGrLecturer?.groupLecturer?.groupStudents.map((gr) => ({ ...gr, checked: true })),
       );
     }
+    
     // Nếu là xuất tất cả thì lấy fetch đầu tiên. Nếu không thì lấy data checked qua checkbox
     if (currentGrId === '1111') {
       changeCurrentGrLecturers(groupLecturers);

@@ -14,7 +14,40 @@ import {
   convertLecturerGroup,
   handleSearch,
 } from '@/page/GroupLecturer/Context';
-
+const checkColorByIndex = (index: number) => {
+  if (index == 1) return '#c36d0c';
+  if (index == 2) return '#ca2a2a';
+  if (index == 3) return '#168b0c';
+};
+const checkRoleOfMember = (index: number) => {
+  return ` Thành viên ${index}`;
+};
+const NoMemberContent = () => {
+  return (
+    <>
+      <Typography
+        variant='body1'
+        px={10}
+        py={4}
+        width={'100%'}
+        bgcolor={'#fff0df'}
+        color='grey.600'
+      >
+        Thành viên 1
+      </Typography>
+      <Typography
+        variant='body1'
+        px={10}
+        py={4}
+        width={'100%'}
+        bgcolor={'#fee2e2'}
+        color='grey.600'
+      >
+        Thành viên 2
+      </Typography>
+    </>
+  );
+};
 function CreateInstructorGroupPage() {
   const [task, setTask] = React.useState<any[]>();
   const { onCreateGroupLecturer } = useGroupLecturer();
@@ -171,10 +204,12 @@ function CreateInstructorGroupPage() {
               alignItems={'center'}
               height={300}
             >
-              <img width={150} src='/images/nodata.webp' />
+              {/* <img width={150} src='/images/nodata.webp' /> */}
               <Typography color='grey.600' variant='h6' mt={1}>
-                Để chọn giảng viên cần tạo nhóm, vui lòng kéo thả vào bảng này
+                Để chọn giảng viên cần tạo nhóm, vui lòng kéo thả vào bảng này. *Lưu ý: chức vụ của
+                giảng viên đảm nhận trong nhóm chấm tuân theo thứ tự ở phía bên dưới:
               </Typography>
+              <NoMemberContent />
             </Box>
           </Box>
         ) : (
@@ -190,7 +225,7 @@ function CreateInstructorGroupPage() {
                 </Box>
               </>
             )}
-            {dataLecturerGradingAssembly?.map((task: any) => (
+            {dataLecturerGradingAssembly?.map((task: any, index: number) => (
               <Paper
                 sx={{
                   display: 'flex',
@@ -216,6 +251,9 @@ function CreateInstructorGroupPage() {
                 onDragEnd={(e) => handleOnDrageStart(e)}
               >
                 <Box px={10}>
+                  <Typography variant='body1' color={checkColorByIndex(index + 1)}>
+                    {checkRoleOfMember(index + 1)}
+                  </Typography>
                   <Typography variant='h6' fontWeight={600} color='grey.700'>
                     Giảng viên
                     <Typography mx={4} fontSize={14} component='span'>
