@@ -124,7 +124,7 @@ function docTranscriptCouncil({
                         spacing: { after: lineSpacing },
                         children: [
                             new TextRun({
-                                text: ` 4. Họ và tên người đánh giá : ${fileType === 'many' ? nameEvaluatorExport : evaluatorFullName}`,
+                                text: `4. Họ và tên người đánh giá : ${fileType === 'many' ? nameEvaluatorExport : evaluatorFullName}`,
                                 size: 24,
                             }),
                         ],
@@ -176,7 +176,7 @@ function docTranscriptCouncil({
                                     }),
                                     new TableCell({
                                         width: {
-                                            size: 40,
+                                            size: 46,
                                             type: WidthType.PERCENTAGE,
                                         },
                                         shading: {
@@ -189,7 +189,7 @@ function docTranscriptCouncil({
                                     new TableCell({
                                         verticalAlign: VerticalAlign.CENTER,
                                         width: {
-                                            size: 6,
+                                            size: 4,
                                             type: WidthType.PERCENTAGE,
                                         },
                                         shading: {
