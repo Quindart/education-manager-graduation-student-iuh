@@ -1,10 +1,11 @@
-import { Box, Paper } from '@mui/material';
+import { Box, Button, Paper } from '@mui/material';
 import React, { useState } from 'react';
 import TableScoreManagement from './Table';
 import { ENUM_SCORE_STUDENT } from '@/utils/validations/transcript.validation';
 import TitleManager from '@/components/ui/Title';
 import DropDown from '@/components/ui/Dropdown';
 import { useTerm } from '@/hooks/api/useQueryTerm';
+import ExportTranscriptWord from './Modal/ExportTranscriptWord';
 
 function ScoreManagementExcel() {
   const { termStore } = useTerm();

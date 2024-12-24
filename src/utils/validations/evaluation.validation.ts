@@ -13,11 +13,15 @@ export const getTypeEvaluation = (typeEvaluation: string) => {
 export const getFileNameToExportDocx = (typeEvaluation: string) => {
     switch (typeEvaluation) {
         case 'ADVISOR':
-            return 'HD_PhieuChamDiem_CuoiKy_KLTN';
+            return 'HuongDan_PhieuChamDiem_CuoiKy_KLTN';
         case 'REVIEWER':
             return ' PB_PhieuChamDiem_CuoiKy_KLTN';
         case 'REPORT':
-            return 'Hoidong_PhieuChamDiem_CuoiKy_KLTN';
+            return 'BaoCao_PhieuChamDiem_CuoiKy_KLTN';
+        case 'REPORT_POSTER':
+            return 'BaoCao_PhieuChamDiem_CuoiKy_KLTN';
+        case 'REPORT_COUNCIL':
+            return 'BaoCao_PhieuChamDiem_CuoiKy_KLTN';
     }
     return;
 };

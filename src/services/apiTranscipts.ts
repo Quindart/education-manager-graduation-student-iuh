@@ -51,6 +51,9 @@ export const createTranscripts: any = (transcripts: BodyEvaluation[]) => {
     return axiosConfig.post(`${URL}/list`, { transcripts: transcripts })
 }
 
-export const getTranscriptByGroupStudent: any = (termId: string, groupStudentId: string) => {
-    return axiosConfig.get(`${URL}/group-student?termId=${termId}&groupStudentId=${groupStudentId}`)
+// export const getTranscriptByGroupStudent: any = (termId: string, groupStudentId: string) => {
+//     return axiosConfig.get(`${URL}/group-student?termId=${termId}&groupStudentId=${groupStudentId}`)
+// }
+export const getTranscriptByLecturerId: any = (termId: string, lecturerId: string, type: string) => {
+    return axiosConfig.get(`${URL}?termId=${termId}&lecturerId=${lecturerId}&type=${type}`)
 }

@@ -13,6 +13,7 @@ import { useTerm } from '@/hooks/api/useQueryTerm';
 import SekeletonTable from '@/components/ui/Sekeleton';
 import ExportExcelButton from '@/components/ui/Export';
 import CommentModal from '../Modal/CommentModal';
+import ExportTranscriptWord from '../Modal/ExportTranscriptWord';
 
 const NO_SCORE_STATUS_LIST = [
   EnumStatusStudent.FAIL_ADVISOR,
@@ -226,10 +227,20 @@ function TableScoreManagement({ typeScoreStudent, isInTimeScore }: any) {
   const handleCloseCommentModal = () => {
     setOpenCommentModal((pre) => ({ ...pre, isOpen: false }));
   };
+  const [openExportTranscriptWord, setOpenExportTranscriptWord] = useState(false);
+  const handleOpenExportTranscriptWord = () => {
+    setOpenExportTranscriptWord(true);
+  };
+  const handleCloseExportTranscriptWord = () => {
+    setOpenExportTranscriptWord(false);
+  };
   return (
     <>
       <Box>
-        <Box sx={{ display: 'flex', justifyContent: 'end', mb: 4 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'end', mb: 4, gap: 4 }}>
+          <Button variant='contained' onClick={handleOpenExportTranscriptWord}>
+            Xuất phiếu điểm CLO
+          </Button>
           <ExportExcelButton
             headerSetup={columnsExcel}
             data={grScoresToExportExcel(groupTranscripts?.transcripts)}
@@ -435,6 +446,11 @@ function TableScoreManagement({ typeScoreStudent, isInTimeScore }: any) {
         topicName={openCommentModal.topicName}
         groupId={openCommentModal.groupId}
         groupName={openCommentModal.groupName}
+      />
+      <ExportTranscriptWord
+        onClose={handleCloseExportTranscriptWord}
+        open={openExportTranscriptWord}
+        typeEvaluation={typeScoreStudent}
       />
     </>
   );

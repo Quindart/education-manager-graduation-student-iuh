@@ -14,7 +14,6 @@ import { Icon } from '@iconify/react';
 import AddEvaluationModal from './Modal/Add';
 import ContextReviewManager from './Context';
 import ExportWordModal from './Modal/ExportWord';
-import useTranscript from '@/hooks/api/useQueryTranscript';
 import ExportExcelButton from '@/components/ui/Export';
 
 function ReviewManagerPage() {
@@ -22,7 +21,6 @@ function ReviewManagerPage() {
   const { termStore } = useTerm();
   const { handleGetEvalutationByType, handleUiRender } = useEvaluation();
   const currentRole = handleUiRender();
-  const { handleExportTranscripts } = useTranscript();
   const { data, isLoading, isSuccess } = handleGetEvalutationByType(
     termStore.currentTerm.id,
     currentTypeReview,

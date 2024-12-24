@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "react-query"
 import { useTerm } from "./useQueryTerm"
-import { BodyEvaluation, createTranscripts, getEvaluationsForScoring, getTotalAllTranscripts, getTranscriptByGroupStudent, getTranscriptOfStudentInGroup, getTranscriptsByTypeAssign, getTranscriptsByTypeEvaluation, getTranscriptsToExport, getUnTranscriptGroupStudentsByType, updateTranscript } from "@/services/apiTranscipts"
+import { BodyEvaluation, createTranscripts, getEvaluationsForScoring, getTotalAllTranscripts, getTranscriptByLecturerId, getTranscriptOfStudentInGroup, getTranscriptsByTypeAssign, getTranscriptsByTypeEvaluation, getTranscriptsToExport, getUnTranscriptGroupStudentsByType, updateTranscript } from "@/services/apiTranscipts"
 import { useSnackbar } from "notistack"
 import { queryClient } from "@/providers/ReactQueryClientProvider"
 
@@ -8,7 +8,7 @@ export enum QueryKeysScoreStudent {
     getEvaluationsForScoring = 'getEvaluationsForScoring',
     getUnTranscriptGroupStudentsByType = 'getUnTranscriptGroupStudentsByType',
     getTranscriptsByTypeEvaluation = 'getTranscriptsByTypeEvaluation',
-    getTranscriptsByGroupStudent = "getTranscriptsByGroupStudent",
+    getTranscriptByLecturerId = "getTranscriptByLecturerId",
     getTranscriptOfStudentInGroup = "getTranscriptOfStudentInGroup",
     getTranscriptExport = "getTranscriptExport",
     getTranscriptsByTypeAssign = "getTranscriptsByTypeAssign",
@@ -30,8 +30,13 @@ const useTranscript = () => {
             staleTime: 1000,
         })
     }
-    const handleGetTranscriptsByGroupStudent = (groupStudentId: string) => {
-        return useQuery([QueryKeysScoreStudent.getTranscriptsByGroupStudent, groupStudentId], () => getTranscriptByGroupStudent(termStore.currentTerm.id, groupStudentId), {
+    // const handleGetTranscriptsByGroupStudent = (groupStudentId: string) => {
+    //     return useQuery([QueryKeysScoreStudent.getTranscriptByLecturerId, groupStudentId], () => getTranscriptByGroupStudent(termStore.currentTerm.id, groupStudentId), {
+    //         refetchOnMount: true,
+    //     })
+    // }
+    const handleGetTranscriptByLecturerId = (lecturerId: string, type) => {
+        return useQuery([QueryKeysScoreStudent.getTranscriptByLecturerId, lecturerId, type], () => getTranscriptByLecturerId(termStore.currentTerm.id, lecturerId, type), {
             refetchOnMount: true,
         })
     }
@@ -57,7 +62,7 @@ const useTranscript = () => {
         return useMutation((transcripts: BodyEvaluation[]) => createTranscripts(transcripts), {
             onSuccess(data) {
                 enqueueSnackbar("Lưu điểm thành công", { variant: "success" })
-                queryClient.invalidateQueries([QueryKeysScoreStudent.getTranscriptsByGroupStudent, groupStudentId])
+                queryClient.invalidateQueries([QueryKeysScoreStudent.getTranscriptByLecturerId, groupStudentId])
                 queryClient.invalidateQueries(QueryKeysScoreStudent.getTranscriptsByTypeAssign)
                 queryClient.invalidateQueries(QueryKeysScoreStudent.getTotalAllTranscripts)
             },
@@ -71,7 +76,7 @@ const useTranscript = () => {
         return useMutation((transcripts: BodyEvaluation[]) => createTranscripts(transcripts), {
             onSuccess(data) {
                 enqueueSnackbar("Lưu điểm thành công", { variant: "success" })
-                queryClient.invalidateQueries(QueryKeysScoreStudent.getTranscriptsByGroupStudent)
+                queryClient.invalidateQueries(QueryKeysScoreStudent.getTranscriptByLecturerId)
                 queryClient.invalidateQueries(QueryKeysScoreStudent.getTranscriptsByTypeAssign)
                 queryClient.invalidateQueries(QueryKeysScoreStudent.getTotalAllTranscripts)
             },
@@ -85,7 +90,7 @@ const useTranscript = () => {
         return useMutation((transcripts: BodyEvaluation[]) => updateTranscript(transcripts), {
             onSuccess: () => {
                 enqueueSnackbar('Cập nhật điểm thành công', { variant: "success" })
-                queryClient.invalidateQueries(QueryKeysScoreStudent.getTranscriptsByGroupStudent)
+                queryClient.invalidateQueries(QueryKeysScoreStudent.getTranscriptByLecturerId)
                 queryClient.invalidateQueries(QueryKeysScoreStudent.getTranscriptsByTypeEvaluation)
                 queryClient.invalidateQueries(QueryKeysScoreStudent.getTranscriptOfStudentInGroup)
                 queryClient.invalidateQueries(QueryKeysScoreStudent.getTranscriptExport)
@@ -106,13 +111,14 @@ const useTranscript = () => {
         return useQuery([QueryKeysScoreStudent.getTotalAllTranscripts, termStore.currentTerm.id], () => getTotalAllTranscripts(termStore.currentTerm.id))
     }
     return {
-        handleGetTranscriptsByGroupStudent,
+        // handleGetTranscriptsByGroupStudent,
         handleGetTranscriptsByTypeEvaluation,
         hanleGetEvalutaionsForScoring,
         handleGetTranscriptOfStudentInGroup,
         handleExportTranscripts,
         handleExportAllTranscripts,
         handleGetTranscriptByTypeAssign,
+        handleGetTranscriptByLecturerId,
         onCreateTranscriptTypeExcelUI,
         onCreateTranscripts,
         onUpdateTranscripts,

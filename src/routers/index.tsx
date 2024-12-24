@@ -46,6 +46,7 @@ const ArticleTemplate = lazy(() => import('@/page/Article/Management'));
 const FinalReportTemplate = lazy(() => import('@/page/FinalReport/Management'));
 const ScoreManagementExcel = lazy(() => import('@/page/ScoreManagementExcel'));
 const MyScoringPage = lazy(() => import('@/page/MyScoring'));
+
 function Routing() {
   return (
     <Routes>

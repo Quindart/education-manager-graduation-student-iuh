@@ -34,8 +34,9 @@ const useExportMultiDocs = async (groupLecturers: any[], evaluations: any[], typ
   const { lecturerStore } = useAuth();
   const role = lecturerStore.currentRoleRender;
   const isLecturerExport = role === RoleCheck.LECTURER;
-  const [resultCall, setResultCall] = useState([]);
+  const [groupLecturerAPI, setGroupLecturerAPI] = useState([]);
 
+  //[GET GROUP LECTURER]
   const fetchGroupLecturers = async () => {
     try {
       const initApis = groupLecturers.map((gr: any) =>
@@ -43,17 +44,18 @@ const useExportMultiDocs = async (groupLecturers: any[], evaluations: any[], typ
       );
       const array = await Promise.all(initApis);
       const groupLecturerArray = array.map((gr: any) => gr.groupLecturer);
-      setResultCall(groupLecturerArray);
+      setGroupLecturerAPI(groupLecturerArray);
     } catch (error) {}
   };
   useEffect(() => {
     fetchGroupLecturers();
   }, [groupLecturers, typeEvaluation]);
 
-  const filterData = resultCall.filter(
+  const filterData = groupLecturerAPI.filter(
     (gr: any) => gr.groupStudents && gr.groupStudents.length !== 0,
   );
 
+  //
   const processData = filterData.flatMap((group: any) => {
     return group.groupStudents.flatMap((studentGroup: any) => {
       if (Array.isArray(group.members) && group.members.length > 0 && !isLecturerExport) {
