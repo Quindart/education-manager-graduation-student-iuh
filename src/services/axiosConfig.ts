@@ -13,10 +13,9 @@ const axiosConfig = axios.create({
   // withCredentials: true,
 });
 
-
 axiosConfig.interceptors.request.use(
   (config) => {
-    const accessToken = getValueFromLocalStorage("accessToken");
+    const accessToken = getValueFromLocalStorage('accessToken');
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
@@ -36,7 +35,7 @@ axiosConfig.interceptors.response.use(
     if (error?.response?.data?.status === 401 && error?.response?.data?.success === false) {
       originalRequest._retry = true;
       try {
-        const refreshToken = getValueFromLocalStorage("refreshToken");
+        const refreshToken = getValueFromLocalStorage('refreshToken');
         const result: any = await axiosConfig.post('/api/v1/lecturers/refresh-token', {
           refreshToken,
         });
@@ -47,13 +46,12 @@ axiosConfig.interceptors.response.use(
       } catch (error: any) {
         if (error.status >= 500 && error.success === false) {
           localStorage.clear();
-          redirect('/auth/login')
+          redirect('/auth/login');
         }
         return Promise.reject(error);
       }
     }
     return Promise.reject(error?.response?.data);
-
   },
 );
 export default axiosConfig;

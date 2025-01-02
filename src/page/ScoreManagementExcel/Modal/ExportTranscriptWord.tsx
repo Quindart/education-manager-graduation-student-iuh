@@ -10,14 +10,9 @@ import {
   getFileNameToExportDocx,
   getTypeEvaluation,
 } from '@/utils/validations/evaluation.validation';
-import InfoGroupSupportFile from '@/components/iframe/BaseText/InfoGroupSupportFile';
-import { TypeEvaluation } from '@/services/apiEvaluation';
-import InfoOtherGroupFile from '@/components/iframe/BaseText/InfoOtherGroupFile';
 import useTranscript from '@/hooks/api/useQueryTranscript';
 import docResultTranscript from '@/components/iframe/PageWord/doc/docResultTranscriptReviewer';
-import * as GroupLecturerServices from '@/services/apiGroupLecturer';
 import { useAuth } from '@/hooks/api/useAuth';
-import { RoleCheck } from '@/types/enum';
 interface ExportTranscriptWordProps {
   open: boolean;
   onClose: () => void;
@@ -25,60 +20,6 @@ interface ExportTranscriptWordProps {
   evaluations?: any;
   permissions?: any[];
 }
-// request params: lecturerId, type (ADVISOR, REVIEW, REPORT)
-// const data = [
-//   {
-//     groupName: '',
-//     topicName: '',
-//     groupId: '',
-//     lecturerSupport: 'ThS.Khanh',
-//     evaluator: {
-//       name: '',
-//       role: 'MEMBER_1',
-//     },
-//     evaluations: [], // getEvaluationsByType
-//     transcripts: [
-//       {
-//         score: '',
-//         evaluationKey: '',
-//         studentName: 'Anh B',
-//         username: '',
-//       },
-//       {
-//         studentName: 'Anh A',
-//         username: '',
-//         score: '',
-//         evaluationKey: '',
-//       },
-//     ],
-//   },
-//   {
-//     groupName: '',
-//     topicName: '',
-//     groupId: '',
-//     lecturerSupport: 'ThS.Khanh',
-//     evaluator: {
-//       name: '',
-//       lecturerId: '',
-//       role: 'MEMBER_1',
-//     },
-//     evaluations: [], // getEvaluationsByType
-//     transcripts: [
-//       {
-//         score: '',
-//         evaluationKey: '',
-//         studentName: 'Anh B',
-//         username: '',
-//       },
-//       {
-//         studentName: 'Anh A',
-//         username: '',
-//         score: '',
-//         evaluationKey: '',
-//       },
-//     ],
-//   },
-// ];
 const docsTranscriptFiles = (transcripts, type) => {
   if (
     type === 'REVIEWER' ||
@@ -92,7 +33,7 @@ const docsTranscriptFiles = (transcripts, type) => {
 };
 
 function ExportTranscriptWord(props: ExportTranscriptWordProps) {
-  const { open, onClose, typeEvaluation, evaluations } = props;
+  const { open, onClose, typeEvaluation } = props;
   const { lecturerStore } = useAuth();
   const typeGroupLecturer =
     typeEvaluation === 'REPORT_COUNCIL' || typeEvaluation === 'REPORT_POSTER'

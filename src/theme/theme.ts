@@ -1,6 +1,7 @@
 import { createTheme } from '@mui/material';
 import components from './variables/components';
 import palette from './variables/palette';
+import { viVN } from '@mui/material/locale';
 
 const theme = createTheme({
   breakpoints: {
@@ -12,7 +13,6 @@ const theme = createTheme({
       xl: 1400,
     },
   },
-
   palette,
   typography: {
     fontFamily: ['Roboto', 'sans-serif'].join(','),
@@ -49,6 +49,8 @@ const theme = createTheme({
   components,
   unstable_sxConfig: {},
   mixins: {},
-});
+},
+  viVN
+);
 
 export default theme;

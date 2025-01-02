@@ -14,7 +14,7 @@ import { bytesForHuman } from '@/utils/file';
 const EXTENSIONS = ['xlsx', 'xls', 'csv'];
 
 export enum TypeEntityUpload {
-  STUDENT = "students",
+  STUDENT = 'students',
   LECTURER = 'lecturers',
   TOPIC = 'topics',
   EVALUATION = 'evaluations',
@@ -22,14 +22,14 @@ export enum TypeEntityUpload {
 
 const axiosUpload = axios.create({
   headers: {
-    "Content-Type": "multipart/form-data",
+    'Content-Type': 'multipart/form-data',
   },
-})
+});
 
 //TODO [MIDDLEWARE]
 axiosUpload.interceptors.request.use(
   (config) => {
-    const accessToken = getValueFromLocalStorage("accessToken");
+    const accessToken = getValueFromLocalStorage('accessToken');
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
@@ -49,7 +49,7 @@ axiosUpload.interceptors.response.use(
     if (error.response.data.status === 401 && error.response.data.success === false) {
       originalRequest._retry = true;
       try {
-        const refreshToken = getValueFromLocalStorage("refreshToken");
+        const refreshToken = getValueFromLocalStorage('refreshToken');
         const result: any = await axiosConfig.post('/api/v1/lecturers/refresh-token', {
           refreshToken,
         });
@@ -65,25 +65,26 @@ axiosUpload.interceptors.response.use(
 );
 //TODO [MIDDLEWARE]
 
-
-
 interface UploadHandler {
-  entityUpload: string, termId: string, majorId: string, me: User, typeEvaluation?: string, handleCloseUpload?: () => void;
+  entityUpload: string;
+  termId: string;
+  majorId: string;
+  me: User;
+  typeEvaluation?: string;
+  handleCloseUpload?: () => void;
 }
 const useUploadExcel = (props: UploadHandler) => {
-
-
-  const { entityUpload, termId, majorId, me, typeEvaluation, handleCloseUpload } = props
+  const { entityUpload, termId, majorId, me, typeEvaluation, handleCloseUpload } = props;
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [fileName, setFileName] = useState<string>('');
   const [totalSize, setTotalSize] = useState<string>('');
-  const [currentFile, setCurrentFile] = useState()
+  const [currentFile, setCurrentFile] = useState();
   const { enqueueSnackbar } = useSnackbar();
 
   //axios
-  const [valueLoading, setValueLoading] = useState<any>(0)
+  const [valueLoading, setValueLoading] = useState<any>(0);
   const getExention = (file: any) => {
     const parts = file.name.split('.');
     const extension = parts[parts.length - 1];
@@ -111,70 +112,69 @@ const useUploadExcel = (props: UploadHandler) => {
         variant: 'error',
       });
     }
-    setCurrentFile(file)
+    setCurrentFile(file);
     reader.readAsBinaryString(file);
   };
 
   //saved file
   const savedFileToDatabase = async (file: any) => {
-    const bodyWithOtherEntity =
-    {
+    const bodyWithOtherEntity = {
       file: file,
       termId: termId,
       majorId: majorId,
-    }
+    };
     const bodyWithEvaluation = {
       termId: termId,
       file: file,
-      type: typeEvaluation
-    }
-    return axiosUpload.post(`${env.API_URL}/api/v1/${entityUpload}/import`, entityUpload !== TypeEntityUpload.EVALUATION ? bodyWithOtherEntity : bodyWithEvaluation, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      onUploadProgress: (progressEvent: AxiosProgressEvent) => {
-        setValueLoading(progressEvent.progress)
-      }
-    })
+      type: typeEvaluation,
+    };
+    return axiosUpload
+      .post(
+        `${env.API_URL}/api/v1/${entityUpload}/import`,
+        entityUpload !== TypeEntityUpload.EVALUATION ? bodyWithOtherEntity : bodyWithEvaluation,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          onUploadProgress: (progressEvent: AxiosProgressEvent) => {
+            setValueLoading(progressEvent.progress);
+          },
+        },
+      )
       .then(async function (response: any) {
         if (response.success) {
-
           if (entityUpload === TypeEntityUpload.LECTURER) {
             enqueueSnackbar('Lưu danh sách giảng viên từ excel file thành công', {
               variant: 'success',
             });
-            queryClient.invalidateQueries(
-              QueryKeysLecturer.getAllLecturer
-            );
-            handleCloseUpload()
-
+            queryClient.invalidateQueries(QueryKeysLecturer.getAllLecturer);
+            handleCloseUpload();
           }
           if (entityUpload === TypeEntityUpload.EVALUATION) {
             enqueueSnackbar('Lưu danh sách tiêu chí từ excel file thành công', {
               variant: 'success',
             });
-            queryClient.invalidateQueries(QueryEvaluation.getEvaluationByType)
-            handleCloseUpload()
+            queryClient.invalidateQueries(QueryEvaluation.getEvaluationByType);
+            handleCloseUpload();
           }
           if (entityUpload === TypeEntityUpload.STUDENT) {
             enqueueSnackbar('Lưu danh sách sinh viên từ excel file thành công', {
               variant: 'success',
             });
-            queryClient.invalidateQueries(QueryStudent.getAllStudent)
-            queryClient.invalidateQueries(QueryStudent.managerActionStudent)
-            queryClient.invalidateQueries(QueryStudent.getSearchStudentBasic)
-            queryClient.invalidateQueries(QueryStudent.getCountOfStudent)
-            handleCloseUpload()
-
+            queryClient.invalidateQueries(QueryStudent.getAllStudent);
+            queryClient.invalidateQueries(QueryStudent.managerActionStudent);
+            queryClient.invalidateQueries(QueryStudent.getSearchStudentBasic);
+            queryClient.invalidateQueries(QueryStudent.getCountOfStudent);
+            handleCloseUpload();
           }
           if (entityUpload === TypeEntityUpload.TOPIC) {
             enqueueSnackbar('Lưu danh sách Đề tài từ excel file thành công', {
               variant: 'success',
             });
             queryClient.invalidateQueries(QueryTopic.getSearchTopic);
-            queryClient.invalidateQueries(QueryTopic.getTopicsByMe)
-            queryClient.invalidateQueries(QueryTopic.getCountOfTopic)
-            handleCloseUpload()
+            queryClient.invalidateQueries(QueryTopic.getTopicsByMe);
+            queryClient.invalidateQueries(QueryTopic.getCountOfTopic);
+            handleCloseUpload();
           }
         }
       })
@@ -183,8 +183,8 @@ const useUploadExcel = (props: UploadHandler) => {
         enqueueSnackbar(error.message, {
           variant: 'error',
         });
-      })
-  }
+      });
+  };
   return {
     importExcel,
     setFileName,
@@ -197,7 +197,7 @@ const useUploadExcel = (props: UploadHandler) => {
     loading,
     fileName,
     valueLoading,
-    totalSize
+    totalSize,
   };
 };
 export default useUploadExcel;

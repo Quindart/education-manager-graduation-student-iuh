@@ -38,7 +38,7 @@ function ForgotPassword() {
   return (
     <Grid container spacing={2} pb={8}>
       <Grid item xs={12}>
-        <Card sx={{bgcolor:'grey.50'}}>
+        <Card sx={{ bgcolor: 'grey.50' }}>
           <CardContent>
             <Box
               sx={{

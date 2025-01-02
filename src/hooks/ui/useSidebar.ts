@@ -4,18 +4,18 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 function useSidebar() {
-    const dispatch = useDispatch();
-    const isOpen = useSelector((state: RootState) => state.sidebarSlice.isOpen);
-    const handleToggleSidebar = () => {
-        dispatch(toggleSidebar());
-    }
-    const handleOpenSidebar = () => {
-        dispatch(openSidebar());
-    }
-    const handleCloseSideBar = () => {
-        dispatch(closeSidebar());
-    }
-    return { handleCloseSideBar, isOpen, handleToggleSidebar, handleOpenSidebar };
+  const dispatch = useDispatch();
+  const isOpen = useSelector((state: RootState) => state.sidebarSlice.isOpen);
+  const handleToggleSidebar = () => {
+    dispatch(toggleSidebar());
+  };
+  const handleOpenSidebar = () => {
+    dispatch(openSidebar());
+  };
+  const handleCloseSideBar = () => {
+    dispatch(closeSidebar());
+  };
+  return { handleCloseSideBar, isOpen, handleToggleSidebar, handleOpenSidebar };
 }
 
-export default useSidebar
+export default useSidebar;

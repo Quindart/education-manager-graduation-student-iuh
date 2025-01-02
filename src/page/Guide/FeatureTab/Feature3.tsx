@@ -5,7 +5,7 @@ function Feature3() {
   return (
     <Box>
       <Box sx={{ p: 2 }}>
-      <Typography fontWeight={'bold'} color={'grey.900'} variant='h2' gutterBottom>
+        <Typography fontWeight={'bold'} color={'grey.900'} variant='h2' gutterBottom>
           3. Quản lý sinh viên
         </Typography>
         <Typography paragraph>

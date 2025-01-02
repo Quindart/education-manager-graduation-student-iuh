@@ -135,7 +135,7 @@ function EditModal(props: any) {
                       </Box>
                     )}
                   </Box>
-                  <Box  justifyContent={'end'} gap={4} mb={6} display={'flex'}>
+                  <Box justifyContent={'end'} gap={4} mb={6} display={'flex'}>
                     <Button variant='contained' color='primary' onClick={onClose}>
                       <Icon width={20} icon='mdi:close-outline' />
                       Hủy

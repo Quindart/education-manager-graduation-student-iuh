@@ -1,4 +1,4 @@
-import { EnumGender } from "../enum";
+import { EnumGender } from '../enum';
 
 export interface Student {
   id: string;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ScoreManagementExcel from '../ScoreManagementExcel';
-import {  Paper } from '@mui/material';
+import { Paper } from '@mui/material';
 
 function MyScoringPage() {
   return (

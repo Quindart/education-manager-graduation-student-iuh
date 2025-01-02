@@ -3,7 +3,10 @@ import React, { useState } from 'react';
 import GridGroupLecturer from './Grid';
 import TitleManager from '@/components/ui/Title';
 import { useGroupLecturer } from '@/hooks/api/useQueryGroupLecturer';
-import { checktTypeGroupLecturer, ENUM_GROUP_LECTURER } from '@/utils/validations/groupLecturer.validation';
+import {
+  checktTypeGroupLecturer,
+  ENUM_GROUP_LECTURER,
+} from '@/utils/validations/groupLecturer.validation';
 import DropDown from '@/components/ui/Dropdown';
 import SekeletonUI from '@/components/ui/Sekeleton';
 import ExportExcelButton from '@/components/ui/Export';

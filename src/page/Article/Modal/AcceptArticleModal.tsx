@@ -46,7 +46,7 @@ function AcceptArticleModal(props: any) {
             label='Điểm cộng'
           />
           <Typography variant='body1' textAlign={'start'} mb={2} color='grey.700'>
-            Lưu ý: Điểm cộng tối đa là 4 điểm cho một sinh viên
+            Lưu ý: Điểm cộng tối đa là 2 điểm cho một sinh viên
           </Typography>
         </Box>
         <Box width={'100%'} mt={4}>

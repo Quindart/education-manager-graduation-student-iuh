@@ -1,3 +1,3 @@
-import { ModalTypeProps } from "@/components/ui/Modal";
+import { ModalTypeProps } from '@/components/ui/Modal';
 
-export type ModalProps = Pick<ModalTypeProps, "open" | 'onClose'>;
+export type ModalProps = Pick<ModalTypeProps, 'open' | 'onClose'>;

@@ -20,43 +20,46 @@ Welcome to the **Thesis Management System**! This project is designed to streaml
 Follow these steps to set up the project locally:
 
 1. **Clone the repository**:
-    ```bash
-    https://github.com/Quindarts/education-manager-graduation-student-iuh.git
-    ```
+   ```bash
+   https://github.com/Quindarts/education-manager-graduation-student-iuh.git
+   ```
 2. **Navigate to the project directory**:
-    ```bash
-    cd thesis-management-system
-    ```
+   ```bash
+   cd thesis-management-system
+   ```
 3. **Install dependencies**:
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 4. **Set up the database**:
-    - Configure your database settings in `config/database.js`.
-    - Run the migrations:
-        ```bash
-        npm run migrate
-        ```
+   - Configure your database settings in `config/database.js`.
+   - Run the migrations:
+     ```bash
+     npm run migrate
+     ```
 5. **Start the development server**:
-    ```bash
-    npm run dev
-    ```
+   ```bash
+   npm run dev
+   ```
 6. **Access the application**:
-    Open your browser and navigate to `http://localhost:5173`.
+   Open your browser and navigate to `http://localhost:5173`.
 
 ## 🛠️ Usage
 
 ### For Students
+
 - **Submit Thesis**: Fill out the submission form and upload your document.
 - **View Feedback**: Check feedback and comments from your advisor and committee.
 - **Track Progress**: Monitor your thesis progress and deadlines.
 
 ### For Advisors
+
 - **Review Theses**: Access and review submitted theses.
 - **Provide Feedback**: Give detailed feedback and recommendations to students.
 - **Manage Advisees**: View and manage your list of advisees.
 
 ### For Administrators
+
 - **User Management**: Add, update, or remove users and assign roles.
 - **Schedule Management**: Set and update important dates and deadlines.
 - **Generate Reports**: View and generate reports on thesis submissions and completions.
@@ -66,18 +69,20 @@ Follow these steps to set up the project locally:
 To deploy the project to a production environment:
 
 1. **Set environment variables**:
-    - Create a `.env` file in the root directory.
-    - Add the necessary environment variables (e.g., database credentials, API keys).
+
+   - Create a `.env` file in the root directory.
+   - Add the necessary environment variables (e.g., database credentials, API keys).
 
 2. **Build the project**:
-    ```bash
-    npm run build
-    ```
+
+   ```bash
+   npm run build
+   ```
 
 3. **Start the production server**:
-    ```bash
-    npm run start:prod
-    ```
+   ```bash
+   npm run start:prod
+   ```
 
 ## 👥 Contributing
 
@@ -85,18 +90,18 @@ We welcome contributions! Please follow these steps to contribute:
 
 1. **Fork the repository**.
 2. **Create a new branch**:
-    ```bash
-    git checkout -b feature/your-feature-name
-    ```
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
 3. **Make your changes**.
 4. **Commit your changes**:
-    ```bash
-    git commit -m "Add your message"
-    ```
+   ```bash
+   git commit -m "Add your message"
+   ```
 5. **Push to your branch**:
-    ```bash
-    git push origin feature/your-feature-name
-    ```
+   ```bash
+   git push origin feature/your-feature-name
+   ```
 6. **Create a Pull Request**.
 
 ## 🛡️ License
@@ -109,6 +114,7 @@ For any questions or feedback, please reach out to:
 
 - **Email**: quangiuhdev@gmail.com
 - **GitHub**: [Quindarts](https://github.com/Quindarts)
+
 ---
 
-*Happy Coding!* 🚀
+_Happy Coding!_ 🚀

@@ -65,7 +65,7 @@ function StudentPage() {
           Danh sách sinh viên {majorStore?.currentMajor ? majorStore.currentMajor.name : ''}
         </TitleManager>
         <Typography variant='body1' fontWeight={600} mt={4} color=''>
-         Tổng số lượng: {countSuccess && countFetch?.count} sinh viên
+          Tổng số lượng: {countSuccess && countFetch?.count} sinh viên
         </Typography>
       </Box>
       <HeaderStudent />

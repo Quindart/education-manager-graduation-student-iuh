@@ -3,15 +3,14 @@ import { Dialog } from '@mui/material';
 
 const CustomModal = styled(Dialog)`
   .MuiDialog-container {
-
     .MuiDialog-paper {
       align-items: center;
       width: 96%;
-      max-height:94vh;
-      border-top: 6px solid #1349BD ;
+      max-height: 94vh;
+      border-top: 6px solid #1349bd;
       margin: auto;
       border-radius: 12px;
-   
+
       &::-webkit-scrollbar {
         width: 5px !important;
       }
@@ -27,7 +26,6 @@ const CustomModal = styled(Dialog)`
         .icon_close {
           margin-left: 380px;
           cursor: pointer;
-
         }
       }
       .modal__body {

@@ -88,7 +88,6 @@ export const convertEvalutationTable = (evalutation: any[]) => {
   }
 };
 
-
 export const convertGroupMembersTable = (groupMember: any[]) => {
   if (groupMember === undefined) return [];
   else {

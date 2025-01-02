@@ -47,7 +47,6 @@ function DetailArticleModal({ open, onClose, articleId }) {
               <Box flex={1}>
                 <CustomTextField value={fetchArticle?.article.fullName} label='Người nộp' />
               </Box>
-              <CustomTextField fullWidth value={fetchArticle?.article.groupName} label='Mã nhóm' />
             </Box>
             <Typography
               component={'a'}

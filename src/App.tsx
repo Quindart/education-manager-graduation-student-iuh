@@ -1,7 +1,6 @@
 import Routing from './routers';
 
 function App() {
-
   return <Routing />;
 }
 

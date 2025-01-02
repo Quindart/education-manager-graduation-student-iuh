@@ -46,7 +46,7 @@ export default function Login() {
   return (
     <Grid container spacing={2} pb={8}>
       <Grid item xs={12}>
-        <Card sx={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;', bgcolor:'grey.50' }}>
+        <Card sx={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;', bgcolor: 'grey.50' }}>
           <CardContent>
             <Box
               sx={{

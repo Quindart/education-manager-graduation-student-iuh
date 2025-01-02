@@ -370,7 +370,6 @@ function TableManagamentTopic(props: any) {
               onClose={handleCloseRefuseModal}
               topicId={openRefuseModal.topicId}
             />
-            
           </>
         )}
       </>

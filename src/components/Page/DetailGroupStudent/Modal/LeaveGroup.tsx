@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 
 function StudentLeaveGroup(props: any) {
   const { onClose, open, studentId } = props;
-  // alert(studentId);  
+  // alert(studentId);
   const { termStore } = useTerm();
   const { pathname } = useLocation();
   const current = pathname.split('/');

@@ -45,7 +45,11 @@ export const getIconTopic = (text: string) => {
       );
     case 'PENDING':
       return (
-        <Icon style={{ marginLeft: 2, marginTop: 2 }} width={14} icon='material-symbols:progress-activity' />
+        <Icon
+          style={{ marginLeft: 2, marginTop: 2 }}
+          width={14}
+          icon='material-symbols:progress-activity'
+        />
       );
     case 'APPROVED':
       return <Icon style={{ marginLeft: 2, marginTop: 2 }} width={14} icon='typcn:tick' />;

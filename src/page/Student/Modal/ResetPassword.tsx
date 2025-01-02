@@ -38,7 +38,9 @@ function ResetPassword(props: any) {
           </Typography>{' '}
           ?
         </Typography>
-        <Typography variant="body1" color="error.main" mb={14}>*Lưu ý: mật khẩu cấp lại mặc định sẽ là: 12345678</Typography>
+        <Typography variant='body1' color='error.main' mb={14}>
+          *Lưu ý: mật khẩu cấp lại mặc định sẽ là: 12345678
+        </Typography>
         <Box width='100%' display='flex' gap={6} marginTop={1}>
           <Button onClick={onClose} sx={{ width: '20%' }} color='primary' variant='contained'>
             <Icon width={20} style={{ marginRight: 4 }} icon='mdi:cancel-outline' />

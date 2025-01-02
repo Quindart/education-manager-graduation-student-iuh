@@ -89,7 +89,7 @@ const palette: PaletteOptions = {
   background: {
     default: color.gray_light,
     paper: color.white,
-  }
+  },
   //background
 };
 

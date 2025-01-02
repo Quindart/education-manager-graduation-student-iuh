@@ -9,12 +9,7 @@ const SuccessMessage = () => {
       <Box zIndex={40}>
         <Box component='section' textAlign='center'>
           <Box display='flex' justifyContent='center' p={10}>
-            <Box
-              px={10}
-              py={2}
-              borderRadius='50%'
-              sx={{ bgcolor: 'grey.100' }}
-            >
+            <Box px={10} py={2} borderRadius='50%' sx={{ bgcolor: 'grey.100' }}>
               <img src={icon_check} width={70} height={70} />
             </Box>
           </Box>
@@ -26,7 +21,7 @@ const SuccessMessage = () => {
           </Typography>
           <Button
             type='submit'
-            sx={{my:5}}
+            sx={{ my: 5 }}
             onClick={() => {
               navigate('/');
             }}

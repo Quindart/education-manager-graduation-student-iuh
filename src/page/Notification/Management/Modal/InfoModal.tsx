@@ -45,7 +45,7 @@ function InfoNotificationModal(props: any) {
             <Box>
               {data?.details?.length > 0 ? (
                 <Box>
-                  <Box justifyContent={'space-between'} display={'flex'}> 
+                  <Box justifyContent={'space-between'} display={'flex'}>
                     <Typography variant='h6' fontWeight={'bold'} color='grey.800'>
                       {checkUser(data?.notification?.type)} nhận thông báo
                     </Typography>

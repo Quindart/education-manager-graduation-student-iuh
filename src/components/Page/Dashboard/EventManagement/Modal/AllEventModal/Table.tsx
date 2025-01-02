@@ -83,7 +83,7 @@ function TableEventManagement(props: any) {
           bgcolor: 'white',
           width: '100%',
           minHeight: 400,
-          height:400
+          height: 400,
         }}
         limit={300}
         isPanigation={false}

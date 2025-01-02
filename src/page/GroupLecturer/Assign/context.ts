@@ -31,62 +31,61 @@
  *  */
 
 export const stylingGrHaveAssigned = (grLecturer) => {
-    return grLecturer?.groupStudents?.map((group) => {
-        return {
-            id: group?.id,
-            name: group?.name,
-            topicName: group?.topicName,
-            lecturerName: group?.lecturerName,
-            lecturerTermId: group?.lecturerTermId,
-        };
-    });
+  return grLecturer?.groupStudents?.map((group) => {
+    return {
+      id: group?.id,
+      name: group?.name,
+      topicName: group?.topicName,
+      lecturerName: group?.lecturerName,
+      lecturerTermId: group?.lecturerTermId,
+    };
+  });
 };
 
 export const startInitGrNeedAssign = (dataGroupFromAPI: any[]) => {
-    if (!dataGroupFromAPI) {
-        return [];
-    }
-    return dataGroupFromAPI.map((gr) => ({ ...gr, isAssign: false }));
+  if (!dataGroupFromAPI) {
+    return [];
+  }
+  return dataGroupFromAPI.map((gr) => ({ ...gr, isAssign: false }));
 };
 
 export const startInitGrHaveAssigned = (dataGroupFromAPI: any[]) => {
-    if (!dataGroupFromAPI) {
-        return [];
-    }
-    return dataGroupFromAPI.map((gr) => ({ ...gr, isAssign: true }));
+  if (!dataGroupFromAPI) {
+    return [];
+  }
+  return dataGroupFromAPI.map((gr) => ({ ...gr, isAssign: true }));
 };
 
 // + Hội đồng poster: các đề tài mà thành viên HĐ không là GVHD
 // + Phản biện:  Các đề tài mà thành viên HĐ không là GVHD
 export const isExistLecturerSupport = (
-    groupLecturer: any,
-    thisGrStudentNeedAssign: any,
-    typeAssign?: string,
+  groupLecturer: any,
+  thisGrStudentNeedAssign: any,
+  typeAssign?: string,
 ) => {
-    //  Case poster, phan bien
-    if (groupLecturer !== null && groupLecturer !== undefined && ['', ''].includes(typeAssign)) {
-        const lecturerInGroupIds = groupLecturer?.members.map((mem: any) => mem.id);
-        const lecturerSupport = thisGrStudentNeedAssign.lecturerId;
-        return lecturerInGroupIds.filter((id: string) => id.includes(lecturerSupport)).length > 0;
-    }
-    //case: Hoi dong
-    return false;
+  //  Case poster, phan bien
+  if (groupLecturer !== null && groupLecturer !== undefined && ['', ''].includes(typeAssign)) {
+    const lecturerInGroupIds = groupLecturer?.members.map((mem: any) => mem.id);
+    const lecturerSupport = thisGrStudentNeedAssign.lecturerId;
+    return lecturerInGroupIds.filter((id: string) => id.includes(lecturerSupport)).length > 0;
+  }
+  //case: Hoi dong
+  return false;
 };
 
-
 export const toggleDataByTransferId = (groups: any[], transferId: string) => {
-    if (!groups || !transferId) {
-        return null;
-    }
-    let groupTransfer: any;
-    let groupUpdate: any[] = [];
+  if (!groups || !transferId) {
+    return null;
+  }
+  let groupTransfer: any;
+  let groupUpdate: any[] = [];
 
-    groups?.map((gr: any) => {
-        gr.id.toString() !== transferId.toString() ? groupUpdate.push(gr) : (groupTransfer = gr);
-    });
+  groups?.map((gr: any) => {
+    gr.id.toString() !== transferId.toString() ? groupUpdate.push(gr) : (groupTransfer = gr);
+  });
 
-    return {
-        groupUpdate,
-        groupTransfer,
-    };
+  return {
+    groupUpdate,
+    groupTransfer,
+  };
 };

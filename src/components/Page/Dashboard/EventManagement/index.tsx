@@ -15,7 +15,6 @@ import AllEventModal from './Modal/AllEventModal';
 
 let eventGuid = 0;
 
-
 export default function EventManagement() {
   const { handleGetEvents } = useEvent();
   const {
@@ -54,7 +53,6 @@ export default function EventManagement() {
   const handleCloseSwitchEndDate = () => {
     setopenSwitchEndDateModal((pre) => ({ ...pre, isOpen: false }));
   };
-
 
   function handleDateSelect(selectInfo) {
     const id = selectInfo.event._def.publicId;

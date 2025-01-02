@@ -19,7 +19,7 @@ function TableTopic(props) {
       field: 'name',
       flex: 2,
       headerAlign: 'left',
-      align: "left",
+      align: 'left',
     },
     {
       headerName: 'SL nhóm đề tài',

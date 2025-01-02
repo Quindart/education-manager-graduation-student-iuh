@@ -1,4 +1,4 @@
-import { ResponseType } from "../axios.type";
+import { ResponseType } from '../axios.type';
 
 export default interface Major {
   id?: string;
@@ -7,4 +7,4 @@ export default interface Major {
   updated_at?: string;
 }
 
-export type MajorResponse = Pick<ResponseType, 'message' | 'success' | 'major' | 'majors'> 
+export type MajorResponse = Pick<ResponseType, 'message' | 'success' | 'major' | 'majors'>;

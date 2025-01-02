@@ -20,7 +20,7 @@ function DetailGroupSupportPage() {
         <>
           <TitleManager mb={2}>Nhóm sinh viên {data?.groupStudent?.info?.name}</TitleManager>
           <TitleManager fontWeight={500} color={'grey.600'} mb={10}>
-            Đề tài: {" "}
+            Đề tài:{' '}
             <Typography component={'span'} variant='body1' fontWeight={'bold'} color='grey.700'>
               {data?.groupStudent?.info?.topicName}
             </Typography>

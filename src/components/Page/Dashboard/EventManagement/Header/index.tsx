@@ -18,7 +18,7 @@ function Header() {
   };
   return (
     <>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems:'end' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end' }}>
         <TitleManager variant='h5' fontWeight={'bold'} color={'grey.700'}>
           Quản lý sự kiện của {termStore.currentTerm.name}
         </TitleManager>

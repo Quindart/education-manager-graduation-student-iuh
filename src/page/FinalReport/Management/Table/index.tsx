@@ -52,15 +52,6 @@ function TableFinalReportManagement(props: Props) {
         field: 'topicName',
         flex: 1.6,
       },
-
-      {
-        headerName: 'Ngày nộp',
-        field: 'publicDate',
-        flex: 0.4,
-        headerAlign: 'right',
-        align: 'right',
-        renderCell: (params) => <Typography>{dayjs(params.value).format('DD/MM/YYYY')}</Typography>,
-      },
       {
         headerName: 'Tải file',
         field: 'link',

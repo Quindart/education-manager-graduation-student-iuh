@@ -1,5 +1,5 @@
-import { RoleCheck } from "@/types/enum";
-import { roRO } from "@mui/material/locale";
+import { RoleCheck } from '@/types/enum';
+import { roRO } from '@mui/material/locale';
 
 export const APP_ROUTES = {
   DASHBOARD: '/',
@@ -20,32 +20,32 @@ export const APP_ROUTES = {
     ALL: '/auth/role',
   },
   LECTURER: {
-    MANAGEMENT: "/lecturers",
-    DETAILS: "/lecturers/detail/:lecturer_id",
+    MANAGEMENT: '/lecturers',
+    DETAILS: '/lecturers/detail/:lecturer_id',
   },
   LECTURER_TERM: {
-    MANAGEMENT: "/lecturer-terms",
-    DETAILS: "/lecturer-terms/detail/:id"
+    MANAGEMENT: '/lecturer-terms',
+    DETAILS: '/lecturer-terms/detail/:id',
   },
   ALL_TRANSCRIPTS: {
     MANAGEMENT: '/all-transcripts',
   },
   NOTIFICATION: {
-    MANAGEMENT: "/notifications",
+    MANAGEMENT: '/notifications',
     MANAGEMENT_LECTURER: '/notifications-lecturer',
-    DETAILS: "/notifications/:id",
-    CREATE: "/notifications/create",
-    CREATE_BY_LECTURER: '/notifications-lecturer/create'
+    DETAILS: '/notifications/:id',
+    CREATE: '/notifications/create',
+    CREATE_BY_LECTURER: '/notifications-lecturer/create',
   },
   SCORE_STUDENT: {
-    MANAGEMENT: "/scores",
-    MANAGEMENT_EXCEL: "/scores-excel",
+    MANAGEMENT: '/scores',
+    MANAGEMENT_EXCEL: '/scores-excel',
   },
   STUDENT: {
     MANAGEMENT: '/students/query',
   },
   GROUP_STUDENT: {
-    MANAGEMENT: "/group-students",
+    MANAGEMENT: '/group-students',
     DETAIL: '/group-students/detail/:group_id',
   },
   GROUP_LECTURER: {
@@ -54,21 +54,21 @@ export const APP_ROUTES = {
     SUPPORT: '/group-lecturers/group-support',
     REPORT: '/group-lecturers/group-report',
     CREATE: '/group-lecturers/create',
-    ME: "/my-group-lecturers",
-    MY_DETAIL_GROUP: "/my-group-lecturers/detail/:groupLecturerId",
+    ME: '/my-group-lecturers',
+    MY_DETAIL_GROUP: '/my-group-lecturers/detail/:groupLecturerId',
   },
   TOPIC: {
-    MANAGEMENT: "/topics",
-    LECTURER: '/topic-lecturers'
+    MANAGEMENT: '/topics',
+    LECTURER: '/topic-lecturers',
   },
   REVIEW: {
     MANAGEMENT: '/reviews',
   },
   GROUP_SUPPORT: {
-    MANAGEMENT: "/group-supports",
+    MANAGEMENT: '/group-supports',
     SCORE: '/group-supports/score',
     DETAIL: '/group-supports/detail/:group_id',
-    DETAIL_SCORE_GROUP: '/group-supports/score/group_student_id'
+    DETAIL_SCORE_GROUP: '/group-supports/score/group_student_id',
   },
   FILE_UPLOADED: '/files',
   ANALYSIS: {
@@ -95,32 +95,31 @@ export const APP_ROUTES = {
     LOGIN: '/auth/login',
     ROLE: '/auth/role',
     UPDATE_PASS: '/profile/update-password',
-    FORGOT: '/auth/forgot-password'
+    FORGOT: '/auth/forgot-password',
   },
   USER_AUTHORIZATION: {
-    MANAGEMENT: "/authorizations",
-    UPDATE_ROLE: "/authorizations/change",
-    DETAIL: '/authorizations/lecturer'
+    MANAGEMENT: '/authorizations',
+    UPDATE_ROLE: '/authorizations/change',
+    DETAIL: '/authorizations/lecturer',
   },
   FORGOT_PASSWORD: '/auth/forgot-password',
   SUCCESS_MESSAGE: '/auth/success',
   NOT_FOUND: '/404',
-
 };
 export interface ItemAppSiderbarType {
-  text: string,
-  icon: string,
-  link: string,
-  roles?: [],
-  key: string,
+  text: string;
+  icon: string;
+  link: string;
+  roles?: [];
+  key: string;
 }
 export interface AppSiderBarType {
-  text: string,
-  icon?: string,
-  link: string,
-  roles: [],
-  key: string,
-  children?: ItemAppSiderbarType[]
+  text: string;
+  icon?: string;
+  link: string;
+  roles: [];
+  key: string;
+  children?: ItemAppSiderbarType[];
 }
 
 export const APP_SIDEBAR = [
@@ -150,7 +149,6 @@ export const APP_SIDEBAR = [
     roles: [RoleCheck.HEAD_COURSE, RoleCheck.HEAD_LECTURER, RoleCheck.ADMIN],
     link: APP_ROUTES.TERM.MANAGEMENT,
     key: '/terms',
-
   },
 
   {
@@ -163,7 +161,7 @@ export const APP_SIDEBAR = [
     icon: 'ph:article-ny-times',
     text: 'Quản lý bài báo',
     roles: [RoleCheck.HEAD_LECTURER, RoleCheck.HEAD_COURSE, RoleCheck.LECTURER, RoleCheck.ADMIN],
-    link: APP_ROUTES.ARTICLE.MANAGEMENT
+    link: APP_ROUTES.ARTICLE.MANAGEMENT,
   },
 
   {
@@ -183,7 +181,6 @@ export const APP_SIDEBAR = [
         key: APP_ROUTES.LECTURER.MANAGEMENT,
         roles: [RoleCheck.ADMIN, RoleCheck.HEAD_LECTURER],
       },
-
     ],
   },
   {
@@ -203,15 +200,13 @@ export const APP_SIDEBAR = [
     icon: 'mdi:account-student',
     text: 'Sinh viên',
     roles: [RoleCheck.HEAD_LECTURER, RoleCheck.ADMIN, RoleCheck.HEAD_COURSE],
-    link: APP_ROUTES.STUDENT.MANAGEMENT
-
+    link: APP_ROUTES.STUDENT.MANAGEMENT,
   },
   {
     icon: 'material-symbols:group',
     text: 'Nhóm sinh viên',
     roles: [RoleCheck.HEAD_LECTURER, RoleCheck.HEAD_COURSE, RoleCheck.ADMIN],
     link: APP_ROUTES.GROUP_STUDENT.MANAGEMENT,
-
   },
 
   {
@@ -291,14 +286,14 @@ export const APP_SIDEBAR = [
         text: 'Tạo Thông báo',
         link: APP_ROUTES.NOTIFICATION.CREATE_BY_LECTURER,
         key: APP_ROUTES.NOTIFICATION.CREATE_BY_LECTURER,
-      }
+      },
     ],
   },
   {
     icon: 'file-icons:readthedocs',
     text: 'Quản lý báo cáo cuối kỳ',
     roles: [RoleCheck.HEAD_LECTURER, RoleCheck.HEAD_COURSE, RoleCheck.LECTURER, RoleCheck.ADMIN],
-    link: APP_ROUTES.FINAL_REPORT.MANAGEMENT
+    link: APP_ROUTES.FINAL_REPORT.MANAGEMENT,
   },
 ];
 
@@ -323,7 +318,6 @@ export const APP_PROFILE_MENU = [
     icon: 'ri:logout-box-r-line',
     link: '/auth/login',
   },
-
 ];
 
 export const renderType = {

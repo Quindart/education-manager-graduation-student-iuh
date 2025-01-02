@@ -114,7 +114,7 @@ function TableEdit(props) {
           bgcolor: 'white',
           width: '100%',
           height: 400,
-          minHeight: "300px!important",
+          minHeight: '300px!important',
         }}
         rowHeight={70}
         columns={basicColumns}

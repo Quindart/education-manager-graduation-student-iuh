@@ -1,21 +1,24 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface InitGroupStudentSliceType {
-    paramTotalPage: number,
+  paramTotalPage: number;
 }
 const initGroupStudentSlice: InitGroupStudentSliceType = {
-    paramTotalPage: 0,
-}
+  paramTotalPage: 0,
+};
 
 export const useGroupStudentSlice = createSlice({
-    name: "GroupStudentSlice",
-    initialState: initGroupStudentSlice,
-    reducers: {
-        setParamTotalPage: (state: Pick<InitGroupStudentSliceType, 'paramTotalPage'>, { payload }: PayloadAction<any>) => {
-            state.paramTotalPage = payload
-        },
-    }
-})
-export const { setParamTotalPage } = useGroupStudentSlice.actions
+  name: 'GroupStudentSlice',
+  initialState: initGroupStudentSlice,
+  reducers: {
+    setParamTotalPage: (
+      state: Pick<InitGroupStudentSliceType, 'paramTotalPage'>,
+      { payload }: PayloadAction<any>,
+    ) => {
+      state.paramTotalPage = payload;
+    },
+  },
+});
+export const { setParamTotalPage } = useGroupStudentSlice.actions;
 
 export default useGroupStudentSlice.reducer;

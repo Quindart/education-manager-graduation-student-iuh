@@ -15,7 +15,8 @@ function CardRole(props: any) {
   useLayoutEffect(() => {
     if (
       (currentRole !== RoleCheck.ADMIN &&
-        (roleAssigned?.name === RoleCheck.HEAD_LECTURER || roleAssigned?.name === RoleCheck.ADMIN)) ||
+        (roleAssigned?.name === RoleCheck.HEAD_LECTURER ||
+          roleAssigned?.name === RoleCheck.ADMIN)) ||
       roleAssigned?.name === RoleCheck.LECTURER
     ) {
       setReplaceRole(false);
@@ -89,7 +90,7 @@ function CardRole(props: any) {
           <>
             {roleAssigned ? (
               <Button onClick={handleUnAssign} color='error'>
-                Gỡ quyền 
+                Gỡ quyền
                 <Icon icon='icomoon-free:exit' />
               </Button>
             ) : (

@@ -11,10 +11,10 @@ import { setAllMajor } from '@/store/slice/major.slice';
 
 function MajorPage() {
   const { handleGetAllMajorsRender } = useMajor();
-  const { data, isLoading,isSuccess, isFetching } = handleGetAllMajorsRender();
-  const dispatch  = useDispatch();
-  if(isSuccess){
-    dispatch(setAllMajor(data.majors))
+  const { data, isLoading, isSuccess, isFetching } = handleGetAllMajorsRender();
+  const dispatch = useDispatch();
+  if (isSuccess) {
+    dispatch(setAllMajor(data.majors));
   }
 
   const [openAddModal, setOpenAddModal] = useState(false);

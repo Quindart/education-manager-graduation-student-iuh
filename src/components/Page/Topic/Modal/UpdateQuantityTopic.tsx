@@ -24,7 +24,7 @@ function UpdateQuantityTopicModal(props: any) {
   return (
     <Modal onClose={onClose} open={open}>
       <TitleManager px={10} textTransform={'uppercase'} icon='ic:sharp-change-circle' variant='h6'>
-        Cập nhật (tất cả)  số lượng nhóm đăng ký đề tài
+        Cập nhật (tất cả) số lượng nhóm đăng ký đề tài
       </TitleManager>
       <Box
         width='100%'

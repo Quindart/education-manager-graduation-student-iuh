@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import removeConsole from 'vite-plugin-remove-console';
-import sitemap from 'vite-plugin-sitemap'
+import sitemap from 'vite-plugin-sitemap';
 import imagemin from 'vite-plugin-imagemin';
 
 export default defineConfig({
@@ -10,7 +10,7 @@ export default defineConfig({
     react(),
     removeConsole(),
     sitemap({
-      hostname: "https://lec.iuh.io.vn:5000",
+      hostname: 'https://lec.iuh.io.vn:5000',
     }),
     imagemin({
       pngquant: {
@@ -22,10 +22,10 @@ export default defineConfig({
     }),
   ],
   resolve: {
-    alias: [{ find: '@', replacement: path.resolve(__dirname, 'src'), }],
+    alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
   },
   define: {
-    'process.env': {}
+    'process.env': {},
   },
   server: {
     port: 5173,
@@ -35,7 +35,7 @@ export default defineConfig({
     port: 5173,
   },
   build: {
-    minify: "esbuild",
+    minify: 'esbuild',
     sourcemap: false,
     cssCodeSplit: true,
   },

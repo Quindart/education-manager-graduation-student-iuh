@@ -1,6 +1,6 @@
-import { Lecturer } from "./lecturer";
+import { Lecturer } from './lecturer';
 
 export interface LecturerTerm {
-    id: string;
-    lecturer: Lecturer;
+  id: string;
+  lecturer: Lecturer;
 }

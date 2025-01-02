@@ -18,7 +18,7 @@ function HeaderTerm() {
       <Box mb={4} display={'flex'} justifyContent={'end'} flexWrap={'wrap'} gap={4}>
         <Tooltip onClick={handleOpenModal} title='Tạo học kì'>
           <Button
-            sx={{ p: 0, height: 30}}
+            sx={{ p: 0, height: 30 }}
             size='small'
             color='error'
             type='button'

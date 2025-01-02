@@ -2,7 +2,16 @@ import {
   checkTypeEvaluation,
   checkVietNamTypeEvaluation,
 } from '@/utils/validations/transcript.validation';
-import { Box, Button, Link, TableBody, TableHead, Tooltip, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Link,
+  TableBody,
+  TableHead,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import useTranscript from '@/hooks/api/useQueryTranscript';
 import { StyledTableCell, StyledTableRow } from '@/components/iframe/PageWord/style';
@@ -15,11 +24,6 @@ import ExportExcelButton from '@/components/ui/Export';
 import CommentModal from '../Modal/CommentModal';
 import ExportTranscriptWord from '../Modal/ExportTranscriptWord';
 
-const NO_SCORE_STATUS_LIST = [
-  EnumStatusStudent.FAIL_ADVISOR,
-  EnumStatusStudent.FAIL_REVIEWER,
-  EnumStatusStudent.FAIL_REPORT,
-];
 /**
  * ? bây giờ groupStudent sẽ số dòng
  * ? còn số cột sẽ là CLO evaluation
@@ -115,8 +119,16 @@ function TableScoreManagement({ typeScoreStudent, isInTimeScore }: any) {
     handleGetTranscriptByTypeAssign,
     hanleGetEvalutaionsForScoring,
   } = useTranscript();
-  const { mutate: createTranscripts, isSuccess: successCreate } = onCreateTranscriptTypeExcelUI();
-  const { mutate: updateTranscripts, isSuccess: successUpdate } = onUpdateTranscripts();
+  const {
+    mutate: createTranscripts,
+    isSuccess: successCreate,
+    isLoading: loadingCreate,
+  } = onCreateTranscriptTypeExcelUI();
+  const {
+    mutate: updateTranscripts,
+    isSuccess: successUpdate,
+    isLoading: loadingUpdate,
+  } = onUpdateTranscripts();
 
   const { data: evaluationFetch } = hanleGetEvalutaionsForScoring(
     checkTypeEvaluation(typeScoreStudent),
@@ -129,8 +141,8 @@ function TableScoreManagement({ typeScoreStudent, isInTimeScore }: any) {
     refetch: refetchTranscript,
   } = handleGetTranscriptByTypeAssign(typeScoreStudent);
 
-  const [scoreStds, setScoreStds] = React.useState<any[]>([]);
-  const [totalList, setTotalList] = React.useState<any[]>([]);
+  const [scoreStds, setScoreStds] = useState<any[]>([]);
+  const [totalList, setTotalList] = useState<any[]>([]);
 
   useEffect(() => {
     if (isSuccess && groupTranscripts?.transcripts) {
@@ -180,7 +192,6 @@ function TableScoreManagement({ typeScoreStudent, isInTimeScore }: any) {
       };
     });
     const transcript = scoreStds.filter((scoreStd) => scoreStd.studentId === id);
-
     const dataSend = preTranscripts.map((e) => {
       let eId = e?.evaluationId;
       let evlHaveScore = transcript?.find((e) => e.evaluationId === eId);
@@ -236,6 +247,24 @@ function TableScoreManagement({ typeScoreStudent, isInTimeScore }: any) {
   };
   return (
     <>
+      {(loadingCreate || loadingUpdate) && (
+        <Box
+          sx={{
+            position: 'fixed',
+            bgcolor: 'rgba(0, 0, 0, 0.2)',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 999,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
       <Box>
         <Box sx={{ display: 'flex', justifyContent: 'end', mb: 4, gap: 4 }}>
           <Button variant='contained' onClick={handleOpenExportTranscriptWord}>

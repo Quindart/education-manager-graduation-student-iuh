@@ -29,7 +29,7 @@ function CommentEventModal(props: any) {
             <Box>
               {fetchGr?.groupStudent?.members.map((std: any) => (
                 <Box>
-                  <Typography variant='body1'>  
+                  <Typography variant='body1'>
                     <Typography component={'span'} mr={20} variant='body1'>
                       Mã sinh viên: {std?.student?.username}{' '}
                     </Typography>

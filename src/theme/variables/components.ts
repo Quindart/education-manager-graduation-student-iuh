@@ -4,10 +4,10 @@ const components: Components = {
   MuiButton: {
     styleOverrides: {
       root: () => ({
-        textTransform: "none",
+        textTransform: 'none',
       }),
       contained: () => ({
-        color: 'white'
+        color: 'white',
       }),
 
       sizeSmall: ({ theme }: any) => ({
@@ -19,8 +19,8 @@ const components: Components = {
       }),
       sizeLarge: ({ theme }: any) => ({
         fontSize: 12,
-      })
-    }
+      }),
+    },
   },
 
   MuiInputBase: {
@@ -108,11 +108,11 @@ const components: Components = {
       root: ({ theme }: any) => ({
         color: theme.palette.grey[600],
         '&:focus': {
-          backgroundColor: theme.palette.grey[300]
-        }
-      })
-    }
-  }
+          backgroundColor: theme.palette.grey[300],
+        },
+      }),
+    },
+  },
 };
 
 export default components;

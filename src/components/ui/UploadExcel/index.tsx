@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import Modal from '../Modal';
-import {
-  Box,
-  Button,
-  Card,
-  Paper,
-  Skeleton,
-  Tooltip,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Card, Paper, Skeleton, Tooltip, Typography } from '@mui/material';
 import { Icon } from '@iconify/react';
 import TitleManager from '../Title';
 import styled from '@emotion/styled';
@@ -30,7 +22,6 @@ const VisuallyHiddenInput = styled('input')({
   width: '100%',
   backgroundColor: 'red',
 });
-
 
 interface ModalUploadPropsType {
   entityUpload: TypeEntityUpload;
@@ -79,7 +70,6 @@ function ModalUpload(props: ModalUploadPropsType) {
     setCurrentFile(undefined);
   };
 
-
   //TODO: HOOK LOGIC UPLOAD EXCEL
   const {
     importExcel,
@@ -100,7 +90,7 @@ function ModalUpload(props: ModalUploadPropsType) {
     typeEvaluation: typeEvaluation,
     handleCloseUpload: handleCloseUpload,
   });
-  
+
   return (
     <Box>
       <Tooltip arrow title={labelToolTip}>
@@ -253,7 +243,7 @@ function ModalUpload(props: ModalUploadPropsType) {
               />
             </Box>
           )}
-          
+
           <Box mt={10} justifyContent={'end'} gap={4} display={'flex'}>
             <Button variant='contained' color='primary' onClick={handleCloseUpload}>
               <Icon icon='mdi:close-outline' />

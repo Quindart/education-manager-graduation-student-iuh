@@ -1,4 +1,4 @@
-import { Box} from '@mui/material';
+import { Box } from '@mui/material';
 import React, { useEffect } from 'react';
 import CardRole from './Card';
 import { EnumRole } from '@/types/enum';
@@ -52,7 +52,6 @@ function RolePage() {
   useEffect(() => {
     if (successMajor) dispatch(setAllMajor(dataMajorFetch.majors));
   }, [successMajor]);
-
 
   //!<... DON'T REMOVE
   const { data: dataTermFecth, isSuccess: successTerm } = handleGetAllTermByMajor(

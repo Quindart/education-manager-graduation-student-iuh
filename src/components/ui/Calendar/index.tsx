@@ -19,10 +19,7 @@ function Calendar(props: CalendarPropsType) {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Box display={'flex'} className={`${className}`} sx={sx} flexDirection='column'>
         {label && (
-          <InputLabel
-            htmlFor={id}
-            sx={{ mb: 3, color: 'grey.700', fontWeight: 600, fontSize: 13 }}
-          >
+          <InputLabel htmlFor={id} sx={{ mb: 3, color: 'grey.700', fontWeight: 600, fontSize: 13 }}>
             {label}
           </InputLabel>
         )}

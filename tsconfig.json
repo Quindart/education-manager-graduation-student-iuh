@@ -33,7 +33,11 @@
       "@/*": ["*"],
     },
   },
-  "include": ["src", "src/custom.d.ts", "../education-graduation-for-student-iuh/src/components/ui/FileCard"],
+  "include": [
+    "src",
+    "src/custom.d.ts",
+    "../education-graduation-for-student-iuh/src/components/ui/FileCard",
+  ],
   "exclude": ["node_modules", "lint-staged.config.jg", "vite.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }],
 }

@@ -12,7 +12,14 @@ import {
   WidthType,
 } from 'docx';
 
-export default function docResultTranscriptAdvisor(evaluations: any, topic: any, lecturerSupportName: any, groupStudentName: any, lecturerToScoreName: any, groupMember: any) {
+export default function docResultTranscriptAdvisor(
+  evaluations: any,
+  topic: any,
+  lecturerSupportName: any,
+  groupStudentName: any,
+  lecturerToScoreName: any,
+  groupMember: any,
+) {
   const rows = convertRowEvaluations(evaluations);
   const doc = new Document({
     sections: [

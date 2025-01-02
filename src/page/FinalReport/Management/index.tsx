@@ -8,10 +8,7 @@ import TitleManager from '@/components/ui/Title';
 import { removeVietnameseTones } from '@/utils/search';
 import useParams from '@/hooks/ui/useParams';
 import useFinalReport from '@/hooks/api/useQueryFinalReport';
-import { useMajor } from '@/hooks/api/useQueryMajor';
-const SEARCH_FIELD = {
-  name: 'tên bài báo',
-};
+
 const handleSearch = (data: any[], typeSearch: string, keywords: string) => {
   if (keywords.length === 0 || typeSearch.length === 0) {
     return data;
@@ -30,9 +27,7 @@ function FinalReportManagement() {
   return (
     <Paper sx={{ py: 10, px: 10 }} elevation={0}>
       <Box justifyContent={'space-between'} display={'flex'} mb={8} mt={2}>
-        <TitleManager icon='quill:list'>
-          Nộp báo cáo cuối kỳ
-        </TitleManager>
+        <TitleManager icon='quill:list'>Nộp báo cáo cuối kỳ</TitleManager>
       </Box>
       <HeaderArticle />
       {isLoading ? (

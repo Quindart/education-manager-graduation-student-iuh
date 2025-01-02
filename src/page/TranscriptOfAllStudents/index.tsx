@@ -25,7 +25,7 @@ function TranscriptOfAllStudents() {
       setTypeScoreStudent('REPORT');
     } else setTypeScoreStudent(typeScoreStudent);
   };
-  
+
   return (
     <Paper elevation={0} sx={{ px: 2, py: 4 }}>
       <Box mb={4} display={'flex'} alignItems={'center'} gap={2}>

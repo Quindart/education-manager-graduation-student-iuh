@@ -27,8 +27,6 @@ function ProfileMenu() {
 
   const navigate = useNavigate();
 
-
-
   //TODO [HANDLE EVENT]
   const handleChangeRole = () => {
     const role = lecturerStore.currentRoleRender;

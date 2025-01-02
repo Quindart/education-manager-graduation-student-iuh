@@ -11,7 +11,6 @@ const Search = (props: any) => {
   const [searchValue, setSearchValue] = useState('');
   const debouncedSearchValue = useDebounce(searchValue, 500);
 
-
   return (
     <Box>
       <form

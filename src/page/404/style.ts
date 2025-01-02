@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { Box, Button } from "@mui/material";
+import styled from '@emotion/styled';
+import { Box, Button } from '@mui/material';
 
 const TextStyled = styled(Box)`
   text-align: center;
@@ -49,8 +49,4 @@ const LinkStyled = styled(Button)`
   }
 `;
 
-export {
-    TextStyled,
-    ImageStyled,
-    LinkStyled,
-}
+export { TextStyled, ImageStyled, LinkStyled };
