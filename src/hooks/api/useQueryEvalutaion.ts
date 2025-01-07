@@ -75,6 +75,7 @@ const useEvaluation = () => {
       () => getEvaluationByTermByType(termId, type),
       {
         staleTime: 1000 * (60 * 20),
+        enabled: !!termId
       },
     );
   };

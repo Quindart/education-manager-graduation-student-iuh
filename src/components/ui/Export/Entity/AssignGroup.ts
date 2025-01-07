@@ -45,6 +45,11 @@ export class AssginGroupClassExport extends EntityExportExcel {
         bottom: { style: 'thin' },
         right: { style: 'thin' },
       };
+      cell.font = {
+        name: 'Time new roman',
+        family: 4,
+        size: 10,
+      };
     });
   };
   protected customizeCells = () => {

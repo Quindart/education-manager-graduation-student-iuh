@@ -47,12 +47,22 @@ export class TotalAllTranscripts extends EntityExportExcel {
           vertical: 'middle',
           horizontal: 'left',
         };
+        row.font = {
+          name: 'Time new roman',
+          family: 4,
+          size: 10,
+        };
         row.eachCell((cell) => {
           cell.border = {
             top: { style: 'thin' },
             left: { style: 'thin' },
             bottom: { style: 'thin' },
             right: { style: 'thin' },
+          };
+          cell.font = {
+            name: 'Time new roman',
+            family: 4,
+            size: 10,
           };
         });
       }
