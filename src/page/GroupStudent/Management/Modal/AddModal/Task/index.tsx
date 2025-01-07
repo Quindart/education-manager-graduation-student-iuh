@@ -234,19 +234,6 @@ function TaskAddStudent(props: any) {
                       >
                         <Box gap={10} position={'relative'} alignItems={'center'} display='flex'>
                           <Box>
-                            <Typography
-                              position='absolute'
-                              right={10}
-                              top={2}
-                              bgcolor={'error.main'}
-                              px={4}
-                              py={2}
-                              borderRadius={2}
-                              variant='body2'
-                              color={'white'}
-                            >
-                              Nhóm {currentGroup}
-                            </Typography>
                             <Typography variant='h6' color={'error.main'} fontWeight={'500'}>
                               <span> Họ và tên: {'   '}</span>
                               {item.fullName}

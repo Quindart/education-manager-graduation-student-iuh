@@ -1,5 +1,3 @@
-import { RoleCheck } from '@/types/enum';
-import { convertRowEvaluations } from '@/utils/convertDataTable';
 import { checkMemberType } from '@/utils/validations/groupLecturer.validation';
 import {
   Document,
@@ -14,14 +12,6 @@ import {
   WidthType,
 } from 'docx';
 
-// ROLE LECTURER
-//1 bảng điểm thuộc 1 loại (REPORT, REVIEW, ADVISOR)
-//2 => select 1 nhom gv tra ve detail nhom GV
-//3 (thanh vien, tìm thành viên đang xuất phiếu loại những phiếu không phải của thành viên đó)
-//4 => evaluator thanh vien 1 hay 2 = ten file
-//5 => nhom sinh vien :
-//6 bang diem nhom (điểm tiêu chí từng sinh viên,
-// danh sách tiêu chí), topic, lecturerSupport
 
 function convertStudentScores(students) {
   const result = [];
@@ -60,7 +50,7 @@ export default function docResultTranscript({
   type,
 }: any) {
   const vnPosition = checkMemberType(position);
-  const fileName = 'PhieuCham_NhómSV' + groupName + '_' + vnPosition + '_' + evaluatorName;
+  const fileName = 'PB_NhómSV' + groupName + '_' + vnPosition + '_' + evaluatorName;
   const rows = convertStudentScores(students).sort(
     (a, b) => parseInt(a.evaluationKey.split('LO')[1]) - parseInt(b.evaluationKey.split('LO')[1]),
   );

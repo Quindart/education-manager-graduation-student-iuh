@@ -11,6 +11,7 @@ import InfoModal from '@/components/Page/Topic/Modal/InfoModal';
 import AcceptTopicModal from '@/components/Page/Topic/Modal/AcceptTopicModal';
 import RefuseTopicModal from '@/components/Page/Topic/Modal/RefuseTopicModal';
 import { Icon } from '@iconify/react';
+import ResetTopicModal from '@/components/Page/Topic/Modal/ResetTopicModal';
 
 function TableManagamentTopic(props: any) {
   const {
@@ -56,6 +57,18 @@ function TableManagamentTopic(props: any) {
     setOpenEditDeleteModal({ topicId, name, isOpen: true });
   };
 
+  //handle
+  const [openResetModal, setResetModal] = useState({
+    topicId: '',
+    name: '',
+    isOpen: false,
+  });
+  const handleCloseResetModal = () => {
+    setResetModal({ ...openDeleteModal, isOpen: false });
+  };
+  const handleOpenResetModal = (topicId: string, name: string) => {
+    setResetModal({ topicId, name, isOpen: true });
+  };
   //handle
   const [openAcceptModal, setOpenEditAcceptModal] = useState({
     topicId: '',
@@ -143,7 +156,22 @@ function TableManagamentTopic(props: any) {
         headerAlign: 'center',
         align: 'center',
         renderCell: (param) => {
-          return <Box>{getCardTopicStatus(param.row.status)}</Box>;
+          return (
+            <Box>
+              {getCardTopicStatus(param.row.status)}
+              {param.row.status !== 'PENDING' && handleUiRender().includes('crud') ? (
+                <Button
+                  color='warning'
+                  title='Reset duyệt'
+                  onClick={() => handleOpenResetModal(param.row.id, param.row.name)}
+                >
+                  Reset duyệt
+                </Button>
+              ) : (
+                <></>
+              )}
+            </Box>
+          );
         },
       },
       {
@@ -364,11 +392,19 @@ function TableManagamentTopic(props: any) {
               topicId={openAcceptModal.topicId}
             />
             <RefuseTopicModal
-              key={openAcceptModal.topicId}
+              key={openRefuseModal.topicId}
               open={openRefuseModal.isOpen}
               name={openRefuseModal.name}
               onClose={handleCloseRefuseModal}
               topicId={openRefuseModal.topicId}
+            />
+
+            <ResetTopicModal
+              key={openResetModal.topicId}
+              open={openResetModal.isOpen}
+              name={openResetModal.name}
+              onClose={handleCloseResetModal}
+              topicId={openResetModal.topicId}
             />
           </>
         )}

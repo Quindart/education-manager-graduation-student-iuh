@@ -160,6 +160,10 @@ const useTranscript = () => {
   const handleExportAllTranscripts = () => {
     return useQuery([QueryKeysScoreStudent.getTotalAllTranscripts, termStore.currentTerm.id], () =>
       getTotalAllTranscripts(termStore.currentTerm.id),
+      {
+        enabled: !!termStore.currentTerm.id,
+        refetchOnMount: true,
+      }
     );
   };
   return {
