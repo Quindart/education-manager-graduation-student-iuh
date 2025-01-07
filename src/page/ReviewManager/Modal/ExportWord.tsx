@@ -29,7 +29,7 @@ interface ExportWordModalProps {
   evaluations: any;
   permissions: any[];
 }
-
+ 
 const useExportMultiDocs = async (groupLecturers: any[], evaluations: any[], typeEvaluation) => {
   const { lecturerStore } = useAuth();
   const role = lecturerStore.currentRoleRender;

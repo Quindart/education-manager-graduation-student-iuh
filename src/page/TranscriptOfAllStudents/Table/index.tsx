@@ -85,7 +85,137 @@ const grScoresToExportExcel = (tranScripts) => {
     })
     .flat();
 };
+const setEvaluationKeyAndScoreMaxHeaderExcel = (evls) => {
+  if (evls.length === 0 || evls == null) return [];
+  return evls?.map((e) => ({ key: e.key, scoreMax: e.scoreMax }));
+};
 
+const allTotalTranscriptOfStudents = (transcripts) => {
+  if (!transcripts) {
+    return null;
+  }
+  let advisor = setEvaluationKeyAndScoreMaxHeaderExcel(transcripts[0]['evaluationAdvisor'])?.map(
+    (ev) => ({
+      header: `${ev.key} (${ev.scoreMax})`,
+      key: 'evaluationAdvisor' + `${ev.key}`,
+      width: 10,
+    }),
+  );
+  let review1 = setEvaluationKeyAndScoreMaxHeaderExcel(transcripts[0]['evaluationReviewer1'])?.map(
+    (ev) => ({
+      header: `${ev.key} (${ev.scoreMax})`,
+      key: 'evaluationReviewer1' + `${ev.key}`,
+      width: 10,
+    }),
+  );
+
+  let review2 = setEvaluationKeyAndScoreMaxHeaderExcel(transcripts[0]['evaluationReviewer2'])?.map(
+    (ev) => ({
+      header: `${ev.key} (${ev.scoreMax})`,
+      key: 'evaluationReviewer2' + `${ev.key}`,
+      width: 10,
+    }),
+  );
+
+  let report1 = setEvaluationKeyAndScoreMaxHeaderExcel(transcripts[0]['evaluationReport1'])?.map(
+    (ev) => ({
+      header: `${ev.key} (${ev.scoreMax})`,
+      key: 'evaluationReport1' + `${ev.key}`,
+      width: 10,
+    }),
+  );
+
+  let report2 = setEvaluationKeyAndScoreMaxHeaderExcel(transcripts[0]['evaluationReport2'])?.map(
+    (ev) => ({
+      header: `${ev.key} (${ev.scoreMax})`,
+      key: 'evaluationReport2' + `${ev.key}`,
+      width: 10,
+    }),
+  );
+
+  let report3 = setEvaluationKeyAndScoreMaxHeaderExcel(transcripts[0]['evaluationReport3'])?.map(
+    (ev) => ({
+      header: `${ev.key} (${ev.scoreMax})`,
+      key: 'evaluationReport3' + `${ev.key}`,
+      width: 10,
+    }),
+  );
+
+  const header = [
+    { header: 'Mã sinh viên', key: 'username', width: 15 },
+    { header: 'Họ và tên', key: 'fullName', width: 26 },
+    { header: 'Mã nhóm', key: 'groupName', width: 15 },
+    { header: 'Tên đề tài', key: 'topicName', width: 50 },
+    { header: 'GVHD', key: 'GVHD', width: 24 },
+    { header: 'GVPB1', key: 'GVPB1', width: 24 },
+    { header: 'GVPB2', key: 'GVPB2', width: 24 },
+    { header: 'GVHĐ1', key: 'GVHĐ1', width: 24 },
+    { header: 'GVHĐ2', key: 'GVHĐ2', width: 24 },
+    { header: 'GVHĐ3', key: 'GVHĐ3', width: 24 },
+    ...advisor,
+    { header: 'Tổng điểm GVHD', key: 'Tổng điểm GVHD', width: 20 },
+    ...review1,
+    { header: 'Tổng điểm GVPB1', key: 'Tổng điểm GVPB1', width: 20 },
+    ...review2,
+    { header: 'Tổng điểm GVPB2', key: 'Tổng điểm GVPB2', width: 20 },
+    ...report1,
+    { header: 'Tổng điểm GVHĐ1', key: 'Tổng điểm GVHĐ1', width: 20 },
+    ...report2,
+    { header: 'Tổng điểm GVHĐ2', key: 'Tổng điểm GVHĐ2', width: 20 },
+    ...report3,
+    { header: 'Tổng điểm GVHĐ3', key: 'Tổng điểm GVHĐ3', width: 20 },
+    { header: 'Điểm TB GVHD', key: 'Điểm TB GVHD', width: 20 },
+    { header: 'Điểm TB GVPB1', key: 'Điểm TB GVPB1', width: 20 },
+    { header: 'Điểm TB GVPB2', key: 'Điểm TB GVPB2', width: 20 },
+    { header: 'Điểm TB GVHĐ1', key: 'Điểm TB GVHĐ1', width: 20 },
+    { header: 'Điểm TB GVHĐ2', key: 'Điểm TB GVHĐ2', width: 20 },
+    { header: 'Điểm TB GVHĐ3', key: 'Điểm TB GVHĐ3', width: 20 },
+    { header: 'Điểm TB', key: 'Điểm TB', width: 10 },
+    { header: 'Điểm Cộng', key: 'Điểm Cộng', width: 10 },
+    { header: 'Tổng Điểm', key: 'Tổng Điểm', width: 10 },
+  ];
+
+  let flatTranscript = transcripts.map((transcript) => {
+    const flattenEvaluation = (key) => {
+      return Object.fromEntries(transcript[key].map((ev, index) => [`${key}${ev.key}`, ev.score]));
+    };
+
+    const flatObject = {
+      username: transcript['username'],
+      fullName: transcript['fullName'],
+      groupName: transcript['groupName'],
+      topicName: transcript['topicName'],
+      GVHD: transcript['GVHD'],
+      GVPB1: transcript['GVPB1'],
+      GVPB2: transcript['GVPB2'],
+      GVHĐ1: transcript['GVHĐ1'],
+      GVHĐ2: transcript['GVHĐ2'],
+      GVHĐ3: transcript['GVHĐ3'],
+    };
+
+    Object.assign(flatObject, flattenEvaluation('evaluationAdvisor'));
+    flatObject['Tổng điểm GVHD'] = transcript['Tổng điểm GVHD'];
+    Object.assign(flatObject, flattenEvaluation('evaluationReviewer1'));
+    flatObject['Tổng điểm GVPB1'] = transcript['Tổng điểm GVPB1'];
+    Object.assign(flatObject, flattenEvaluation('evaluationReviewer2'));
+    flatObject['Tổng điểm GVPB2'] = transcript['Tổng điểm GVPB2'];
+    Object.assign(flatObject, flattenEvaluation('evaluationReport1'));
+    flatObject['Tổng điểm GVHĐ1'] = transcript['Tổng điểm GVHĐ1'];
+    Object.assign(flatObject, flattenEvaluation('evaluationReport2'));
+    flatObject['Tổng điểm GVHĐ2'] = transcript['Tổng điểm GVHĐ2'];
+    Object.assign(flatObject, flattenEvaluation('evaluationReport3'));
+    flatObject['Tổng điểm GVHĐ3'] = transcript['Tổng điểm GVHĐ3'];
+
+    // Thêm các trường cuối
+    flatObject['Điểm TB'] = transcript['Điểm TB'];
+    flatObject['Điểm Cộng'] = transcript['Điểm Cộng'];
+    flatObject['Tổng Điểm'] = transcript['Tổng Điểm'];
+
+    return flatObject;
+  });
+
+  return { header, transcript: flatTranscript };
+};
 function TableScoreManagement({ typeScoreStudent }: any) {
   const { termStore } = useTerm();
   const { handleGetEvalutationByType, handleUiRender } = useEvaluation();
@@ -104,6 +234,7 @@ function TableScoreManagement({ typeScoreStudent }: any) {
   const [openModalExport, setOpenExportModal] = useState({
     isOpen: false,
   });
+
 
   const handleOpenExportModal = () => {
     setOpenExportModal({ isOpen: true });
@@ -134,7 +265,8 @@ function TableScoreManagement({ typeScoreStudent }: any) {
             label={`Xuất bảng điểm ${checkVietNamTypeEvaluation(typeScoreStudent)}`}
           />
           <ExportExcelButton
-            data={allTotalFetch?.students.map(({ id, ...rest }) => rest)}
+            headerSetup={allTotalTranscriptOfStudents(allTotalFetch?.students)?.header}
+            data={allTotalTranscriptOfStudents(allTotalFetch?.students)?.transcript}
             entity='allTotalTranscripts'
             label='Xuất bảng điểm tổng kết'
           />

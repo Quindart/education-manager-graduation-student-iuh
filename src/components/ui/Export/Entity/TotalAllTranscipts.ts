@@ -59,7 +59,7 @@ export class TotalAllTranscripts extends EntityExportExcel {
     });
   }
   public customizeSheet(): void {
-    // this.getSheet().properties.defaultRowHeight = 30
+    this.getSheet().properties.defaultRowHeight = 40
     this.customizeHeaderColumn();
     this.customizeCells();
     this.customizeColumns();
