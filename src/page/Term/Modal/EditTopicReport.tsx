@@ -32,18 +32,30 @@ function EditTopicReport(props: any) {
   };
 
   const handleSubmit = (data: any) => {
-    updateTerm(data);
+    updateTerm({
+      startDate: dayjs(data.startDate.$d).format('YYYY-MM-DD HH:mm:ss'),
+      endDate: dayjs(data.endDate.$d).format('YYYY-MM-DD HH:mm:ss'),
+    });
+    handleClose();
   };
-  useEffect(() => {
+
+  const handleClose = () => {
     onClose();
-  }, [isSuccess]);
+    if (data?.termDetail) {
+      const checked: boolean =
+        dayjs(data.termDetail.startDate).diff() <= 0 && dayjs(data.termDetail.endDate).diff() >= 0;
+      setCheckedOpenGroup(checked);
+    }
+  };
 
   useEffect(() => {
     if (data?.termDetail) {
-      var checked: boolean = dayjs(data?.termDetail.endDate) <= dayjs() ? false : true;
+      const checked: boolean =
+        dayjs(data.termDetail.startDate).diff() <= 0 && dayjs(data.termDetail.endDate).diff() >= 0;
       setCheckedOpenGroup(checked);
     }
   }, [successDetail, isFetching]);
+
   return (
     <Modal open={open} onClose={onClose}>
       <Box px={10}>
@@ -53,7 +65,7 @@ function EditTopicReport(props: any) {
           icon='ant-design:field-time-outlined'
           textTransform={'uppercase'}
         >
-          Cập nhật trạng thái báo cáo đề tài
+          Cập nhật thời gian báo cáo hội đồng/poster
         </TitleManager>
         {loadingDetail || isFetching ? (
           <Box
@@ -68,7 +80,7 @@ function EditTopicReport(props: any) {
         ) : (
           <Formik
             key={termId}
-            onSubmit={(values) => handleSubmit(values)}
+            onSubmit={(values: any) => handleSubmit(values)}
             validationSchema={validationTermGroupSchema}
             initialValues={{
               startDate: data?.termDetail.startDate ? dayjs(data?.termDetail.startDate) : null,
@@ -84,7 +96,7 @@ function EditTopicReport(props: any) {
                         setFieldValue('startDate', value);
                       }}
                       sx={{ '& .Mui-disabled': { '-webkit-text-fill-color': '#0052b1' } }}
-                      label='Ngày bắt đầu'
+                      label='Thời gian bắt đầu'
                       name='startDate'
                       format='DD/MM/YYYY hh:mm:ss A'
                       value={values.startDate}
@@ -98,7 +110,7 @@ function EditTopicReport(props: any) {
                         setFieldValue('endDate', value);
                       }}
                       sx={{ '& .Mui-disabled': { '-webkit-text-fill-color': '#0052b1' } }}
-                      label='Ngày kết thúc'
+                      label='Thời gian kết thúc'
                       name='endDate'
                       format='DD/MM/YYYY hh:mm:ss A'
                       value={values.endDate}
@@ -110,7 +122,7 @@ function EditTopicReport(props: any) {
                 {dayjs(values.startDate) <= dayjs() ? (
                   <Box mt={6}>
                     <Typography variant='h6' fontWeight={'bold'} color='primary.dark'>
-                      Trạng thái báo cáo đề tài
+                      Trạng thái báo cáo hội đồng/poster
                     </Typography>
                     <Switch
                       onChange={() => {
@@ -125,22 +137,22 @@ function EditTopicReport(props: any) {
                       variant='h6'
                       color={isCheckedOpenGroup ? 'primary' : 'error'}
                     >
-                      {isCheckedOpenGroup ? 'Đang mở báo cáo đề tài' : 'Đã đóng báo cáo đề tài'}
+                      {isCheckedOpenGroup ? 'Đang mở' : 'Đã đóng'}
                     </Typography>
                   </Box>
                 ) : (
                   <Box mt={10}>
                     <Typography variant='h6' fontWeight={'bold'} color='primary.dark'>
-                      Trạng thái báo cáo đề tài :
+                      Trạng thái báo cáo hội đồng/poster:
                     </Typography>
                     <Typography variant='body1'>
-                      Chưa đến ngày mở báo cáo đề tài, bắt đầu mở từ ngày:{' '}
+                      Chưa đến thời gian mở báo cáo hội đồng/poster, bắt đầu mở từ:{' '}
                       {dayjs(values.startDate).format('DD/MM/YYYY hh:mm:ss A')}
                     </Typography>
                   </Box>
                 )}
                 <Box mt={20} mb={6} justifyContent={'end'} gap={8} display={'flex'}>
-                  <Button variant='contained' color='primary' onClick={onClose}>
+                  <Button variant='contained' color='primary' onClick={handleClose}>
                     <Icon width={20} style={{ marginRight: 4 }} icon='mdi:cancel-outline' />
                     Hủy
                   </Button>

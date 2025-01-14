@@ -27,7 +27,7 @@ function TableManagementRole(props: any) {
 
   const basicColumns: GridColDef[] = [
     {
-      headerName: 'Mã Giảng Viên',
+      headerName: 'Mã GV',
       field: 'username',
       flex: 0.6,
       headerAlign: 'center',

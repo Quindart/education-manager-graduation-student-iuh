@@ -22,6 +22,7 @@ function CardGroupLecturer(props: any) {
           border: '1px solid #DAE9FAFF',
         },
         minHeight: 240,
+        minWidth: 400,
       }}
     >
       <CardMedia
@@ -40,22 +41,21 @@ function CardGroupLecturer(props: any) {
         </Typography>
 
         <Typography fontWeight={500} color='primary.dark'>
-          Thành viên :
+          Thành viên:
         </Typography>
         <Box>
-          {group?.members.map((mem) => (
+          {group?.members.map((mem: any) => (
             <Typography variant='body1' color='text.grey.500'>
               {mem.username} {' - '}
               {mem.fullName}
             </Typography>
           ))}
         </Box>
-
         <Typography mt={4} fontWeight={500} color='primary.dark'>
           Thông tin chi tiết:
         </Typography>
         <Typography mt={2}>
-          <Typography variant='body1' component={'span'} fontWeight={'bold'} color='grey.600'>
+          <Typography variant='body1' component={'span'} fontWeight={'bold'} color='black'>
             Bắt đầu:{' '}
           </Typography>
           {group.startDate
@@ -63,13 +63,13 @@ function CardGroupLecturer(props: any) {
             : 'Chưa cập nhật'}
         </Typography>
         <Typography mb={2}>
-          <Typography variant='body1' component={'span'} fontWeight={'bold'} color='grey.600'>
+          <Typography variant='body1' component={'span'} fontWeight={'bold'} color='black'>
             Kết thúc:{' '}
           </Typography>
           {group.endDate ? dayjs(group.endDate).format('DD/MM/YYYY hh:mm:ss A') : 'Chưa cập nhật'}
         </Typography>
         <Typography fontWeight={'bold'}>
-          <Typography variant='body1' component={'span'} fontWeight={'bold'} color='grey.600'>
+          <Typography variant='body1' component={'span'} fontWeight={'bold'} color='black'>
             Địa điểm:{' '}
           </Typography>
           {group.location ? group.location : 'Chưa cập nhật'}

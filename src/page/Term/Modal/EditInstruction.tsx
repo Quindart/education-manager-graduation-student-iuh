@@ -13,11 +13,10 @@ import DateTimeCalendar from '@/components/ui/Calendar/DateTimeCalendar';
 function EditInstruction(props: any) {
   const { onClose, open, termId } = props;
   const { handleGetTermDetailWithType, onUpdateTermWithType } = useTerm();
-  const {
-    mutate: updateTerm,
-    isLoading: loadingUpdate,
-    isSuccess,
-  } = onUpdateTermWithType(termId, TypeTermStatus.DISCUSSION);
+  const { mutate: updateTerm, isLoading: loadingUpdate } = onUpdateTermWithType(
+    termId,
+    TypeTermStatus.DISCUSSION,
+  );
 
   const {
     data,
@@ -30,19 +29,32 @@ function EditInstruction(props: any) {
   const handleChangeStatusInstruction = () => {
     setCheckedOpenGroup(!isCheckedOpenGroup);
   };
+
+  const handleSubmit = (data: any) => {
+    updateTerm({
+      startDate: dayjs(data.startDate.$d).format('YYYY-MM-DD HH:mm:ss'),
+      endDate: dayjs(data.endDate.$d).format('YYYY-MM-DD HH:mm:ss'),
+    });
+    handleClose();
+  };
+
+  const handleClose = () => {
+    onClose();
+    if (data?.termDetail) {
+      const checked: boolean =
+        dayjs(data.termDetail.startDate).diff() <= 0 && dayjs(data.termDetail.endDate).diff() >= 0;
+      setCheckedOpenGroup(checked);
+    }
+  };
+
   useEffect(() => {
     if (data?.termDetail) {
-      var checked: boolean = dayjs(data?.termDetail.endDate) <= dayjs() ? false : true;
+      const checked: boolean =
+        dayjs(data.termDetail.startDate).diff() <= 0 && dayjs(data.termDetail.endDate).diff() >= 0;
       setCheckedOpenGroup(checked);
     }
   }, [successDetail, isFetching]);
 
-  const handleSubmit = (data: any) => {
-    updateTerm(data);
-  };
-  useEffect(() => {
-    onClose();
-  }, [isSuccess]);
   return (
     <Modal open={open} onClose={onClose}>
       <Box px={10}>
@@ -52,7 +64,7 @@ function EditInstruction(props: any) {
           icon='ant-design:field-time-outlined'
           textTransform={'uppercase'}
         >
-          Cập nhật trạng thái phản biện
+          Cập nhật thời gian phản biện
         </TitleManager>
         {loadingDetail || isFetching ? (
           <Box
@@ -67,7 +79,7 @@ function EditInstruction(props: any) {
         ) : (
           <Formik
             key={termId}
-            onSubmit={(values) => handleSubmit(values)}
+            onSubmit={(values: any) => handleSubmit(values)}
             validationSchema={validationTermGroupSchema}
             initialValues={{
               startDate: data?.termDetail.startDate ? dayjs(data?.termDetail.startDate) : null,
@@ -83,7 +95,7 @@ function EditInstruction(props: any) {
                         setFieldValue('startDate', value);
                       }}
                       sx={{ '& .Mui-disabled': { '-webkit-text-fill-color': '#0052b1' } }}
-                      label='Ngày bắt đầu'
+                      label='Thời gian bắt đầu'
                       name='startDate'
                       format='DD/MM/YYYY hh:mm:ss A'
                       value={values.startDate}
@@ -97,7 +109,7 @@ function EditInstruction(props: any) {
                         setFieldValue('endDate', value);
                       }}
                       sx={{ '& .Mui-disabled': { '-webkit-text-fill-color': '#0052b1' } }}
-                      label='Ngày kết thúc'
+                      label='Thời gian kết thúc'
                       name='endDate'
                       format='DD/MM/YYYY hh:mm:ss A'
                       value={values.endDate}
@@ -124,22 +136,22 @@ function EditInstruction(props: any) {
                       variant='h6'
                       color={isCheckedOpenGroup ? 'primary' : 'error'}
                     >
-                      {isCheckedOpenGroup ? 'Đang mở phản biện' : 'Đã đóng phản biện'}
+                      {isCheckedOpenGroup ? 'Đang mở' : 'Đã đóng'}
                     </Typography>
                   </Box>
                 ) : (
                   <Box mt={10}>
                     <Typography variant='h6' fontWeight={'bold'} color='primary.dark'>
-                      Trạng thái phản biện :
+                      Trạng thái phản biện:
                     </Typography>
                     <Typography variant='body1'>
-                      Chưa đến ngày mở phản biện, bắt đầu mở từ ngày:{' '}
+                      Chưa đến thời gian mở phản biện, bắt đầu mở từ:{' '}
                       {dayjs(values.startDate).format('DD/MM/YYYY hh:mm:ss A')}
                     </Typography>
                   </Box>
                 )}
                 <Box mt={20} mb={6} justifyContent={'end'} gap={8} display={'flex'}>
-                  <Button variant='contained' color='primary' onClick={onClose}>
+                  <Button variant='contained' color='primary' onClick={handleClose}>
                     <Icon width={20} style={{ marginRight: 4 }} icon='mdi:cancel-outline' />
                     Hủy
                   </Button>

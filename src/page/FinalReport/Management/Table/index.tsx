@@ -53,7 +53,7 @@ function TableFinalReportManagement(props: Props) {
         flex: 1.6,
       },
       {
-        headerName: 'Tải file',
+        headerName: 'Link tài liệu',
         field: 'link',
         flex: 0.4,
         align: 'center',
@@ -128,7 +128,7 @@ function TableFinalReportManagement(props: Props) {
       },
 
       {
-        headerName: 'Ngày công bố',
+        headerName: 'Ngày nộp',
         field: 'publicDate',
         flex: 0.4,
         headerAlign: 'right',
@@ -136,7 +136,7 @@ function TableFinalReportManagement(props: Props) {
         renderCell: (params) => <Typography>{dayjs(params.value).format('DD/MM/YYYY')}</Typography>,
       },
       {
-        headerName: 'Link',
+        headerName: 'Link tài liệu',
         field: 'link',
         flex: 0.4,
         align: 'center',

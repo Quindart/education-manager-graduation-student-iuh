@@ -16,15 +16,15 @@ function HeaderTerm() {
   return (
     <>
       <Box mb={4} display={'flex'} justifyContent={'end'} flexWrap={'wrap'} gap={4}>
-        <Tooltip onClick={handleOpenModal} title='Tạo học kì'>
+        <Tooltip onClick={handleOpenModal} title='Tạo học kỳ'>
           <Button
-            sx={{ p: 0, height: 30 }}
             size='small'
             color='error'
             type='button'
             variant='contained'
+            startIcon={<Icon icon='mdi:plus' color='#fff' width={20} />}
           >
-            <Icon icon='lets-icons:add-round' width={20} />
+            Tạo học kỳ
           </Button>
         </Tooltip>
       </Box>

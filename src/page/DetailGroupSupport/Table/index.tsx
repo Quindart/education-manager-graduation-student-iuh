@@ -12,13 +12,13 @@ function TableDetailGroupSupport({ members }) {
   const basicColumns: GridColDef[] = useMemo(
     () => [
       {
-        headerName: 'Thông tin sinh viên',
+        headerName: 'Thông tin chung',
         field: 'name',
-        flex: 1.6,
+        flex: 1,
         headerAlign: 'left',
         renderCell: (params: any) => {
           return (
-            <Box gap={2} display={'flex'} alignItems={'center'}>
+            <Box gap={2} display={'flex'}>
               <Box>
                 <Typography component={'span'} color='primary'>
                   {params.row.isAdmin ? 'Trưởng Nhóm' : ''}
@@ -37,44 +37,150 @@ function TableDetailGroupSupport({ members }) {
         },
       },
       {
-        headerName: 'Điểm Hướng dẫn',
-        field: 'advisorScore',
-        flex: 1,
-        align: 'right',
-        headerAlign: 'right',
+        headerName: 'GV Hướng dẫn',
+        field: 'advisor',
+        flex: 0.8,
+        align: 'left',
+        headerAlign: 'left',
+        renderCell: (params: any) => {
+          return (
+            <Box gap={2} display={'flex'}>
+              <Box>
+                <Typography color='red' fontWeight={600}>
+                  Điểm: {params.row.advisor ? params.row.advisor?.avgScore : 'Chưa có'}
+                </Typography>
+                <Typography>
+                  {params.row.advisor ? params.row.advisor?.fullName : 'Chưa có'}
+                </Typography>
+              </Box>
+            </Box>
+          );
+        },
       },
       {
-        headerName: 'Điểm Phản biện',
-        field: 'reviewerScore',
-        flex: 1,
-        align: 'right',
-        headerAlign: 'right',
+        headerName: 'GV Phản biện 1',
+        field: 'firstReviewer',
+        flex: 0.8,
+        align: 'left',
+        headerAlign: 'left',
+        renderCell: (params: any) => {
+          return (
+            <Box gap={2} display={'flex'}>
+              <Box>
+                <Typography color='red' fontWeight={600}>
+                  Điểm: {params.row.firstReviewer ? params.row.firstReviewer?.avgScore : 'Chưa có'}
+                </Typography>
+                <Typography>
+                  {params.row.firstReviewer ? params.row.firstReviewer?.fullName : 'Chưa có'}
+                </Typography>
+              </Box>
+            </Box>
+          );
+        },
       },
       {
-        headerName: 'Điểm Báo cáo',
-        field: 'reportScore',
+        headerName: 'GV Phản biện 2',
+        field: 'secondReviewer',
+        flex: 0.8,
+        align: 'left',
+        headerAlign: 'left',
+        renderCell: (params: any) => {
+          return (
+            <Box gap={2} display={'flex'}>
+              <Box>
+                <Typography color='red' fontWeight={600}>
+                  Điểm:{' '}
+                  {params.row.secondReviewer ? params.row.secondReviewer?.avgScore : 'Chưa có'}
+                </Typography>
+                <Typography>
+                  {params.row.secondReviewer ? params.row.secondReviewer?.fullName : 'Chưa có'}
+                </Typography>
+              </Box>
+            </Box>
+          );
+        },
+      },
+      {
+        headerName: 'GV Hội đồng/Poster 1',
+        field: 'firstReport',
         flex: 1,
-        align: 'right',
-        headerAlign: 'right',
+        align: 'left',
+        headerAlign: 'left',
+        renderCell: (params: any) => {
+          return (
+            <Box gap={2} display={'flex'}>
+              <Box>
+                <Typography color='red' fontWeight={600}>
+                  Điểm: {params.row.firstReport ? params.row.firstReport?.avgScore : 'Chưa có'}
+                </Typography>
+                <Typography>
+                  {params.row.firstReport ? params.row.firstReport?.fullName : 'Chưa có'}
+                </Typography>
+              </Box>
+            </Box>
+          );
+        },
+      },
+      {
+        headerName: 'GV Hội đồng/Poster 2',
+        field: 'secondReport',
+        flex: 1,
+        align: 'left',
+        headerAlign: 'left',
+        renderCell: (params: any) => {
+          return (
+            <Box gap={2} display={'flex'}>
+              <Box>
+                <Typography color='red' fontWeight={600}>
+                  Điểm: {params.row.secondReport ? params.row.secondReport?.avgScore : 'Chưa có'}
+                </Typography>
+                <Typography>
+                  {params.row.secondReport ? params.row.secondReport?.fullName : 'Chưa có'}
+                </Typography>
+              </Box>
+            </Box>
+          );
+        },
+      },
+      {
+        headerName: 'GV Hội đồng/Poster 3',
+        field: 'thirdReport',
+        flex: 1,
+        align: 'left',
+        headerAlign: 'left',
+        renderCell: (params: any) => {
+          return (
+            <Box gap={2} display={'flex'}>
+              <Box>
+                <Typography color='red' fontWeight={600}>
+                  Điểm: {params.row.thirdReport ? params.row.thirdReport?.avgScore : 'Chưa có'}
+                </Typography>
+                <Typography>
+                  {params.row.thirdReport ? params.row.thirdReport?.fullName : 'Chưa có'}
+                </Typography>
+              </Box>
+            </Box>
+          );
+        },
       },
       {
         headerName: 'Điểm cộng',
         field: 'bonusScore',
-        flex: 1,
+        flex: 0.7,
         align: 'right',
         headerAlign: 'right',
-      },
-      {
-        headerName: 'Điểm Trung bình',
-        field: 'totalAvgScore',
-        flex: 1,
-        align: 'right',
-        headerAlign: 'right',
+        renderCell: (params: any) => {
+          return (
+            <Typography color='red' fontWeight={600}>
+              {params.row.bonusScore}
+            </Typography>
+          );
+        },
       },
       {
         headerName: 'Tình trạng',
         field: 'status',
-        flex: 1.2,
+        flex: 0.7,
         align: 'center',
         headerAlign: 'center',
         renderCell: (params: any) => {

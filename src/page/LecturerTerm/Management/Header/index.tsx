@@ -49,7 +49,6 @@ function HeaderLecturerTerm() {
   useEffect(() => {
     setTypeSort(sort);
   }, [sort]);
-  console.log('fetchExportAssign', fetchExportAssign);
 
   return (
     <>
