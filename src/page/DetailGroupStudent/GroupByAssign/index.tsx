@@ -1,19 +1,4 @@
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  List,
-  ListItem,
-  ListItemAvatar,
-  Avatar,
-  ListItemText,
-  Divider,
-  IconButton,
-} from '@mui/material';
-import GroupIcon from '@mui/icons-material/Group';
-import PersonIcon from '@mui/icons-material/Person';
-import React from 'react';
+import { Box, Typography } from '@mui/material';
 import CardGroupLecturer from './Card';
 
 function GroupByAssign({ groupLecturers }: any) {

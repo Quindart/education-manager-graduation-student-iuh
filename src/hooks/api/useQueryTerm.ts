@@ -76,7 +76,7 @@ export function useTerm() {
   };
 
   //[GET BY ID]
-  const handelGetTermById = (termId: string) => {
+  const handleGetTermById = (termId: string) => {
     return useQuery([TermQueryKey.getTermDetailById, termId], () => getTermById(termId), {
       enabled: !!termId,
     });
@@ -154,7 +154,7 @@ export function useTerm() {
 
   return {
     termStore,
-    handelGetTermById,
+    handleGetTermById,
     handleGetTermsByLecturer,
     handleGetAllTerm,
     handleGetCurrentTerm,

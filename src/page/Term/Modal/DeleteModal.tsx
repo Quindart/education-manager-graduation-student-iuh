@@ -29,7 +29,7 @@ function DeleteModal(props: any) {
           <Icon color='#b31d1d82' height={70} width={70} icon='fa-solid:trash-restore' />{' '}
         </Box>
         <Typography variant='h3' mt={10} mb={14}>
-          Bạn có chắc chắn muốn xóa học kì này ?
+          Bạn có chắc chắn muốn xóa học kì này không ?
         </Typography>
         <Box width='100%' display='flex' gap={6} marginTop={1}>
           <Button onClick={onClose} sx={{ width: '50%' }} color='primary' variant='contained'>

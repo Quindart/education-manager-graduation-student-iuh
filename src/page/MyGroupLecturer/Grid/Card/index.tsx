@@ -22,6 +22,7 @@ function CardGroupLecturer(props: any) {
           border: '1px solid #DAE9FAFF',
         },
         minHeight: 240,
+        minWidth: 400,
       }}
     >
       <CardMedia

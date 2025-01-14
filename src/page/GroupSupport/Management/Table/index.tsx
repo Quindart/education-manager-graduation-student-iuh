@@ -106,10 +106,8 @@ function TableManagamentGroupStudent(props: any) {
           return (
             <Typography
               sx={{
-                '&:hover': {
-                  color: 'primary.dark',
-                  cursor: 'pointer',
-                },
+                color: '#0052b1',
+                cursor: 'pointer',
               }}
               onClick={() =>
                 navigate(`/group-supports/detail/${params.row.id}?name=${params.row.name}`)

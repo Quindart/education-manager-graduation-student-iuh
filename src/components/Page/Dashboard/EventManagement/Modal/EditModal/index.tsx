@@ -1,21 +1,17 @@
+import DateTimeCalendar from '@/components/ui/Calendar/DateTimeCalendar';
 import CustomTextField from '@/components/ui/CustomTextField';
 import Modal from '@/components/ui/Modal';
+import SekeletonUI from '@/components/ui/Sekeleton';
 import TitleManager from '@/components/ui/Title';
-import { formatDates } from '@/utils/formatDate';
+import useEvent from '@/hooks/api/useQueryEvent';
 import { Icon } from '@iconify/react';
-import { Box, Button, Checkbox, CircularProgress, Typography } from '@mui/material';
+import { Box, Button, CircularProgress } from '@mui/material';
+import dayjs from 'dayjs';
 import { Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
-import useEvent from '@/hooks/api/useQueryEvent';
 import { validationEventSchema } from '../../context';
-import useGroupSupport from '@/hooks/api/useQueryGroupSupport';
-import SekeletonUI from '@/components/ui/Sekeleton';
-import { handleSearch } from '@/utils/search';
-import DateTimeCalendar from '@/components/ui/Calendar/DateTimeCalendar';
-import SearchInput from '../../SearchInput';
-import dayjs from 'dayjs';
-import TableEdit from './Table';
 import DeleteModal from '../DeleteModal';
+import TableEdit from './Table';
 
 function EditModal(props: any) {
   const { onClose, open, id } = props;

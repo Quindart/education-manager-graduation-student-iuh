@@ -52,9 +52,9 @@ const HEADER_TYPE = {
     { header: 'Họ và tên', key: 'Họ và tên', width: 40 },
     { header: 'Giới tính', key: 'Giới tính', width: 10 },
     { header: 'Ngày sinh', key: 'Ngày sinh', width: 30 },
+    { header: 'Số điện thoại', key: 'Số điện thoại', width: 15 },
     { header: 'Email', key: 'Email', width: 40 },
     { header: 'Lớp học', key: 'Lớp học', width: 15 },
-    { header: 'Số điện thoại', key: 'Số điện thoại', width: 15 },
   ],
   groupStudent: [
     { header: 'STT', key: 'STT', width: 6 },
@@ -66,22 +66,22 @@ const HEADER_TYPE = {
     { header: 'Tên đề tài', key: 'Tên đề tài', width: 100 },
   ],
   assignGroup: [
+    { header: 'STT', key: 'STT', width: 6 },
     { header: 'Mã nhóm', key: 'Mã nhóm', width: 10 },
     { header: 'Mã SV', key: 'Mã SV', width: 12 },
     { header: 'Họ tên SV', key: 'Họ tên SV', width: 24 },
     { header: '#HĐPB', key: '#HĐPB', width: 22 },
-    { header: 'Ghi chú', key: 'Ghi chú', width: 30 },
     { header: 'HD TV', key: 'HD TV', width: 40 },
-    { header: 'STT', key: 'STT', width: 6 },
     { header: 'GVHD', key: 'GVHD', width: 30 },
+    { header: 'Ghi chú', key: 'Ghi chú', width: 30 },
   ],
   transcript: [
+    { header: 'STT', key: 'STT', width: 6 },
     { header: 'Mã nhóm', key: 'Mã nhóm', width: 10 },
     { header: 'Mã SV', key: 'Mã SV', width: 12 },
     { header: 'Họ tên SV', key: 'Họ tên SV', width: 24 },
     { header: 'Tên đề tài', key: 'Tên đề tài', width: 50 },
     { header: '#HĐPB', key: '#HĐPB', width: 22 },
-    { header: 'STT', key: 'STT', width: 6 },
     { header: 'GVHD', key: 'GVHD', width: 30 },
     { header: 'GVPB1', key: 'GVPB1', width: 30 },
     { header: 'GVPB2', key: 'GVPB2', width: 30 },
@@ -257,8 +257,6 @@ function ExportExcelButton(props: ExportExcelPropsType) {
         } else return null;
       })
       .filter((col: any) => col !== null);
-    console.log('data', data);
-    console.log('column', columnHavedFilter);
 
     exportService.onExport(
       entity,

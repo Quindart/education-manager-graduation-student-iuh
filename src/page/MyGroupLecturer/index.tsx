@@ -39,7 +39,7 @@ function MyGroupLecturer() {
         />
         <ExportExcelButton
           sx={{ ml: 'auto' }}
-          label={`Download ${checktTypeGroupLecturer(typeGroupLecturer)}`}
+          label={`Xuất ${checktTypeGroupLecturer(typeGroupLecturer)}`}
           entity={'assignGroup'}
           data={dataExport?.assigns}
         />

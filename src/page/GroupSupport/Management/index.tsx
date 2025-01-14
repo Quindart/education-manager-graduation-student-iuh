@@ -63,7 +63,7 @@ function GroupSupportManagement() {
             />
           </>
         )}
-      </Paper>{' '}
+      </Paper>
     </>
   );
 }

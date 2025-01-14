@@ -83,12 +83,12 @@ function TableStudentInGroup({ members }: any) {
     {
       headerName: 'GV Hướng dẫn',
       field: 'advisor',
-      flex: 1,
-      align: 'right',
-      headerAlign: 'right',
+      flex: 0.8,
+      align: 'left',
+      headerAlign: 'left',
       renderCell: (params: any) => {
         return (
-          <Box gap={2} display={'flex'} alignItems={'center'}>
+          <Box gap={2} display={'flex'}>
             <Box>
               <Typography color='red' fontWeight={600}>
                 Điểm: {params.row.advisor ? params.row.advisor?.avgScore : 'Chưa có'}
@@ -104,12 +104,12 @@ function TableStudentInGroup({ members }: any) {
     {
       headerName: 'GV Phản biện 1',
       field: 'firstReviewer',
-      flex: 1,
-      align: 'right',
-      headerAlign: 'right',
+      flex: 0.8,
+      align: 'left',
+      headerAlign: 'left',
       renderCell: (params: any) => {
         return (
-          <Box gap={2} display={'flex'} alignItems={'center'}>
+          <Box gap={2} display={'flex'}>
             <Box>
               <Typography color='red' fontWeight={600}>
                 Điểm: {params.row.firstReviewer ? params.row.firstReviewer?.avgScore : 'Chưa có'}
@@ -125,12 +125,12 @@ function TableStudentInGroup({ members }: any) {
     {
       headerName: 'GV Phản biện 2',
       field: 'secondReviewer',
-      flex: 1,
-      align: 'right',
-      headerAlign: 'right',
+      flex: 0.8,
+      align: 'left',
+      headerAlign: 'left',
       renderCell: (params: any) => {
         return (
-          <Box gap={2} display={'flex'} alignItems={'center'}>
+          <Box gap={2} display={'flex'}>
             <Box>
               <Typography color='red' fontWeight={600}>
                 Điểm: {params.row.secondReviewer ? params.row.secondReviewer?.avgScore : 'Chưa có'}
@@ -147,11 +147,11 @@ function TableStudentInGroup({ members }: any) {
       headerName: 'GV Hội đồng/Poster 1',
       field: 'firstReport',
       flex: 1,
-      align: 'right',
-      headerAlign: 'right',
+      align: 'left',
+      headerAlign: 'left',
       renderCell: (params: any) => {
         return (
-          <Box gap={2} display={'flex'} alignItems={'center'}>
+          <Box gap={2} display={'flex'}>
             <Box>
               <Typography color='red' fontWeight={600}>
                 Điểm: {params.row.firstReport ? params.row.firstReport?.avgScore : 'Chưa có'}
@@ -168,11 +168,11 @@ function TableStudentInGroup({ members }: any) {
       headerName: 'GV Hội đồng/Poster 2',
       field: 'secondReport',
       flex: 1,
-      align: 'right',
-      headerAlign: 'right',
+      align: 'left',
+      headerAlign: 'left',
       renderCell: (params: any) => {
         return (
-          <Box gap={2} display={'flex'} alignItems={'center'}>
+          <Box gap={2} display={'flex'}>
             <Box>
               <Typography color='red' fontWeight={600}>
                 Điểm: {params.row.secondReport ? params.row.secondReport?.avgScore : 'Chưa có'}
@@ -189,11 +189,11 @@ function TableStudentInGroup({ members }: any) {
       headerName: 'GV Hội đồng/Poster 3',
       field: 'thirdReport',
       flex: 1,
-      align: 'right',
-      headerAlign: 'right',
+      align: 'left',
+      headerAlign: 'left',
       renderCell: (params: any) => {
         return (
-          <Box gap={2} display={'flex'} alignItems={'center'}>
+          <Box gap={2} display={'flex'}>
             <Box>
               <Typography color='red' fontWeight={600}>
                 Điểm: {params.row.thirdReport ? params.row.thirdReport?.avgScore : 'Chưa có'}

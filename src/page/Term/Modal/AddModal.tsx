@@ -1,42 +1,31 @@
-import Calendar from '@/components/ui/Calendar';
+import DateTimeCalendar from '@/components/ui/Calendar/DateTimeCalendar';
 import CustomTextField from '@/components/ui/CustomTextField';
 import Modal from '@/components/ui/Modal';
 import TitleManager from '@/components/ui/Title';
+import { useMajor } from '@/hooks/api/useQueryMajor';
 import { useTerm } from '@/hooks/api/useQueryTerm';
-import { formatDates } from '@/utils/formatDate';
 import { Icon } from '@iconify/react';
 import { Box, Button, CircularProgress } from '@mui/material';
-import { Formik } from 'formik';
-import React, { useEffect } from 'react';
-import { validationTermSchema } from '../context';
 import dayjs from 'dayjs';
-import { useMajor } from '@/hooks/api/useQueryMajor';
-
-const calculateEndDate = (date: null | string) => {
-  if (date !== null) {
-    const start = dayjs(date);
-    const end = start.add(15 * 7, 'day');
-    return end;
-  }
-  return null;
-};
+import { Formik } from 'formik';
+import React from 'react';
+import { validationTermSchema } from '../context';
 
 function AddModal(props: any) {
   const { onClose, open } = props;
   const { onCreateTerm } = useTerm();
-  const { mutate: createTerm, isLoading, isSuccess } = onCreateTerm();
+  const { mutate: createTerm, isLoading } = onCreateTerm();
   const { majorStore } = useMajor();
   const handleSubmitTerm = (values: any) => {
     createTerm({
       name: values.name,
       majorId: values.majorId,
-      startDate: formatDates(values.startDate),
-      endDate: formatDates(values.endDate),
+      startDate: dayjs(values.startDate).format('YYYY-MM-DD HH:mm:ss'),
+      endDate: dayjs(values.endDate).format('YYYY-MM-DD HH:mm:ss'),
     });
-  };
-  useEffect(() => {
     onClose();
-  }, [isSuccess]);
+  };
+
   return (
     <Modal open={open} onClose={onClose}>
       <Box pb={5} px={10}>
@@ -82,7 +71,7 @@ function AddModal(props: any) {
                   error={touched.name && errors.name ? true : false}
                   helperText={errors.name}
                   name='name'
-                  placeholder='Ví dụ hợp lệ: HK1_2023-2024'
+                  placeholder='VD: HK1_2023-2024'
                 />
                 <CustomTextField
                   label='Chuyên ngành'
@@ -95,26 +84,28 @@ function AddModal(props: any) {
                 />
                 <Box gap={10} display={'flex'} mt={6}>
                   <Box flex={1}>
-                    <Calendar
-                      onChange={(value) => setFieldValue('startDate', value)}
+                    <DateTimeCalendar
+                      onChange={(value) => {
+                        setFieldValue('startDate', value);
+                      }}
                       sx={{ '& .Mui-disabled': { '-webkit-text-fill-color': '#0052b1' } }}
-                      label='Ngày bắt đầu'
+                      label='Thời gian bắt đầu'
                       name='startDate'
-                      format='DD/MM/YYYY'
+                      format='DD/MM/YYYY hh:mm:ss A'
                       value={values.startDate}
                       error={touched.startDate && errors.startDate ? true : false}
                     />
                   </Box>
                   <Box flex={1}>
-                    <Calendar
+                    <DateTimeCalendar
                       onChange={(value) => {
                         setFieldValue('endDate', value);
                       }}
                       sx={{ '& .Mui-disabled': { '-webkit-text-fill-color': '#0052b1' } }}
-                      label='Ngày kết thúc'
-                      format='DD/MM/YYYY'
+                      label='Thời gian kết thúc'
                       name='endDate'
-                      value={values.startDate ? calculateEndDate(values?.startDate) : null}
+                      format='DD/MM/YYYY hh:mm:ss A'
+                      value={values.endDate}
                       error={touched.endDate && errors.endDate ? true : false}
                     />
                   </Box>
