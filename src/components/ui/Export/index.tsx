@@ -124,12 +124,16 @@ const HEADER_TYPE = {
     { header: 'Ghi chú', key: 'Ghi chú', width: 20 },
   ],
   assignLecturerTerm: [
-    { header: 'Mã nhân sự', key: 'Mã nhân sự', width: 20 },
-    { header: 'Số đề tài hướng dẫn KLTN', key: 'Số đề tài hướng dẫn KLTN', width: 30 },
-    { header: 'Số đề tài chấm phản biện', key: 'Số đề tài chấm phản biện', width: 30 },
-    { header: 'Số đề tài chấm Hội đồng/poster', key: 'Số đề tài chấm Hội đồng/poster', width: 30 },
     { header: 'STT', key: 'STT', width: 6 },
+    { header: 'Mã nhân sự', key: 'Mã nhân sự', width: 20 },
     { header: 'Họ tên', key: 'Họ tên', width: 30 },
+    { header: 'Số nhóm SV Hướng dẫn', key: 'Số nhóm SV Hướng dẫn', width: 30 },
+    { header: 'Số nhóm SV chấm Phản biện', key: 'Số nhóm SV chấm Phản biện', width: 30 },
+    {
+      header: 'Số nhóm SV chấm Hội đồng/Poster',
+      key: 'Số nhóm SV chấm Hội đồng/Poster',
+      width: 30,
+    },
     { header: 'Ghi chú', key: 'Ghi chú', width: 20 },
   ],
 };
@@ -195,7 +199,7 @@ const entityFileName = (entity: string, termName: string, majorName: string) => 
       text = 'Mẫu_[4203] - Khóa luận tốt nghiệp';
       break;
     case 'assignLecturerTerm':
-      text = 'Chấm công KLTN HK2_2023_2024_SE';
+      text = 'Chấm công KLTN';
       break;
     case 'transcriptsOfLecturerScoring':
       text = 'Bảng điểm chấm KLTN';
@@ -252,7 +256,10 @@ function ExportExcelButton(props: ExportExcelPropsType) {
           return head;
         } else return null;
       })
-      .filter((col) => col !== null);
+      .filter((col: any) => col !== null);
+    console.log('data', data);
+    console.log('column', columnHavedFilter);
+
     exportService.onExport(
       entity,
       fileName,
@@ -302,9 +309,10 @@ function ExportExcelButton(props: ExportExcelPropsType) {
               >
                 <Typography variant='h6' fontWeight={600} color='grey.800'>
                   Hiển thị các cột trong file:{' '}
-                  {mappedCheckbox?.filter((col) => col[Object.keys(col)[0]] === true).length} cột
+                  {mappedCheckbox?.filter((col: any) => col[Object.keys(col)[0]] === true).length}{' '}
+                  cột
                 </Typography>
-                {mappedCheckbox?.filter((col) => col[Object.keys(col)[0]] === true).length ===
+                {mappedCheckbox?.filter((col: any) => col[Object.keys(col)[0]] === true).length ===
                   0 && (
                   <Typography variant='body1' color='error.dark'>
                     *Bạn phải chọn ít nhất 1 cột
@@ -333,7 +341,7 @@ function ExportExcelButton(props: ExportExcelPropsType) {
                   <CustomTextField
                     value={fileName}
                     fullWidth
-                    label='Tên file '
+                    label='Tên file'
                     onChange={(e) => setFileName(e.target.value)}
                     required
                     helperText=''
@@ -351,15 +359,15 @@ function ExportExcelButton(props: ExportExcelPropsType) {
                 <Box mt={10} justifyContent={'end'} gap={4} display={'flex'}>
                   <Button
                     disabled={
-                      mappedCheckbox?.filter((col) => col[Object.keys(col)[0]] === true).length ===
-                      0
+                      mappedCheckbox?.filter((col: any) => col[Object.keys(col)[0]] === true)
+                        .length === 0
                     }
                     variant='contained'
                     onClick={handleSubmit}
                     color='success'
                   >
                     <Icon icon='ri:file-excel-fill' width={20} />
-                    Tải file excel
+                    Tải xuống
                   </Button>
                   <Button variant='contained' color='primary' onClick={onCloseModal}>
                     <Icon icon='mdi:close-outline' />

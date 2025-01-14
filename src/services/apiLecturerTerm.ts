@@ -21,7 +21,7 @@ export const getAllLecturerTermByParams = (
 
 //[GET]
 export const getExportAssignLecturerTerm = async (termId: string): Promise<ResponseType> => {
-  return axiosConfig.get(`${URL}/export-assign?termId=${termId}`);
+  return axiosConfig.get(`${URL}/export?termId=${termId}`);
 };
 
 //[GET]
@@ -49,9 +49,7 @@ export const getListLecturerTerm: any = async (termId: string, searchField: stri
 export const createLecturerTerm: any = async (data: { lecturerId: string; termId: string }) => {
   return axiosConfig.post(`${URL}`, data);
 };
-export const getLecturerTermToExport: any = async (termId: string) => {
-  return axiosConfig.get(`${URL}/export?termId=${termId}`);
-};
+
 //[UPDATE]
 export const updateLecturerTermById: any = async (lecturerTermId: number | string, data: any) => {
   return axiosConfig.put<ResponseType, any>(`${URL}/${lecturerTermId}`, data);

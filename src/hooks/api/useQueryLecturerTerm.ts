@@ -17,7 +17,6 @@ export enum QueryKeysLecturerTerm {
   getAllLectuerTermByParams = 'getAllLectuerTermByParams',
   getCountOfLecturerTerm = 'getCountOfLecturerTerm',
   getLecturerTermById = 'getLecturerTermById',
-  getLecturerTermToExport = 'getLecturerTermToExport',
   getExportAssignLecturerTerm = 'getExportAssignLecturerTerm',
 }
 
@@ -105,11 +104,6 @@ export const useLecturerTerm = () => {
       {
         refetchOnMount: true,
       },
-    );
-  };
-  const handleGetLecturerTermToExport = () => {
-    return useQuery([QueryKeysLecturerTerm.getLecturerTermToExport, termId], () =>
-      LecturerTermServices.getLecturerTermToExport(termId),
     );
   };
 
@@ -229,6 +223,5 @@ export const useLecturerTerm = () => {
     onImportLecturerTerm,
     onDeleteLecturerTerm,
     onCreateLecturerTerm,
-    handleGetLecturerTermToExport,
   };
 };

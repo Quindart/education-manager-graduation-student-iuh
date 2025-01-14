@@ -100,7 +100,7 @@ function TableArticleManagement(props: Props) {
       },
       {
         headerName: 'Chức năng',
-        field: 'publicDate',
+        field: 'detail',
         flex: 0.4,
         align: 'center',
         headerAlign: 'center',
@@ -180,7 +180,7 @@ function TableArticleManagement(props: Props) {
           totalItems={rows ? rows.length : 0}
           disableColumnFilter
           minHeight={350}
-          isPanigation={false}
+          isPanigation={true}
         />
       </Box>
       <AcceptArticleModal

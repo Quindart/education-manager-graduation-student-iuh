@@ -128,7 +128,7 @@ function TableFinalReportManagement(props: Props) {
       },
 
       {
-        headerName: 'Ngày nộp',
+        headerName: 'Ngày công bố',
         field: 'publicDate',
         flex: 0.4,
         headerAlign: 'right',
@@ -136,7 +136,7 @@ function TableFinalReportManagement(props: Props) {
         renderCell: (params) => <Typography>{dayjs(params.value).format('DD/MM/YYYY')}</Typography>,
       },
       {
-        headerName: 'Tải file',
+        headerName: 'Link',
         field: 'link',
         flex: 0.4,
         align: 'center',
@@ -194,6 +194,7 @@ function TableFinalReportManagement(props: Props) {
     ],
     [],
   );
+
   return (
     <>
       <Box>
@@ -202,7 +203,7 @@ function TableFinalReportManagement(props: Props) {
           sx={{
             bgcolor: 'white',
           }}
-          rowHeight={120}
+          rowHeight={100}
           columns={currentRoleRender === EnumRole.LECTURER ? LECTURER_COLUMNS : HEAD_LEC_COLUMNS}
           totalItems={rows ? rows.length : 0}
           disableColumnFilter

@@ -291,7 +291,7 @@ export const APP_SIDEBAR = [
   },
   {
     icon: 'file-icons:readthedocs',
-    text: 'Quản lý báo cáo cuối kỳ',
+    text: 'Quản lý tài liệu báo cáo',
     roles: [RoleCheck.HEAD_LECTURER, RoleCheck.HEAD_COURSE, RoleCheck.LECTURER, RoleCheck.ADMIN],
     link: APP_ROUTES.FINAL_REPORT.MANAGEMENT,
   },

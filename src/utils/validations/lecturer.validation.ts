@@ -16,8 +16,8 @@ import { EnumIndustryKey, EnumRole } from '@/types/enum';
 // };
 
 export const checkDegree = (value: string) => {
+  if (value === 'BACHELOR') return 'Nghiên cứu sinh';
   if (value === 'MASTER') return 'Thạc sĩ';
-  if (value === 'DOCTOR') return 'Tiến sĩ';
   if (value === 'PROFESSOR') return 'Phó giáo sư. Tiến sĩ';
   if (value === 'DOCTOR') return 'Tiến sĩ';
   return;
