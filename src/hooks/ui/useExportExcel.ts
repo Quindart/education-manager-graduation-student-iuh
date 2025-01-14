@@ -72,6 +72,8 @@ const useExportExcel = () => {
           sheetName,
           headerColumn,
         );
+        console.log(data);
+
         AssignLecturerTermExport.setData(data);
         AssignLecturerTermExport.customizeSheet();
         AssignLecturerTermExport.onExport();

@@ -24,8 +24,9 @@ const GENDERS = [
 ];
 
 const DEGREES = [
-  { name: 'Tiến sĩ', _id: 'MASTER' },
-  { name: 'Thạc sĩ', _id: 'DOCTOR' },
+  { name: 'Tiến sĩ', _id: 'DOCTOR' },
+  { name: 'Thạc sĩ', _id: 'MASTER' },
+  { name: 'Phó giáo sư. Tiến sĩ', _id: 'PROFESSOR' },
 ];
 
 function ProfilePage() {

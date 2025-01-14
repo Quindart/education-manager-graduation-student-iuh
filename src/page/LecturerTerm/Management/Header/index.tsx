@@ -49,6 +49,7 @@ function HeaderLecturerTerm() {
   useEffect(() => {
     setTypeSort(sort);
   }, [sort]);
+  console.log('fetchExportAssign', fetchExportAssign);
 
   return (
     <>
@@ -91,9 +92,9 @@ function HeaderLecturerTerm() {
         </Tooltip>
         {successExportAssign && (
           <ExportExcelButton
-            data={fetchExportAssign?.lecturers}
+            data={fetchExportAssign?.lecturerTerms}
             entity='assignLecturerTerm'
-            labelTooltip='Tải thông tin giảng viên hướng dẫn'
+            labelTooltip='Xuất file chấm công giảng viên'
           />
         )}
       </Box>

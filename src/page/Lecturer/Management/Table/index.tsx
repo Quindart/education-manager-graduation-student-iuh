@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { checkGender } from '@/utils/validations/person.validation';
 import DeleteModal from '../Modal/DeleteModal';
 import ResetPassword from '../Modal/ResetPassword';
+import { checkDegree } from '@/utils/validations/lecturer.validation';
 
 function TableManagamentLecturer(props: any) {
   const {
@@ -61,7 +62,7 @@ function TableManagamentLecturer(props: any) {
   };
   const basicColumns: GridColDef[] = [
     {
-      headerName: 'Mã giảng viên',
+      headerName: 'Mã GV',
       field: 'username',
       flex: 0.6,
       headerAlign: 'right',
@@ -75,7 +76,7 @@ function TableManagamentLecturer(props: any) {
       },
     },
     {
-      headerName: 'Họ & tên đệm',
+      headerName: 'Họ & Tên đệm',
       field: 'firstName',
       flex: 1,
       headerAlign: 'left',
@@ -121,9 +122,19 @@ function TableManagamentLecturer(props: any) {
       },
     },
     {
+      headerName: 'Trình độ',
+      field: 'degree',
+      flex: 0.8,
+      headerAlign: 'right',
+      align: 'right',
+      renderCell: (params: any) => {
+        return <Typography variant='body1'>{checkDegree(params.row.degree)}</Typography>;
+      },
+    },
+    {
       headerName: 'Chức năng',
       field: 'updateTing',
-      flex: 1,
+      flex: 0.8,
       headerAlign: 'center',
       align: 'center',
       renderCell: (params: any) => (

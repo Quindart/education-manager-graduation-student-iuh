@@ -120,7 +120,7 @@ function TableManagamentStudent(props: any) {
       {
         headerName: 'Tên',
         field: 'lastName',
-        flex: 0.5,
+        flex: 0.3,
         headerAlign: 'left',
         align: 'left',
         renderCell(params) {
@@ -131,7 +131,20 @@ function TableManagamentStudent(props: any) {
           );
         },
       },
-
+      {
+        headerName: 'Mã nhóm',
+        field: 'groupName',
+        flex: 0.3,
+        align: 'left',
+        headerAlign: 'left',
+        renderCell(params) {
+          return (
+            <Typography variant='body1' color='grey.900'>
+              {params.value ? params.value : 'Chưa có'}
+            </Typography>
+          );
+        },
+      },
       {
         headerName: 'Tên đề tài',
         field: 'topicName',
@@ -163,7 +176,7 @@ function TableManagamentStudent(props: any) {
       {
         headerName: 'Chức năng',
         field: 'name8',
-        flex: 0.8,
+        flex: 0.7,
         align: 'center',
         headerAlign: 'center',
         renderCell: (params: any) => (
