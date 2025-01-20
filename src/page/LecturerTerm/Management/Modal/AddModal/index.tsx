@@ -45,6 +45,7 @@ function AddLecturerModal(props: any) {
     refetch,
   } = handleLecturerTermsToAdd();
   const { mutate: create, isSuccess: successCreate } = onCreateLecturerTerm();
+  console.log('lecturerFetch', lecturerFetch);
 
   const [keywords, setKeywords] = useState('');
   const [lecturers, setLecturers] = useState([]);
@@ -57,13 +58,13 @@ function AddLecturerModal(props: any) {
   const handleSubmitCreateLecturer = () => {
     const listLecturers = lecturers
       ?.filter((l) => l.checked)
-      ?.map((l) => ({ lecturerId: l.lecturerId, termId: `${currentTerm.id}` }));
+      ?.map((l) => ({ lecturerId: l.id, termId: `${currentTerm.id}` }));
 
     listLecturers.map((data) => {
       create(data);
     });
     createNotifys({
-      title: `Thông báo: Kính mời quý thầy (cô) tham gia hướng dẫn khóa luận tốt nghiệp chuyên ngành ${majorStore.currentMajor.name}`,
+      title: `Thông báo: Kính mời quý thầy (cô) tham gia hướng dẫn - chấm điểm khóa luận tốt nghiệp chuyên ngành ${majorStore.currentMajor.name}`,
       content: string,
       lecturerIds: listLecturers.map((l) => l.lecturerId),
     });
@@ -82,7 +83,7 @@ function AddLecturerModal(props: any) {
   };
   const handleChecked = (id: string) => {
     let arr = lecturers?.map((l: any) => {
-      if (l.lecturerId === id) {
+      if (l.id === id) {
         let obj = { ...l, checked: !l.checked };
         return obj;
       } else return l;
@@ -99,7 +100,8 @@ function AddLecturerModal(props: any) {
           variant='h6'
           textTransform={'uppercase'}
         >
-          Mời giảng viên tham gia chấm (hướng dẫn) khóa luận ngành {majorStore.currentMajor.name}
+          Mời giảng viên tham gia hướng dẫn/chấm điểm khóa luận chuyên ngành{' '}
+          {majorStore.currentMajor.name}
         </TitleManager>
         <Box>
           {isLoading ? (
@@ -107,7 +109,7 @@ function AddLecturerModal(props: any) {
           ) : (
             <Box>
               <Typography variant='h6' mt={4} mb={2} fontWeight={'bold'} color='grey.700'>
-                Danh sách giảng viên khoa công nghệ thông tin
+                Danh sách giảng viên khoa Công nghệ thông tin
               </Typography>
               <SearchInput changeSearch={changeSearch} keywords={keywords} sx={{ my: 6 }} />
               <Box display={'flex'} flexWrap={'wrap'} gap={4}>
@@ -126,18 +128,15 @@ function AddLecturerModal(props: any) {
                   >
                     <Checkbox
                       color='success'
-                      onChange={() => handleChecked(lec.lecturerId)}
+                      onChange={() => handleChecked(lec.id)}
                       checked={lec?.checked}
                     />
                     <Box>
+                      <Typography variant='body1' color='initial'>
+                        {lec?.username} - {lec?.fullName}
+                      </Typography>
                       <Typography variant='body1' color='primary.dark'>
-                        Ngành {lec?.majorName}
-                      </Typography>
-                      <Typography variant='body1' color='initial'>
-                        Giảng viên: {lec?.fullName}
-                      </Typography>
-                      <Typography variant='body1' color='initial'>
-                        Mã GV: {lec?.username}
+                        {lec?.majorName}
                       </Typography>
                     </Box>
                   </Box>

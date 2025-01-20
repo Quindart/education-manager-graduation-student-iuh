@@ -1,14 +1,13 @@
-import { Box, CircularProgress, Paper, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import StatisticManager from './Statistic';
-import { BarChart, DefaultizedPieValueType, pieArcLabelClasses, PieChart } from '@mui/x-charts';
-import useStatistical from '@/hooks/api/useQueryStatistical';
-import { EnumStatusStudent } from '@/types/enum';
 import DropDown from '@/components/ui/Dropdown';
-import theme from '@/theme/theme';
+import { useMajor } from '@/hooks/api/useQueryMajor';
+import useStatistical from '@/hooks/api/useQueryStatistical';
 import { useStudent } from '@/hooks/api/useQueryStudent';
 import { useTerm } from '@/hooks/api/useQueryTerm';
-import { useMajor } from '@/hooks/api/useQueryMajor';
+import { EnumStatusStudent } from '@/types/enum';
+import { Box, CircularProgress, Paper, Typography } from '@mui/material';
+import { BarChart, pieArcLabelClasses, PieChart } from '@mui/x-charts';
+import { useEffect, useState } from 'react';
+import StatisticManager from './Statistic';
 
 // Giai đoạn phản biện
 // giai đoạn hướng dẫn
@@ -179,7 +178,7 @@ export default function DashboardOfAdmin() {
                 }}
               >
                 <Typography variant='h6' fontWeight={''} color='grey.700'>
-                  Số sinh viên đậu/ rớt
+                  Số sinh viên đạt/chưa đạt
                 </Typography>
                 <Box sx={{ width: 120 }}>
                   <DropDown
@@ -218,10 +217,10 @@ export default function DashboardOfAdmin() {
                             innerRadius: 31,
                             highlightScope: { fade: 'global', highlight: 'item' },
                             data: [
-                              { label: 'Rớt 40%', value: 40 },
+                              { label: 'Chưa đạt 40%', value: 40 },
                               {
                                 value: 60,
-                                label: `Đậu 60%`,
+                                label: `Đạt 60%`,
                               },
                             ],
                           },
@@ -257,17 +256,12 @@ export default function DashboardOfAdmin() {
                             highlightScope: { fade: 'series', highlight: 'item' },
                             data: [
                               {
-                                label: `Đậu ${(statusPassOfStudents / dataCountStd?.count).toFixed(2)}%`,
+                                label: `Đạt ${(100 - (statusFailOfStudents / dataCountStd?.count) * 100).toFixed(2)}%`,
                                 value: statusPassOfStudents,
                               },
                               {
-                                label: `Rớt ${(statusFailOfStudents / dataCountStd?.count).toFixed(2)}%`,
+                                label: `Chưa đạt ${((statusFailOfStudents / dataCountStd?.count) * 100).toFixed(2)}%`,
                                 value: statusFailOfStudents,
-                              },
-                              {
-                                value:
-                                  dataCountStd?.count - statusFailOfStudents - statusPassOfStudents,
-                                label: `Chưa chấm ${(((dataCountStd?.count - statusFailOfStudents - statusPassOfStudents) / dataCountStd?.count) * 100).toFixed()}%`,
                               },
                             ],
                           },
@@ -300,7 +294,7 @@ export default function DashboardOfAdmin() {
                     </Box>
                   )}
                 </>
-              )}{' '}
+              )}
             </Paper>
           </Box>
         </Box>

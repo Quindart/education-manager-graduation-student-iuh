@@ -53,7 +53,7 @@ function TableManagamentGroupStudent(props: any) {
         align: 'left',
         headerAlign: 'left',
         renderCell: (params: any) => {
-          return <Typography>{params.value ? params.value : 'Chưa có giảng viên HD'}</Typography>;
+          return <Typography>{params.value ? params.value : 'Chưa có GV hướng dẫn'}</Typography>;
         },
       },
       {

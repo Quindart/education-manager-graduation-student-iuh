@@ -34,7 +34,7 @@ function UnAssignModal(props: any) {
           <Icon color='#b31d1d82' width={70} icon='material-symbols:group-remove-outline-rounded' />{' '}
         </Box>
         <Typography textAlign={'center'} fontWeight={'bold'} variant='h5' mt={10}>
-          Gỡ phân công {grName}
+          Xóa phân công {grName}
         </Typography>
         <Typography textAlign={'center'} variant='h6' mt={2} mb={14}>
           Đề tài: {topicName} ?
@@ -50,7 +50,7 @@ function UnAssignModal(props: any) {
               style={{ marginRight: 4 }}
               icon='material-symbols:group-remove-outline-rounded'
             />
-            Gỡ phân công
+            Xóa phân công
           </Button>
         </Box>
       </Box>

@@ -112,11 +112,11 @@ const HEADER_TYPE = {
     { header: 'Điểm GVHĐ3', key: 'Điểm GVHĐ3', width: 10 },
   ],
   demoScoreStudents: [
-    { header: 'Mã số', key: 'Mã số', width: 12 },
-    { header: 'Lớp học', key: 'Lớp học', width: 15 },
     { header: 'STT', key: 'STT', width: 6 },
+    { header: 'Mã số', key: 'Mã số', width: 12 },
     { header: 'Họ đệm', key: 'Họ đệm', width: 24 },
     { header: 'Tên', key: 'Tên', width: 10 },
+    { header: 'Lớp học', key: 'Lớp học', width: 15 },
     { header: 'Số tờ', key: 'Số tờ', width: 10 },
     { header: 'Mã đề', key: 'Mã đề', width: 10 },
     { header: 'Ký tên', key: 'Ký tên', width: 20 },

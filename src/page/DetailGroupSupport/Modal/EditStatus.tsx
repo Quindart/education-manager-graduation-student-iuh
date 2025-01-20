@@ -14,27 +14,27 @@ const DROP_STATUS_STUDENT_TERM_VALUE = [
   },
   {
     _id: 'FAIL_ADVISOR',
-    name: 'Rớt hướng dẫn',
+    name: 'Chưa đạt hướng dẫn',
   },
   {
     _id: 'FAIL_REVIEWER',
-    name: 'Rớt phản biện',
+    name: 'Chưa đạt phản biện',
   },
   {
     _id: 'FAIL_REPORT',
-    name: 'Rớt hội đồng',
+    name: 'Chưa đạt hội đồng',
   },
   {
     _id: 'PASS_ADVISOR',
-    name: 'Đậu hướng dẫn',
+    name: 'Đạt hướng dẫn',
   },
   {
     _id: 'PASS_REVIEWER',
-    name: 'Đậu phản biện',
+    name: 'Đạt phản biện',
   },
   {
     _id: 'PASS_REPORT',
-    name: 'Đậu hội đồng',
+    name: 'Đạt hội đồng',
   },
 ];
 

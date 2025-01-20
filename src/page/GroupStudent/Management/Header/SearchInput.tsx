@@ -40,7 +40,7 @@ function SearchInput({ sx }: BoxProps) {
           onChange={(e) => setTypeSearch(e.target.value)}
         >
           <MenuItem value='topicName'>Tên đề tài</MenuItem>
-          <MenuItem value='lecturerName'>Giảng viên HD</MenuItem>
+          <MenuItem value='lecturerName'>GV hướng dẫn</MenuItem>
           <MenuItem value='name'>Mã nhóm</MenuItem>
         </Select>
       </FormControl>

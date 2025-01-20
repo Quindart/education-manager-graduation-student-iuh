@@ -30,7 +30,7 @@ function DeleteModal(props: any) {
           <Icon color='#b31d1d82' height={70} width={70} icon='streamline:emergency-exit' />{' '}
         </Box>
         <Typography textAlign={'center'} variant='h6' mt={10} mb={14}>
-          Bạn có chắc chắn muốn gỡ giảng viên{' '}
+          Bạn có chắc chắn muốn xóa giảng viên{' '}
           <Typography variant='h6' component={'span'} fontWeight={'500'} color='error.main'>
             {name}
           </Typography>{' '}
@@ -53,7 +53,7 @@ function DeleteModal(props: any) {
               style={{ marginRight: 4 }}
               icon='material-symbols:auto-delete-outline'
             />
-            Gỡ giảng viên
+            Xóa giảng viên
           </Button>
         </Box>
       </Box>

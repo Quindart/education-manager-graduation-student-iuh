@@ -14,11 +14,11 @@ import AddTopicRoleHeadModal from '@/components/Page/Topic/Modal/AddTopicRoleHea
 
 const SEARCH_DROP_VALUE = [
   {
-    name: 'Tên Đề tài',
+    name: 'Tên đề tài',
     _id: 'name',
   },
   {
-    name: 'Tên Giảng viên HD',
+    name: 'GV hướng dẫn',
     _id: 'lecturerName',
   },
   {
@@ -67,53 +67,50 @@ function HeaderTopic() {
       <Box display={'flex'} flexWrap={'wrap'} gap={2}>
         {currentRole.includes('all') && (
           <>
-            <>
-              <Box flex={1} display={'flex'} gap={0} width={''}>
-                <Box display={'flex'} gap={2}>
-                  <DropDown
-                    value={
-                      getQueryField('searchField') ? getQueryField('searchField') : 'lecturerName'
-                    }
-                    onChange={(e: any) => onTypeSearchChange(`${e.target.value}`)}
-                    options={SEARCH_DROP_VALUE}
-                  />
-                  <Box width={112}>
-                    <SplitButton icon='bx:sort' options={optionSort} handleClick={handleClick} />
-                  </Box>
+            <Box flex={1} display={'flex'} gap={0} width={''}>
+              <Box display={'flex'} gap={2}>
+                <DropDown
+                  value={
+                    getQueryField('searchField') ? getQueryField('searchField') : 'lecturerName'
+                  }
+                  onChange={(e: any) => onTypeSearchChange(`${e.target.value}`)}
+                  options={SEARCH_DROP_VALUE}
+                />
+                <Box width={112}>
+                  <SplitButton icon='bx:sort' options={optionSort} handleClick={handleClick} />
                 </Box>
+              </Box>
 
-                <TextField
-                  fullWidth
-                  size='small'
-                  defaultValue={getQueryField('keywords')}
-                  onChange={onSearchChange}
-                  placeholder='Tim kiếm đề tài theo tên đề tài, tên giảng viên'
-                />
-              </Box>{' '}
-            </>
-            <>
-              {successTopics && (
-                <ExportExcelButton
-                  data={data.topics}
-                  entity='topic'
-                  labelTooltip='Tải file excel gồm danh sách các đề tài'
-                />
-              )}
-              <Tooltip
-                onClick={handleOpenChangeQuantityModal}
-                title='Cập nhật số lượng của toàn bộ đề tài'
+              <TextField
+                fullWidth
+                size='small'
+                defaultValue={getQueryField('keywords')}
+                onChange={onSearchChange}
+                placeholder='Tìm kiếm đề tài theo...'
+              />
+            </Box>
+
+            {successTopics && (
+              <ExportExcelButton
+                data={data.topics}
+                entity='topic'
+                labelTooltip='Xuất danh sách đề tài ra file excel'
+              />
+            )}
+            <Tooltip
+              onClick={handleOpenChangeQuantityModal}
+              title='Cập nhật số lượng của toàn bộ đề tài'
+            >
+              <Button
+                sx={{ bgcolor: 'grey.800' }}
+                color='primary'
+                type='button'
+                size='small'
+                variant='contained'
               >
-                <Button
-                  sx={{ bgcolor: 'grey.800' }}
-                  color='primary'
-                  type='button'
-                  size='small'
-                  variant='contained'
-                >
-                  <Icon icon='uiw:setting' color='white' width={20} />
-                </Button>
-              </Tooltip>{' '}
-            </>
+                <Icon icon='uiw:setting' color='white' width={20} />
+              </Button>
+            </Tooltip>
           </>
         )}
         {currentRole.includes('crud') && (

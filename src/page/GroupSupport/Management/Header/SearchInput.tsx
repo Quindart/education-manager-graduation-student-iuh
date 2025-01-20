@@ -19,7 +19,7 @@ const SEARCH_FIELD = {
 
 function SearchInput({ sx }: BoxProps) {
   const [sort, setSort] = useState('ASC');
-  const [typeSearch, setTypeSearch] = useState('topicName');
+  const [typeSearch, setTypeSearch] = useState('name');
 
   useEffect(() => {
     setTypeSort(sort);
@@ -35,11 +35,11 @@ function SearchInput({ sx }: BoxProps) {
           size='small'
           id='search-type'
           value={typeSearch}
-          defaultValue='topicName'
+          defaultValue='name'
           onChange={(e) => setTypeSearch(e.target.value)}
         >
-          <MenuItem value='topicName'>Tên đề tài</MenuItem>
           <MenuItem value='name'>Mã nhóm</MenuItem>
+          <MenuItem value='topicName'>Tên đề tài</MenuItem>
         </Select>
       </FormControl>
 
@@ -48,7 +48,7 @@ function SearchInput({ sx }: BoxProps) {
         fullWidth
         defaultValue={getQueryField('keywords')}
         size='small'
-        placeholder='Tìm kiếm đề theo tên hoặc mã đề tài'
+        placeholder='Tìm kiếm đề tài theo...'
         onChange={onSearchChange}
         InputProps={{
           startAdornment: (

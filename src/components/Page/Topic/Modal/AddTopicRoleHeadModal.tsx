@@ -1,16 +1,15 @@
 import CustomTextField from '@/components/ui/CustomTextField';
+import DropDown from '@/components/ui/Dropdown';
 import Modal from '@/components/ui/Modal';
 import TextEditor from '@/components/ui/TextEditor';
 import TitleManager from '@/components/ui/Title';
-import { useAuth } from '@/hooks/api/useAuth';
-import { Icon } from '@iconify/react';
-import { Box, Button, FormControl, Typography } from '@mui/material';
-import { Formik } from 'formik';
-import React, { useEffect, useState } from 'react';
-import { validationTopicSchema } from '../../../../page/Topic/Context';
-import { useTopic } from '@/hooks/api/useQueryTopic';
 import { useLecturerTerm } from '@/hooks/api/useQueryLecturerTerm';
-import DropDown from '@/components/ui/Dropdown';
+import { useTopic } from '@/hooks/api/useQueryTopic';
+import { Icon } from '@iconify/react';
+import { Box, Button, Typography } from '@mui/material';
+import { Formik } from 'formik';
+import { useEffect, useState } from 'react';
+import { validationTopicSchema } from '../../../../page/Topic/Context';
 const convertLecturer = (lterms: any) => {
   let updateLecturers: any[] = [];
   if (lterms == null) {
@@ -26,7 +25,6 @@ const convertLecturer = (lterms: any) => {
 };
 function AddTopicRoleHeadModal(props: any) {
   const { onClose, open } = props;
-  const {} = useTopic();
   const { onCreateTopicByToken, handleUiRender } = useTopic();
   const { mutate: createTopic, isSuccess: successCreate } = onCreateTopicByToken();
   const { handleGetListLecturerTerms } = useLecturerTerm();
@@ -55,7 +53,7 @@ function AddTopicRoleHeadModal(props: any) {
           initialValues={{
             name: '',
             keywords: '',
-            quantityGroupMax: 5,
+            quantityGroupMax: 2,
             description: 'Cập nhật mô tả đề tài',
             expectedResult: 'Cập nhật kết quả dự kiến',
             target: '',
@@ -65,26 +63,25 @@ function AddTopicRoleHeadModal(props: any) {
         >
           {({ handleSubmit, values, errors, touched, handleBlur, handleChange, setFieldValue }) => (
             <form onSubmit={handleSubmit}>
-              <Box></Box>
-              <Box my={10}>
-                <Box sx={{ width: '100%' }}>
-                  <DropDown
-                    required
-                    label='Chọn giảng viên hướng dẫn'
-                    placeholder='Danh sách giảng viên hướng dẫn '
-                    onChange={(e: any) => {
-                      setlecturer(e.target.value);
-                    }}
-                    options={convertLecturer(data?.lecturerTerms)}
-                  />
-                </Box>
+              <Box my={4}>
+                <Typography variant='body1' fontWeight={'bold'} mb={2}>
+                  Chọn giảng viên hướng dẫn<span style={{ color: 'red' }}>*</span>
+                </Typography>
+                <DropDown
+                  required
+                  onChange={(e: any) => {
+                    setlecturer(e.target.value);
+                  }}
+                  options={convertLecturer(data?.lecturerTerms)}
+                  value={lecturer}
+                />
               </Box>
               {currentRole.includes('all') && (
                 <CustomTextField
                   placeholder='Số lượng nhóm phải lớn hơn 0 và bé hơn 5'
                   required
                   name='quantityGroupMax'
-                  label='Số lượng nhóm đăng ký tối đa'
+                  label='Số lượng nhóm tối đa'
                   value={values.quantityGroupMax}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -105,7 +102,7 @@ function AddTopicRoleHeadModal(props: any) {
                 required
                 label='Tên đề tài'
                 name='name'
-                placeholder='Tên đề tài'
+                placeholder='Nhập vào tên đề tài'
               />
               <CustomTextField
                 value={values.keywords}
@@ -116,18 +113,17 @@ function AddTopicRoleHeadModal(props: any) {
                 required
                 label='Từ khóa'
                 name='keywords'
-                placeholder='Ví dụ: web, app, AI, security,...'
+                placeholder='VD: Blockchain, Khóa học, Học tập, IOT...'
               />
               <Typography variant='body1' color='warning.dark'>
-                Lưu ý*: các từ khóa ngăn cách nhau bởi dấu ",". Khuyến khích sử dụng tiếng anh và
-                dùng từ viết tắt{' '}
-              </Typography>
-              <Typography variant='body1' mb={6} color='warning.dark'>
-                Đề tài chỉ nên có khoảng 1 đến 5 từ khóa
+                Lưu ý: Các từ khóa ngăn cách nhau bởi dấu ",". Đề tài chỉ nên có khoảng 1 đến 5 từ
+                khóa.
               </Typography>
               <Box my={4}>
+                <Typography variant='body1' fontWeight={'bold'} mb={2}>
+                  Mục tiêu đề tài<span style={{ color: 'red' }}>*</span>
+                </Typography>
                 <TextEditor
-                  label='Mục tiêu đề tài'
                   errors={errors.target && touched.target ? true : false}
                   value={values.target}
                   onChange={(value) => {
@@ -137,16 +133,19 @@ function AddTopicRoleHeadModal(props: any) {
                   helperText={errors.target && touched.target ? errors.target : ''}
                   placeholder='Nhập vào mục tiêu đề tài'
                 />
-              </Box>{' '}
+              </Box>
               <Box my={4}>
+                <Typography variant='body1' fontWeight={'bold'} mb={2}>
+                  Dự kiến sản phẩm nghiên cứu của đề tài và khả năng ứng dụng
+                  <span style={{ color: 'red' }}>*</span>
+                </Typography>
                 <TextEditor
                   onChange={(value) => {
                     setFieldValue('expectedResult', value);
                   }}
                   id='expectedResult'
                   value={values.expectedResult}
-                  label='Dự kiến sản phẩm nghiên cứu của đề tài và khả năng ứng dụng'
-                  placeholder='Dự kiến sản phẩm nghiên cứu của Đề tài và khả năng ứng dụng'
+                  placeholder='Dự kiến sản phẩm nghiên cứu của đề tài và khả năng ứng dụng'
                   errors={errors.expectedResult && touched.expectedResult ? true : false}
                   helperText={
                     errors.expectedResult && touched.expectedResult ? errors.expectedResult : ''
@@ -154,8 +153,10 @@ function AddTopicRoleHeadModal(props: any) {
                 />
               </Box>
               <Box my={4}>
+                <Typography variant='body1' fontWeight={'bold'} mb={2}>
+                  Mô tả đề tài<span style={{ color: 'red' }}>*</span>
+                </Typography>
                 <TextEditor
-                  label='Mô tả'
                   errors={errors.description && touched.description ? true : false}
                   value={values.description}
                   onChange={(value) => {
@@ -167,8 +168,10 @@ function AddTopicRoleHeadModal(props: any) {
                 />
               </Box>
               <Box my={4}>
+                <Typography variant='body1' fontWeight={'bold'} mb={2}>
+                  Yêu cầu đầu vào<span style={{ color: 'red' }}>*</span>
+                </Typography>
                 <TextEditor
-                  label='Yêu cầu đầu vào'
                   errors={errors.requireInput && touched.requireInput ? true : false}
                   value={values.requireInput}
                   onChange={(value) => {
@@ -182,8 +185,10 @@ function AddTopicRoleHeadModal(props: any) {
                 />
               </Box>
               <Box my={4}>
+                <Typography variant='body1' fontWeight={'bold'} mb={2}>
+                  Yêu cầu đầu ra<span style={{ color: 'red' }}>*</span>
+                </Typography>
                 <TextEditor
-                  label='Yêu cầu đầu ra'
                   errors={errors.standardOutput && touched.standardOutput ? true : false}
                   value={values.standardOutput}
                   onChange={(value) => {

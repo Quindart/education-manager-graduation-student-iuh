@@ -90,7 +90,7 @@ function CardRole(props: any) {
           <>
             {roleAssigned ? (
               <Button onClick={handleUnAssign} color='error'>
-                Gỡ quyền
+                Xóa quyền
                 <Icon icon='icomoon-free:exit' />
               </Button>
             ) : (

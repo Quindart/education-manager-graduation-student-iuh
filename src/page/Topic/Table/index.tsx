@@ -115,9 +115,9 @@ function TableManagamentTopic(props: any) {
         flex: 0.4,
       },
       {
-        headerName: 'Tên Đề tài',
+        headerName: 'Tên đề tài',
         field: 'name',
-        flex: 2,
+        flex: 1.8,
         headerAlign: 'center',
         align: 'left',
         renderCell(params) {
@@ -129,16 +129,16 @@ function TableManagamentTopic(props: any) {
         },
       },
       {
-        headerName: 'Giảng viên HD',
+        headerName: 'GV hướng dẫn',
         field: 'fullName',
         headerAlign: 'center',
         align: 'left',
-        flex: 0.8,
+        flex: 1,
       },
       {
-        headerName: 'SL nhóm',
+        headerName: 'Số nhóm',
         field: 'quantityGroupMax',
-        flex: 0.5,
+        flex: 0.3,
         headerAlign: 'center',
         align: 'center',
         renderCell: (param) => {
@@ -175,7 +175,7 @@ function TableManagamentTopic(props: any) {
         },
       },
       {
-        headerName: 'Duyệt đề tài',
+        headerName: 'Thao tác',
         field: 'status',
         flex: 0.7,
         headerAlign: 'center',

@@ -40,7 +40,6 @@ function TableManagamentStudent(props: any) {
     setOpenEditStatusStudentModal({ studentId, status, name, isOpen: true });
   };
 
-  //
   const [openResetPasswordStudentModal, setOpenResetPasswordStudentModal] = useState({
     studentId: '',
     name: '',
@@ -160,7 +159,7 @@ function TableManagamentStudent(props: any) {
         },
       },
       {
-        headerName: 'GVHD',
+        headerName: 'GV hướng dẫn',
         field: 'lecturerName',
         flex: 0.8,
         align: 'left',
@@ -224,7 +223,9 @@ function TableManagamentStudent(props: any) {
               </IconButton>
             </Tooltip>
             <Tooltip
-              onClick={() => handleOpenDeleteStudentModal(params.row.id, params.row.fullName)}
+              onClick={() =>
+                handleOpenDeleteStudentModal(params.row.studentTermId, params.row.fullName)
+              }
               title='Xóa sinh viên'
             >
               <IconButton color='error' size='small'>

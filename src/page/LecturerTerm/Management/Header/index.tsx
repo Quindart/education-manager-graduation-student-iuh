@@ -12,11 +12,11 @@ import ExportExcelButton from '@/components/ui/Export';
 const SEARCH_DROP_VALUE = [
   {
     _id: ENUM_RENDER_LECTURER.SEARCH_FULLNAME,
-    name: 'Họ tên giảng viên',
+    name: 'Họ và tên',
   },
   {
     _id: ENUM_RENDER_LECTURER.SEARCH_USERNAME,
-    name: 'Mã giảng viên',
+    name: 'Mã GV',
   },
 ];
 
@@ -64,21 +64,20 @@ function HeaderLecturerTerm() {
               <SplitButton icon='bx:sort' options={optionSort} handleClick={handleClick} />
             </Box>
           </Box>
-
           <TextField
             fullWidth
             size='small'
             defaultValue={getQueryField('keywords')}
             onChange={onSearchChange}
-            placeholder='Tim kiếm giảng viên HD theo..'
+            placeholder='Tìm kiếm GV hướng dẫn theo..'
           />
         </Box>
-        <Tooltip title={'Thêm tất cả GV chuyên ngành tham gia HD'}>
+        <Tooltip title={'Thêm tất cả GV chuyên ngành tham gia'}>
           <Button size='small' color='primary' variant='contained' onClick={handleImport}>
             <Icon width={24} icon='proicons:arrow-import' />
           </Button>
         </Tooltip>
-        <Tooltip title={'Thêm giảng viên HD'}>
+        <Tooltip title={'Thêm GV hướng dẫn'}>
           <Button
             size='small'
             color='error'
