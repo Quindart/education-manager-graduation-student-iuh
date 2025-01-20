@@ -17,11 +17,11 @@ import ExportExcelButton from '@/components/ui/Export';
 const SEARCH_DROP_VALUE = [
   {
     _id: ENUM_RENDER_LECTURER.SEARCH_FULLNAME,
-    name: 'Họ tên giảng viên',
+    name: 'Họ và tên',
   },
   {
     _id: ENUM_RENDER_LECTURER.SEARCH_USERNAME,
-    name: 'Mã giảng viên',
+    name: 'Mã GV',
   },
   {
     _id: ENUM_RENDER_LECTURER.SEARCH_PHONE,
@@ -80,14 +80,10 @@ function HeaderLecturer() {
             size='small'
             defaultValue={getQueryField('keywords')}
             onChange={onSearchChange}
-            placeholder='Tim kiếm giảng viên theo..'
+            placeholder='Tìm kiếm giảng viên theo..'
           />
         </Box>
-        <Tooltip
-          title='
-          Thêm Giảng viên
-        '
-        >
+        <Tooltip title='Thêm giảng viên'>
           <Button
             size='small'
             color='error'
@@ -98,10 +94,9 @@ function HeaderLecturer() {
             <Icon icon='lets-icons:add-round' width={20} />
           </Button>
         </Tooltip>
-
         <ModalUpload
           label=''
-          labelToolTip='Thêm giảng viên bằng file excel'
+          labelToolTip='Thêm giảng viên từ file excel'
           entityUpload={TypeEntityUpload.LECTURER}
           termId={currentTerm.id}
           fileNameModel='Mẫu file excel danh sách giảng viên KLTN'
@@ -112,7 +107,7 @@ function HeaderLecturer() {
           <ExportExcelButton
             data={data.lecturers}
             entity='lecturer'
-            labelTooltip='Tải danh sách giảng viên'
+            labelTooltip='Xuất danh sách giảng viên'
           />
         )}
       </Box>

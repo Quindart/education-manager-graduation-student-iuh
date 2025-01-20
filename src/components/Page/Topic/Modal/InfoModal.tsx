@@ -16,7 +16,7 @@ function InfoModal(props: any) {
     <Modal maxWidth={'md'} open={open} onClose={onClose}>
       <Box pb={5} px={10}>
         <TitleManager mb={10} variant='h6' icon='ion:document' textTransform={'uppercase'}>
-          Thông tin chi tiết Đề tài
+          Thông tin chi tiết đề tài
         </TitleManager>
         {isLoading ? (
           <SekeletonUI />
@@ -38,8 +38,8 @@ function InfoModal(props: any) {
                 <CustomTextField
                   type='number'
                   value={data?.topic?.quantityGroupMax}
-                  label='Số lượng nhóm sinh viên tối đa'
-                  placeholder='Số lượng đề tài'
+                  label='Số lượng nhóm tối đa'
+                  placeholder='Số lượng nhóm tối đa'
                 />
               </Box>
 
@@ -48,7 +48,7 @@ function InfoModal(props: any) {
                   sx={{ flex: 1 }}
                   label='Giảng viên phụ trách'
                   value={data?.topic?.lecturerTerm.lecturer.fullName}
-                  placeholder='tên giảng viên'
+                  placeholder='Giảng viên phụ trách'
                 />
               </Box>
             </Box>
@@ -57,15 +57,14 @@ function InfoModal(props: any) {
               multiline
               value={stripHtmlTags(data?.topic?.description)}
               maxRows={8}
-              placeholder='Nhập vào Mô tả đề tài'
+              placeholder='Nhập vào mô tả đề tài'
             />
-
             <CustomTextField
               multiline
               value={stripHtmlTags(data?.topic?.expectedResult)}
               maxRows={8}
-              label='Dự kiến sản phẩm nghiên cứu của Đề tài và khả năng ứng dụng'
-              placeholder='Dự kiến sản phẩm nghiên cứu của Đề tài và khả năng ứng dụng'
+              label='Dự kiến sản phẩm nghiên cứu của đề tài và khả năng ứng dụng'
+              placeholder='Dự kiến sản phẩm nghiên cứu của đề tài và khả năng ứng dụng'
             />
             <CustomTextField
               multiline
@@ -84,16 +83,16 @@ function InfoModal(props: any) {
             <CustomTextField
               multiline
               maxRows={10}
-              label='Chuẩn đầu ra'
+              label='Yêu cầu đầu ra'
               value={stripHtmlTags(data?.topic?.standardOutput)}
-              placeholder='Chuẩn đầu ra'
+              placeholder='Yêu cầu đầu ra'
             />
             <CustomTextField
               multiline
               value={stripHtmlTags(data?.topic?.note)}
               maxRows={8}
-              label='Ghi chú đề tài'
-              placeholder='Ghi chú đề tài'
+              label='Ghi chú'
+              placeholder='Ghi chú'
             />
             <Box mt={10} justifyContent={'end'} gap={8} display={'flex'}>
               <Button variant='contained' color='primary' onClick={onClose}>

@@ -5,7 +5,7 @@ import { useStudent } from '@/hooks/api/useQueryStudent';
 import { EnumGender } from '@/types/enum';
 import { convertMajorDropDown } from '@/utils/convertDataTable';
 import { Icon } from '@iconify/react';
-import { Box, Button, CircularProgress } from '@mui/material';
+import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import { Formik } from 'formik';
 import React, { useEffect } from 'react';
 import { validateSchemaStudent } from '../Context';
@@ -38,7 +38,6 @@ function EditInfoModal(props: ModalProps & EditModalType) {
   const { handleGetStudentById, onUpdateStudent } = useStudent();
   const { data, isLoading, isFetched } = handleGetStudentById(studentId);
 
-  const { majorStore } = useMajor();
   const { mutate: upDateStudent, isSuccess } = onUpdateStudent(studentId);
 
   const handleSubmitStudent = (values: any) => {
@@ -54,7 +53,7 @@ function EditInfoModal(props: ModalProps & EditModalType) {
     <Modal maxWidth='xs' open={open} onClose={onClose}>
       <Box px={10} py={6}>
         <TitleManager mb={6} variant='h5' icon='ph:student-fill' textTransform={'uppercase'}>
-          Cập nhật thông tin Sinh viên
+          Cập nhật thông tin sinh viên
         </TitleManager>
         {isLoading && !isFetched ? (
           <Box m={'auto'} height={500}>
@@ -86,40 +85,36 @@ function EditInfoModal(props: ModalProps & EditModalType) {
               setFieldValue,
             }) => (
               <form onSubmit={handleSubmit}>
-                <Box gap={8} display={'flex'}>
-                  <Box width={200}>
-                    <CustomTextField
-                      label='Mã sinh viên'
-                      name='username'
-                      required
-                      value={values.username}
-                      placeholder='Ví dụ: 20189141'
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      error={errors.username && touched.username ? true : false}
-                      helperText={`${errors.username && touched.username ? errors.username : ''}`}
-                    />
-                  </Box>
-                  <Box width={'100%'}>
-                    <CustomTextField
-                      value={values.fullName}
-                      name='fullName'
-                      label='Họ và tên'
-                      required
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      placeholder='Họ và tên'
-                      error={errors.fullName && touched.fullName ? true : false}
-                      helperText={`${errors.fullName && touched.fullName ? errors.fullName : ''}`}
-                    />
-                  </Box>
-                </Box>
+                <CustomTextField
+                  label='Mã sinh viên'
+                  name='username'
+                  required
+                  value={values.username}
+                  placeholder='VD: 20189141'
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.username && touched.username ? true : false}
+                  helperText={`${errors.username && touched.username ? errors.username : ''}`}
+                />
+                <CustomTextField
+                  value={values.fullName}
+                  name='fullName'
+                  label='Họ và tên'
+                  required
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder='Nhập vào họ và tên'
+                  error={errors.fullName && touched.fullName ? true : false}
+                  helperText={`${errors.fullName && touched.fullName ? errors.fullName : ''}`}
+                />
 
                 <Box display={'flex'} gap={8} alignContent={'center'}>
                   <Box width={200}>
+                    <Typography variant='body1' fontWeight={'bold'} mb={2}>
+                      Giới tính<span style={{ color: 'red' }}>*</span>
+                    </Typography>
                     <DropDown
-                      sx={{ mb: 8 }}
-                      label='Giới tính'
+                      sx={{ mb: 4 }}
                       value={`${values.gender}`}
                       onChange={(e) => {
                         setFieldValue('gender', e.target.value);
@@ -128,6 +123,9 @@ function EditInfoModal(props: ModalProps & EditModalType) {
                     />
                   </Box>
                   <Box width={'100%'}>
+                    <Typography variant='body1' fontWeight={'bold'} mb={2}>
+                      Ngày sinh<span style={{ color: 'red' }}>*</span>
+                    </Typography>
                     <Calendar
                       onChange={(value) => {
                         setFieldValue('dateOfBirth', value);
@@ -135,8 +133,7 @@ function EditInfoModal(props: ModalProps & EditModalType) {
                       format='DD/MM/YYYY'
                       name='dateOfBirth'
                       value={values.dateOfBirth}
-                      sx={{ width: '100%', mb: 8 }}
-                      label='Ngày sinh'
+                      sx={{ width: '100%', mb: 4 }}
                     />
                   </Box>
                 </Box>
@@ -145,8 +142,9 @@ function EditInfoModal(props: ModalProps & EditModalType) {
                   name='clazzName'
                   label='Lớp danh nghĩa'
                   onChange={handleChange}
+                  required
                   onBlur={handleBlur}
-                  placeholder='Ví dụ: DHKTPM17C'
+                  placeholder='VD: DHKTPM17C'
                   error={errors.clazzName && touched.clazzName ? true : false}
                   helperText={`${errors.clazzName && touched.clazzName ? errors.clazzName : ''}`}
                 />
@@ -170,8 +168,20 @@ function EditInfoModal(props: ModalProps & EditModalType) {
                   error={errors.phone && touched.phone ? true : false}
                   helperText={`${errors.phone && touched.phone ? errors.phone : ''}`}
                 />
-                <Box sx={{ mb: 8 }}>
+                <Box sx={{ mb: 4 }}>
                   <CustomTextField value={values.majorName} label='Chuyên ngành' disabled />
+                </Box>
+                <Box sx={{ mb: 4 }}>
+                  <Typography variant='body1' fontWeight={'bold'} mb={2}>
+                    Loại hình đào tạo<span style={{ color: 'red' }}>*</span>
+                  </Typography>
+                  <DropDown
+                    value={`${values.typeTraining}`}
+                    onChange={(e) => {
+                      setFieldValue('typeTraining', e.target.value);
+                    }}
+                    options={TRAINING_DROP_VALUE}
+                  />
                 </Box>
 
                 <Box mt={10} justifyContent={'end'} gap={4} display={'flex'}>

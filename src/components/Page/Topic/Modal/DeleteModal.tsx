@@ -28,8 +28,8 @@ function DeleteModal(props: any) {
         <Box borderRadius='50%' padding={3} sx={{ background: 'rgba(255,49,111,0.2)' }}>
           <Icon color='#b31d1d82' height={70} width={70} icon='fa-solid:trash-restore' />{' '}
         </Box>
-        <Typography textAlign={'center'} textTransform={'lowercase'} variant='h5' mt={10} mb={14}>
-          Bạn có chắc chắn muốn xóa Đề tài {name} ?
+        <Typography textAlign={'center'} variant='h5' mt={10} mb={14}>
+          Bạn có chắc chắn muốn xóa đề tài <strong>{name}</strong> ?
         </Typography>
         <Box width='100%' display='flex' gap={6} marginTop={1}>
           <Button onClick={onClose} sx={{ width: '50%' }} color='primary' variant='contained'>
@@ -48,7 +48,7 @@ function DeleteModal(props: any) {
               style={{ marginRight: 4 }}
               icon='material-symbols:auto-delete-outline'
             />
-            Xóa Đề tài
+            Xóa đề tài
           </Button>
         </Box>
       </Box>

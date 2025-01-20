@@ -37,10 +37,10 @@ function ResetTopicModal(props: any) {
         </Typography>
         <Box width={'100%'}>
           <CustomTextField
-            placeholder='Lí do reset'
+            placeholder='Lí do'
             onChange={(e) => setNote(e.target.value)}
             value={note}
-            label='Lý do reset'
+            label='Lý do'
             multiline
             rows={4}
           />

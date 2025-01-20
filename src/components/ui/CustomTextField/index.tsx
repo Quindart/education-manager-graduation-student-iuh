@@ -9,15 +9,14 @@ interface CustomTextFieldProps extends StandardTextFieldProps {
 export default function CustomTextField(props: CustomTextFieldProps) {
   const { id, label, required, size = 'small', ...rest } = props;
   return (
-    <Box mb={8} component='fieldset'>
+    <Box mb={4} component='fieldset'>
       {label && (
-        <InputLabel htmlFor={id} sx={{ mb: 4, color: 'grey.700', fontSize: 13, fontWeight: 600 }}>
-          {label}{' '}
-          {required && (
-            <Typography variant='h4' component={'span'} color='error'>
-              *
-            </Typography>
-          )}
+        <InputLabel
+          htmlFor={id}
+          sx={{ mb: 2, color: 'grey.700', fontSize: 13, fontWeight: 'bold' }}
+        >
+          {label}
+          {required && <span style={{ color: 'red' }}>*</span>}
         </InputLabel>
       )}
       <TextField variant='outlined' id={id} fullWidth size={size} {...rest} />

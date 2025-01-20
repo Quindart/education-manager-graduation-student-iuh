@@ -6,7 +6,7 @@
  *
  *  Vấn đề:
  *      ? Làm sao để search - filter theo grStd.
- *      ? Gỡ phân công như thế nào
+ *      ? Xóa phân công như thế nào
  *      ? Validate theo loại chấm: phản biện, poster, hội đồng
  *      ? Hiển thị đề tài được phân như thế nào
  * * Giải quyết:

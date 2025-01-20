@@ -38,14 +38,14 @@ const TableTopicAdmin = (props: any) => {
         },
       },
       {
-        headerName: 'Giảng viên HD',
+        headerName: 'GV hướng dẫn',
         field: 'fullName',
         headerAlign: 'left',
         align: 'left',
         flex: 0.8,
       },
       {
-        headerName: 'SL nhóm',
+        headerName: 'Số lượng nhóm',
         field: 'quantityGroupMax',
         flex: 0.5,
         headerAlign: 'right',

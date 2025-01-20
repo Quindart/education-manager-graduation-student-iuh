@@ -1,25 +1,19 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import useParams from '@/hooks/ui/useParams';
+import SearchIcon from '@mui/icons-material/Search';
 import {
-  TextField,
   Box,
+  BoxProps,
+  FormControl,
   InputAdornment,
   MenuItem,
   Select,
-  FormControl,
-  InputLabel,
-  BoxProps,
+  TextField,
 } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import useParams from '@/hooks/ui/useParams';
-
-const SEARCH_FIELD = {
-  name: 'tên đề tài',
-  key: 'Mã nhóm',
-};
+import { useEffect, useState } from 'react';
 
 function SearchInput({ sx }: BoxProps) {
   const [sort, setSort] = useState('ASC');
-  const [typeSearch, setTypeSearch] = useState('name');
+  const [typeSearch, setTypeSearch] = useState('key');
 
   useEffect(() => {
     setTypeSort(sort);
@@ -35,11 +29,11 @@ function SearchInput({ sx }: BoxProps) {
           size='small'
           id='search-type'
           value={typeSearch}
-          defaultValue='name'
+          defaultValue='key'
           onChange={(e) => setTypeSearch(e.target.value)}
         >
-          <MenuItem value='name'>Tên đề tài</MenuItem>
           <MenuItem value='key'>Mã đề tài</MenuItem>
+          <MenuItem value='name'>Tên đề tài</MenuItem>
         </Select>
       </FormControl>
 
@@ -48,7 +42,7 @@ function SearchInput({ sx }: BoxProps) {
         fullWidth
         defaultValue={getQueryField('keywords')}
         size='small'
-        placeholder='Tìm kiếm đề theo tên hoặc mã đề tài'
+        placeholder='Tìm kiếm đề tài theo...'
         onChange={onSearchChange}
         InputProps={{
           startAdornment: (

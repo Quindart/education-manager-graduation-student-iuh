@@ -14,11 +14,11 @@ import LockAccountModal from '../Modal/LockAccountModal';
 const SEARCH_DROP_VALUE = [
   {
     _id: 'full_name',
-    name: 'Họ tên sinh viên',
+    name: 'Họ và tên',
   },
   {
     _id: 'username',
-    name: 'Mã Sinh viên',
+    name: 'MSSV',
   },
 ];
 function HeaderStudent() {
@@ -97,7 +97,7 @@ function HeaderStudent() {
         </Tooltip>
         <ModalUpload
           label=''
-          labelToolTip='Thêm sinh viên bằng file excel'
+          labelToolTip='Thêm sinh viên từ file excel'
           entityUpload={TypeEntityUpload.STUDENT}
           majorId={majorStore.currentMajor.id}
           fileNameModel='Mẫu file excel danh sách sinh viên KLTN'
@@ -108,14 +108,14 @@ function HeaderStudent() {
           <ExportExcelButton
             data={data.students}
             entity='student'
-            labelTooltip='Tải danh sách sinh viên'
+            labelTooltip='Xuất danh sách sinh viên'
           />
         )}
         {successDemoScore && (
           <ExportExcelButton
             data={fetchDemoScore?.students}
             entity='demoScoreStudents'
-            labelTooltip='Xuất mẫu điểm sinh viên'
+            labelTooltip='Xuất mẫu điểm ký tên'
           />
         )}
         <Tooltip onClick={handleOpenLockModal} title='Khóa tài khoản toàn bộ sinh viên'>

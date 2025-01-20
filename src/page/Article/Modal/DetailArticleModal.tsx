@@ -6,6 +6,7 @@ import { Icon } from '@iconify/react';
 import { Box, Dialog, DialogContent, DialogTitle, Typography } from '@mui/material';
 import React from 'react';
 import TitleManager from '@/components/ui/Title';
+import dayjs from 'dayjs';
 
 function DetailArticleModal({ open, onClose, articleId }) {
   const { handleGetArticleById } = useArticle();
@@ -30,18 +31,12 @@ function DetailArticleModal({ open, onClose, articleId }) {
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             {' '}
             <CustomTextField
-              value={new Date(fetchArticle?.article.publicDate).toLocaleDateString()}
+              value={dayjs(fetchArticle?.article.date).format('DD/MM/YYYY') || ''}
               label='Ngày đăng báo'
             />
             <CustomTextField value={fetchArticle?.article.name} label='Tên bài báo' />
-            <CustomTextField
-              value={fetchArticle?.article.author}
-              label='Các tác giả chính viết bài'
-            />
-            <CustomTextField
-              value={fetchArticle?.article.bonusScore}
-              label='Điểm cộng cho khóa luận'
-            />
+            <CustomTextField value={fetchArticle?.article.author} label='Các tác giả chính' />
+            <CustomTextField value={fetchArticle?.article.bonusScore} label='Điểm cộng' />
             <Box sx={{ display: 'flex', gap: 10 }}>
               <CustomTextField value={fetchArticle?.article.username} label='Mã sinh viên ' />
               <Box flex={1}>
@@ -57,7 +52,7 @@ function DetailArticleModal({ open, onClose, articleId }) {
               color='primary'
             >
               <Icon width={30} color='red' icon='dashicons:pdf' />
-              Xem bài báo đã đính kèm (File PDF)
+              Xem minh chứng
             </Typography>
           </Box>
         )}

@@ -23,7 +23,7 @@ function Feature5() {
             variant='outlined'
             sx={{ color: 'rgb(196, 89, 17)', borderColor: 'rgb(196, 89, 17)' }}
           >
-            Thêm Giảng viên HD
+            Thêm GV hướng dẫn
           </Button>
         </Typography>
         <Box sx={{ width: '100%', mb: 4 }}>
@@ -49,12 +49,12 @@ function Feature5() {
         </Typography>
 
         <Typography variant='h6' fontWeight='bold' gutterBottom>
-          5.2. Gỡ giảng viên hướng dẫn khỏi học kỳ
+          5.2. Xóa giảng viên hướng dẫn khỏi học kỳ
         </Typography>
 
         <Typography paragraph>
           Trong bảng danh sách Giảng viên hướng dẫn =&gt; cột <strong>Chức năng</strong> =&gt; Chọn
-          nút <strong>Gỡ</strong> =&gt;
+          nút <strong>Xóa</strong> =&gt;
         </Typography>
         <Box sx={{ width: '100%', mb: 4 }}>
           <Box sx={{ width: '80%', mx: 'auto' }}>
@@ -69,7 +69,7 @@ function Feature5() {
           >
             Bỏ giảng viên
           </Button>{' '}
-          để xác nhận gỡ bỏ giảng viên.
+          để xác nhận.
         </Typography>
         <Box sx={{ width: '100%', mb: 4 }}>
           <Box sx={{ width: '80%', mx: 'auto' }}>
@@ -81,7 +81,7 @@ function Feature5() {
           5.3. Tải lên dữ liệu giảng viên chuyên ngành của học kì trước
         </Typography>
         <Typography paragraph>
-          Bên cạnh nút thêm giảng viên HD =&gt; Chọn nút{' '}
+          Bên cạnh nút thêm GV hướng dẫn =&gt; Chọn nút{' '}
           <Button>Tải lên dữ liệu GV chuyên ngành</Button>
         </Typography>
         <Box sx={{ width: '100%', mb: 4 }}>

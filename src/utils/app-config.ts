@@ -1,5 +1,4 @@
 import { RoleCheck } from '@/types/enum';
-import { roRO } from '@mui/material/locale';
 
 export const APP_ROUTES = {
   DASHBOARD: '/',
@@ -131,7 +130,7 @@ export const APP_SIDEBAR = [
     key: APP_ROUTES.DASHBOARD,
   },
   {
-    text: 'Chuyên Ngành',
+    text: 'Chuyên ngành',
     icon: 'simple-icons:gitbook',
     link: [APP_ROUTES.MAJOR.MANAGEMENT],
     roles: [RoleCheck.ADMIN],
@@ -145,7 +144,7 @@ export const APP_SIDEBAR = [
   },
   {
     icon: 'fluent-mdl2:date-time-12',
-    text: 'Học kì',
+    text: 'Học kỳ',
     roles: [RoleCheck.HEAD_COURSE, RoleCheck.HEAD_LECTURER, RoleCheck.ADMIN],
     link: APP_ROUTES.TERM.MANAGEMENT,
     key: '/terms',
@@ -157,13 +156,6 @@ export const APP_SIDEBAR = [
     roles: [RoleCheck.HEAD_LECTURER, RoleCheck.HEAD_COURSE, RoleCheck.ADMIN],
     link: APP_ROUTES.TOPIC.MANAGEMENT,
   },
-  {
-    icon: 'ph:article-ny-times',
-    text: 'Quản lý bài báo',
-    roles: [RoleCheck.HEAD_LECTURER, RoleCheck.HEAD_COURSE, RoleCheck.LECTURER, RoleCheck.ADMIN],
-    link: APP_ROUTES.ARTICLE.MANAGEMENT,
-  },
-
   {
     icon: 'fluent-mdl2:learning-tools',
     text: 'Giảng viên ',
@@ -185,7 +177,7 @@ export const APP_SIDEBAR = [
   },
   {
     icon: 'fluent-mdl2:learning-tools',
-    text: 'Giảng viên Hướng dẫn',
+    text: 'Giảng viên hướng dẫn',
     roles: [RoleCheck.HEAD_COURSE],
     link: APP_ROUTES.LECTURER_TERM.MANAGEMENT,
   },
@@ -229,10 +221,16 @@ export const APP_SIDEBAR = [
   },
   {
     icon: 'simple-line-icons:docs',
-    text: 'Tiêu chí Đánh giá',
+    text: 'Tiêu chí đánh giá',
     roles: [RoleCheck.HEAD_LECTURER, RoleCheck.LECTURER, RoleCheck.HEAD_COURSE, RoleCheck.ADMIN],
     link: APP_ROUTES.REVIEW.MANAGEMENT,
     key: APP_ROUTES.REVIEW.MANAGEMENT,
+  },
+  {
+    icon: 'healthicons:i-exam-multiple-choice',
+    text: 'Chấm điểm',
+    roles: [RoleCheck.LECTURER],
+    link: APP_ROUTES.SCORE_STUDENT.MANAGEMENT,
   },
   {
     icon: 'ph:exam-light',
@@ -242,29 +240,36 @@ export const APP_SIDEBAR = [
     key: APP_ROUTES.ALL_TRANSCRIPTS.MANAGEMENT,
   },
   {
+    icon: 'ph:article-ny-times',
+    text: 'Quản lý bài báo',
+    roles: [RoleCheck.HEAD_LECTURER, RoleCheck.HEAD_COURSE, RoleCheck.LECTURER, RoleCheck.ADMIN],
+    link: APP_ROUTES.ARTICLE.MANAGEMENT,
+  },
+  {
+    icon: 'file-icons:readthedocs',
+    text: 'Quản lý tài liệu báo cáo',
+    roles: [RoleCheck.HEAD_LECTURER, RoleCheck.HEAD_COURSE, RoleCheck.LECTURER, RoleCheck.ADMIN],
+    link: APP_ROUTES.FINAL_REPORT.MANAGEMENT,
+  },
+  {
     icon: 'icon-park-outline:message',
     text: 'Thông báo',
     roles: [RoleCheck.HEAD_LECTURER, RoleCheck.ADMIN, RoleCheck.HEAD_COURSE],
     link: [APP_ROUTES.NOTIFICATION.MANAGEMENT],
     children: [
       {
-        text: 'Danh sách Thông báo',
+        text: 'Danh sách thông báo',
         link: APP_ROUTES.NOTIFICATION.MANAGEMENT,
         key: APP_ROUTES.NOTIFICATION.MANAGEMENT,
       },
       {
-        text: 'Tạo Thông báo',
+        text: 'Tạo thông báo',
         link: APP_ROUTES.NOTIFICATION.CREATE,
         key: APP_ROUTES.NOTIFICATION.CREATE,
       },
     ],
   },
-  {
-    icon: 'healthicons:i-exam-multiple-choice',
-    text: 'Chấm điểm',
-    roles: [RoleCheck.LECTURER],
-    link: APP_ROUTES.SCORE_STUDENT.MANAGEMENT,
-  },
+
   {
     icon: 'material-symbols:settings',
     text: 'Phân quyền',
@@ -288,12 +293,6 @@ export const APP_SIDEBAR = [
         key: APP_ROUTES.NOTIFICATION.CREATE_BY_LECTURER,
       },
     ],
-  },
-  {
-    icon: 'file-icons:readthedocs',
-    text: 'Quản lý tài liệu báo cáo',
-    roles: [RoleCheck.HEAD_LECTURER, RoleCheck.HEAD_COURSE, RoleCheck.LECTURER, RoleCheck.ADMIN],
-    link: APP_ROUTES.FINAL_REPORT.MANAGEMENT,
   },
 ];
 

@@ -57,7 +57,7 @@ function TableTopicLecturer(props: any) {
         flex: 0.3,
       },
       {
-        headerName: 'Tên Đề tài',
+        headerName: 'Tên đề tài',
         field: 'name',
         flex: 2,
         headerAlign: 'left',

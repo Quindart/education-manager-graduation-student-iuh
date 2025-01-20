@@ -11,15 +11,15 @@ export const checkStatusStudent = (value: string) => {
     case 'OPEN':
       return 'Đang học';
     case 'FAIL_ADVISOR':
-      return 'rớt';
+      return 'Chưa đạt';
     case 'FAIL_REVIEWER':
-      return 'rớt';
+      return 'Chưa đạt';
     case 'FAIL_SESSION_HOST':
-      return 'rớt';
+      return 'Chưa đạt';
     case 'PASS_ADVISOR':
-      return 'Đậu hướng dẫn';
+      return 'Đạt hướng dẫn';
     case 'PASS_REVIEWER':
-      return 'Đậu báo cáo phản biện';
+      return 'Đạt báo cáo phản biện';
     case 'PASS_SESSION_HOST':
       return '';
   }

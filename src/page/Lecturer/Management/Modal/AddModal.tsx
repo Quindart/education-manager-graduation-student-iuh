@@ -5,7 +5,7 @@ import TitleManager from '@/components/ui/Title';
 import { useLecturer } from '@/hooks/api/useQueryLecturer';
 import { EnumGender, EnumRole } from '@/types/enum';
 import { Icon } from '@iconify/react';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { Formik } from 'formik';
 import { useEffect } from 'react';
 import { validateSchemaLecturer } from '../../context';
@@ -21,24 +21,6 @@ const GenderLecturer = [
   {
     _id: EnumGender.MALE,
     name: 'Nam',
-  },
-];
-const RoleLecturerDrop = [
-  {
-    _id: EnumRole.LECTURER,
-    name: 'Giảng viên',
-  },
-  {
-    _id: EnumRole.HEAD_LECTURER,
-    name: 'Trưởng bộ môn',
-  },
-  {
-    _id: EnumRole.HEAD_COURSE,
-    name: 'Quản trị viên',
-  },
-  {
-    _id: EnumRole.ADMIN,
-    name: 'Chủ quản môn học',
   },
 ];
 
@@ -99,43 +81,44 @@ function AddLecturerModal(props: any) {
         >
           {({ values, touched, handleChange, handleBlur, handleSubmit, errors, setFieldValue }) => (
             <form onSubmit={handleSubmit}>
-              <CustomTextField
-                required
-                value={values.username}
-                name='username'
-                label='Mã giảng viên'
-                placeholder='Mã Giảng viên'
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.username && touched.username ? true : false}
-                helperText={errors.username && touched.username ? errors.username : ''}
-              />
-              <Box display={'flex'} gap={10} mt={8}>
+              <Box display={'flex'} gap={10} mt={4}>
                 <Box width={'100%'}>
                   <CustomTextField
                     required
-                    value={values.fullName}
-                    name='fullName'
-                    label='Họ và tên'
+                    value={values.username}
+                    name='username'
+                    label='Mã giảng viên'
+                    placeholder='Nhập vào mã giảng viên'
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    placeholder='Họ và tên'
-                    error={errors.fullName && touched.fullName ? true : false}
-                    helperText={errors.fullName && touched.fullName ? errors.fullName : ''}
+                    error={errors.username && touched.username ? true : false}
+                    helperText={errors.username && touched.username ? errors.username : ''}
                   />
                 </Box>
                 <Box width={200}>
+                  <Typography variant='body1' fontWeight={'bold'} mb={2}>
+                    Giới tính<span style={{ color: 'red' }}>*</span>
+                  </Typography>
                   <DropDown
-                    sx={{ mb: 8 }}
                     value={`${values.gender}`}
                     onChange={(e) => {
                       setFieldValue('gender', e.target.value);
                     }}
-                    label='Giới tính'
                     options={GenderLecturer}
                   />
                 </Box>
               </Box>
+              <CustomTextField
+                required
+                value={values.fullName}
+                name='fullName'
+                label='Họ và tên'
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder='Nhập vào họ và tên'
+                error={errors.fullName && touched.fullName ? true : false}
+                helperText={errors.fullName && touched.fullName ? errors.fullName : ''}
+              />
               <CustomTextField
                 name='phone'
                 value={values.phone}
@@ -157,8 +140,10 @@ function AddLecturerModal(props: any) {
                 helperText={errors.email && touched.email ? errors.email : ''}
               />
               <Box mt={8} width={'full'}>
+                <Typography variant='body1' fontWeight={'bold'} mb={2}>
+                  Chuyên ngành<span style={{ color: 'red' }}>*</span>
+                </Typography>
                 <DropDown
-                  label='Chuyên ngành'
                   value={majorStore.currentMajor.id}
                   disabled={true}
                   onChange={(e) => {
@@ -166,10 +151,12 @@ function AddLecturerModal(props: any) {
                   }}
                   options={convertMajorDropDown(majorStore.allMajor)}
                 />
-              </Box>{' '}
+              </Box>
               <Box mt={8} width={'full'}>
+                <Typography variant='body1' fontWeight={'bold'} mb={2}>
+                  Trình độ<span style={{ color: 'red' }}>*</span>
+                </Typography>
                 <DropDown
-                  label='Trình độ'
                   value={values.degree}
                   onChange={(e) => {
                     setFieldValue('degree', e.target.value);

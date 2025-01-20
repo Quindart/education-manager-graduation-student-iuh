@@ -4,7 +4,7 @@ import TitleManager from '@/components/ui/Title';
 import { useLecturer } from '@/hooks/api/useQueryLecturer';
 import { EnumGender } from '@/types/enum';
 import { Icon } from '@iconify/react';
-import { Box, Button, Paper } from '@mui/material';
+import { Box, Button, Paper, Typography } from '@mui/material';
 import { convertMajorDropDown } from '@/utils/convertDataTable';
 import { useMajor } from '@/hooks/api/useQueryMajor';
 import { useAuth } from '@/hooks/api/useAuth';
@@ -89,14 +89,14 @@ function ProfilePage() {
                         value={values.username}
                         name='username'
                         label='Mã giảng viên'
-                        placeholder='Mã Giảng viên'
+                        placeholder='Nhập vào mã giảng viên'
                         disabled
                         onChange={handleChange}
                         onBlur={handleBlur}
                         error={errors.username ? true : false}
                         helperText={errors.username}
                       />
-                      <Box display={'flex'} gap={4} mt={8}>
+                      <Box display={'flex'} gap={4} mt={4}>
                         <Box width={'100%'}>
                           <CustomTextField
                             required
@@ -105,25 +105,29 @@ function ProfilePage() {
                             label='Họ và tên'
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            placeholder='Họ và tên'
+                            placeholder='Nhập vào họ và tên'
                             error={errors.fullName ? true : false}
                             helperText={errors.fullName}
                           />
                         </Box>
-                        <Box mt={2} width={200}>
+                        <Box width={200}>
+                          <Typography variant='body1' fontWeight={'bold'} mb={2}>
+                            Giới tính<span style={{ color: 'red' }}>*</span>
+                          </Typography>
                           <DropDown
                             value={`${values.gender}`}
                             onChange={(e) => {
                               setFieldValue('gender', e.target.value);
                             }}
-                            label='Giới tính'
                             options={GENDERS}
                           />
                         </Box>
                       </Box>
                       <Box width={'full'}>
+                        <Typography variant='body1' fontWeight={'bold'} mb={2}>
+                          Trình độ<span style={{ color: 'red' }}>*</span>
+                        </Typography>
                         <DropDown
-                          label='Trình độ'
                           value={values.degree}
                           disabled
                           onChange={(e) => {
@@ -131,7 +135,7 @@ function ProfilePage() {
                           }}
                           options={DEGREES}
                         />
-                      </Box>{' '}
+                      </Box>
                     </Box>
                     <Box flex={1}>
                       <CustomTextField
@@ -156,9 +160,11 @@ function ProfilePage() {
                         error={errors.email ? true : false}
                         helperText={errors.email}
                       />
-                      <Box mt={8} width={'full'}>
+                      <Box mt={4} width={'full'}>
+                        <Typography variant='body1' fontWeight={'bold'} mb={2}>
+                          Chuyên ngành
+                        </Typography>
                         <DropDown
-                          label='Chuyên ngành'
                           value={values.majorId}
                           disabled
                           onChange={(e) => {
@@ -166,10 +172,9 @@ function ProfilePage() {
                           }}
                           options={convertMajorDropDown(majorStore.allMajor)}
                         />
-                      </Box>{' '}
+                      </Box>
                     </Box>
                   </Box>
-
                   <Box mt={10} justifyContent={'end'} gap={4} display={'flex'}>
                     <Button
                       variant='contained'
@@ -180,7 +185,8 @@ function ProfilePage() {
                     </Button>
 
                     <Button variant='contained' color='success' type='submit'>
-                      Cập nhật thông tin <Icon width={20} icon='ic:twotone-update' />
+                      Cập nhật
+                      <Icon width={20} icon='ic:twotone-update' />
                     </Button>
                   </Box>
                 </form>

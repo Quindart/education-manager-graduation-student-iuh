@@ -83,7 +83,7 @@ const useGroupStudent = () => {
   const onUnAssignTopicGroupStudent = (topicId: string) => {
     return useMutation((id: string) => GroupStudentServices.removeAssign(id, topicId), {
       onSuccess(data: any) {
-        enqueueSnackbar('Gỡ gán nhóm sinh viên cho đề tài thành công', { variant: 'success' });
+        enqueueSnackbar('Xóa gán nhóm sinh viên cho đề tài thành công', { variant: 'success' });
         queryClient.invalidateQueries(QueryTopic.getSearchTopic);
         queryClient.invalidateQueries({
           queryKey: [QueryKeysGroupStudent.managerActionGroupStudent, termId],

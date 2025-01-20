@@ -71,7 +71,7 @@ function AddStudentModal(props: any) {
                     <CustomTextField
                       {...params}
                       placeholder='Nhập vào tên sinh viên'
-                      label='Danh sách sinh viên làm khóa luận (chưa có nhóm)'
+                      label='Danh sách sinh viên tham gia (chưa có nhóm)'
                     />
                   </>
                 )}

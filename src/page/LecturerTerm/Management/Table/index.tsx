@@ -106,7 +106,7 @@ function TableManagamentLecturer(props: any) {
           </Tooltip>
           <Tooltip
             onClick={() => handleOpenDeleteModal(params.row.id, params.row.fullName)}
-            title='Gỡ giảng viên khỏi học kì'
+            title='Xóa giảng viên khỏi học kì'
           >
             <IconButton color='error'>
               <Icon width={20} icon='carbon:close-filled' style={{ color: ' #f2365b' }} />

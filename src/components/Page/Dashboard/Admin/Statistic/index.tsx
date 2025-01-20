@@ -34,7 +34,7 @@ function StatisticManager() {
       subLabel: 'giảng viên',
     },
     {
-      title: 'Sinh viên làm khóa luận',
+      title: 'Sinh viên tham gia',
       value: studentCount,
       icon: <School />,
       link: '/students/query',
