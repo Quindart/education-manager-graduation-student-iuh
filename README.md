@@ -3,12 +3,19 @@
 Welcome to the **Thesis Management System**! This project is designed to streamline the process of managing theses for both students and faculty members. With a user-friendly interface and robust features, managing your academic work has never been easier.
 
 # Repositories
-
-[Backend Nodejs Repository](https://github.com/Quindart/fork-manage-graduation-thesis-iuh-be)
-[Backend Python Repository](https://github.com/Quindart/manage-graduation-thesis-iuh-chatbot)
-[Frontend Student Repository](https://github.com/Quindart/education-graduation-for-student-iuh)
-[Frontend Lecturer Repository](https://github.com/Quindart/education-manager-graduation-student-iuh)
-[Mobile Repository](https://github.com/Quindart/manage-graduation-thesis-iuh-fe-app)
+### Frontend
+- **Student Dashboard**: Built with ReactJS and Bootstrap 5 for students to manage thesis tasks.  
+  [Frontend Student Repository](https://github.com/Quindart/education-graduation-for-student-iuh)
+- **Lecturer Dashboard**: Designed for lecturers to oversee student progress.  
+  [Frontend Lecturer Repository](https://github.com/Quindart/education-manager-graduation-student-iuh)
+### Backend
+- **Node.js Backend**: Handles API integration, data processing, and thesis management logic.  
+  [Backend Node.js Repository](https://github.com/Quindart/fork-manage-graduation-thesis-iuh-be)
+- **Python Backend**: Powers chatbot functionality for user support.  
+  [Backend Python Repository](https://github.com/Quindart/manage-graduation-thesis-iuh-chatbot)
+### Mobile
+- **Mobile App**: Allows students and lecturers to manage tasks and communicate on the go.  
+  [Mobile Repository](https://github.com/Quindart/manage-graduation-thesis-iuh-fe-app)
 
 ![alt text](image.png)
 
