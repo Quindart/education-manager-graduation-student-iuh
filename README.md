@@ -1,4 +1,4 @@
-# 🎓 Thesis Management System
+# Thesis Management System
 
 Welcome to the **Thesis Management System**! This project is designed to streamline the process of managing theses for both students and faculty members. With a user-friendly interface and robust features, managing your academic work has never been easier.
 
@@ -20,18 +20,18 @@ Welcome to the **Thesis Management System**! This project is designed to streaml
 ![alt text](image.png)
 
 
-## 🌟 Features
+## Features
 
-- 📝 **Thesis Submission**: Allows students to submit their thesis proposals and final documents.
-- 👩‍🏫 **Advisor Assignment**: Facilitates the assignment of advisors to students based on their research topics.
-- 📅 **Schedule Management**: Helps in scheduling important dates like proposal submission, defense, and final submission.
-- 🔍 **Review and Feedback**: Enables advisors and committee members to review theses and provide feedback.
-- 📊 **Progress Tracking**: Tracks the progress of each thesis from submission to completion.
-- 🛡️ **User Authentication**: Ensures secure access with role-based permissions for students, advisors, and administrators.
-- 📂 **Document Management**: Manages all documents related to each thesis in an organized manner.
-- 📑 **Reports and Analytics**: Generates reports and analytics to monitor overall thesis management performance.
+-  **Thesis Submission**: Allows students to submit their thesis proposals and final documents.
+-  **Advisor Assignment**: Facilitates the assignment of advisors to students based on their research topics.
+- **Schedule Management**: Helps in scheduling important dates like proposal submission, defense, and final submission.
+-  **Review and Feedback**: Enables advisors and committee members to review theses and provide feedback.
+-  **Progress Tracking**: Tracks the progress of each thesis from submission to completion.
+-  **User Authentication**: Ensures secure access with role-based permissions for students, advisors, and administrators.
+-  **Document Management**: Manages all documents related to each thesis in an organized manner.
+- **Reports and Analytics**: Generates reports and analytics to monitor overall thesis management performance.
 
-## 🏗️ Installation
+##  Installation
 
 Follow these steps to set up the project locally:
 
@@ -60,7 +60,7 @@ Follow these steps to set up the project locally:
 6. **Access the application**:
    Open your browser and navigate to `http://localhost:5173`.
 
-## 🛠️ Usage
+## Usage
 
 ### For Students
 
@@ -80,7 +80,7 @@ Follow these steps to set up the project locally:
 - **Schedule Management**: Set and update important dates and deadlines.
 - **Generate Reports**: View and generate reports on thesis submissions and completions.
 
-## 📦 Deployment
+## Deployment
 
 To deploy the project to a production environment:
 
@@ -100,7 +100,7 @@ To deploy the project to a production environment:
    npm run start:prod
    ```
 
-## 👥 Contributing
+## Contributing
 
 We welcome contributions! Please follow these steps to contribute:
 
@@ -120,11 +120,11 @@ We welcome contributions! Please follow these steps to contribute:
    ```
 6. **Create a Pull Request**.
 
-## 🛡️ License
+## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## 📞 Contact
+## Contact
 
 For any questions or feedback, please reach out to:
 
