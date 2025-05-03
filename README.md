@@ -4,7 +4,7 @@ Welcome to the **Thesis Management System**! This project is designed to streaml
 
 # Repositories
 ### Frontend
-- **Student Dashboard**: Built with ReactJS and Bootstrap 5 for students to manage thesis tasks.  
+- **Student Dashboard**: Students to manage thesis tasks.  
   [Frontend Student Repository](https://github.com/Quindart/education-graduation-for-student-iuh)
 - **Lecturer Dashboard**: Designed for lecturers to oversee student progress.  
   [Frontend Lecturer Repository](https://github.com/Quindart/education-manager-graduation-student-iuh)
@@ -14,8 +14,8 @@ Welcome to the **Thesis Management System**! This project is designed to streaml
 - **Python Backend**: Powers chatbot functionality for user support.  
   [Backend Python Repository](https://github.com/Quindart/manage-graduation-thesis-iuh-chatbot)
 ### Mobile
-- **Mobile App**: Allows students and lecturers to manage tasks and communicate on the go.  
-  [Mobile Repository](https://github.com/Quindart/manage-graduation-thesis-iuh-fe-app)
+- **Mobile App**: Allows students to manage tasks
+ [Mobile Repository](https://github.com/Quindart/manage-graduation-thesis-iuh-fe-app)
 
 ![alt text](image.png)
 
