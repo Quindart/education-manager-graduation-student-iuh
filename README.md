@@ -2,7 +2,16 @@
 
 Welcome to the **Thesis Management System**! This project is designed to streamline the process of managing theses for both students and faculty members. With a user-friendly interface and robust features, managing your academic work has never been easier.
 
+# Repositories
+
+[Backend Nodejs Repository](https://github.com/Quindart/fork-manage-graduation-thesis-iuh-be)
+[Backend Python Repository](https://github.com/Quindart/manage-graduation-thesis-iuh-chatbot)
+[Frontend Student Repository](https://github.com/Quindart/education-graduation-for-student-iuh)
+[Frontend Lecturer Repository](https://github.com/Quindart/education-manager-graduation-student-iuh)
+[Mobile Repository](https://github.com/Quindart/manage-graduation-thesis-iuh-fe-app)
+
 ![alt text](image.png)
+
 
 ## 🌟 Features
 
