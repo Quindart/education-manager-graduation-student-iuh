@@ -118,38 +118,26 @@ function EditInstruction(props: any) {
                     />
                   </Box>
                 </Box>
-                {dayjs(values.startDate) <= dayjs() ? (
-                  <Box mt={6}>
-                    <Typography variant='h6' fontWeight={'bold'} color='primary.dark'>
-                      Trạng thái phản biện
-                    </Typography>
-                    <Switch
-                      onChange={() => {
-                        handleChangeStatusInstruction();
-                        setFieldValue('endDate', dayjs());
-                      }}
-                      checked={isCheckedOpenGroup}
-                      color='success'
-                    />
-                    <Typography
-                      component={'span'}
-                      variant='h6'
-                      color={isCheckedOpenGroup ? 'primary' : 'error'}
-                    >
-                      {isCheckedOpenGroup ? 'Đang mở' : 'Đã đóng'}
-                    </Typography>
-                  </Box>
-                ) : (
-                  <Box mt={10}>
-                    <Typography variant='h6' fontWeight={'bold'} color='primary.dark'>
-                      Trạng thái phản biện:
-                    </Typography>
-                    <Typography variant='body1'>
-                      Chưa đến thời gian mở phản biện, bắt đầu mở từ:{' '}
-                      {dayjs(values.startDate).format('DD/MM/YYYY hh:mm:ss A')}
-                    </Typography>
-                  </Box>
-                )}
+                <Box mt={6}>
+                  <Typography variant='h6' fontWeight={'bold'} color='primary.dark'>
+                    Trạng thái
+                  </Typography>
+                  <Switch
+                    onChange={() => {
+                      handleChangeStatusInstruction();
+                      setFieldValue('endDate', dayjs());
+                    }}
+                    checked={isCheckedOpenGroup}
+                    color='success'
+                  />
+                  <Typography
+                    component={'span'}
+                    variant='h6'
+                    color={isCheckedOpenGroup ? 'primary' : 'error'}
+                  >
+                    {isCheckedOpenGroup ? 'Đang mở' : 'Đã đóng hoặc Sắp diễn ra'}
+                  </Typography>
+                </Box>
                 <Box mt={20} mb={6} justifyContent={'end'} gap={8} display={'flex'}>
                   <Button variant='contained' color='primary' onClick={handleClose}>
                     <Icon width={20} style={{ marginRight: 4 }} icon='mdi:cancel-outline' />

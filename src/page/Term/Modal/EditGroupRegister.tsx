@@ -1,14 +1,14 @@
+import DateTimeCalendar from '@/components/ui/Calendar/DateTimeCalendar';
 import Modal from '@/components/ui/Modal';
 import TitleManager from '@/components/ui/Title';
+import { useTerm } from '@/hooks/api/useQueryTerm';
+import { TypeTermStatus } from '@/services/apiTerm';
 import { Icon } from '@iconify/react';
 import { Box, Button, CircularProgress, Switch, Typography } from '@mui/material';
+import dayjs from 'dayjs';
 import { Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { validationTermGroupSchema } from '../context';
-import dayjs from 'dayjs';
-import { useTerm } from '@/hooks/api/useQueryTerm';
-import { TypeTermStatus } from '@/services/apiTerm';
-import DateTimeCalendar from '@/components/ui/Calendar/DateTimeCalendar';
 
 function EditGroupRegister(props: any) {
   const { onClose, open, termId } = props;
@@ -118,38 +118,26 @@ function EditGroupRegister(props: any) {
                     />
                   </Box>
                 </Box>
-                {dayjs(values.startDate) <= dayjs() ? (
-                  <Box mt={6}>
-                    <Typography variant='h6' fontWeight={'bold'} color='primary.dark'>
-                      Trạng thái đăng kí nhóm
-                    </Typography>
-                    <Switch
-                      onChange={() => {
-                        handleChangeStatusGroupRegister();
-                        setFieldValue('endDate', dayjs());
-                      }}
-                      checked={isCheckedOpenGroup}
-                      color='success'
-                    />
-                    <Typography
-                      component={'span'}
-                      variant='h6'
-                      color={isCheckedOpenGroup ? 'primary' : 'error'}
-                    >
-                      {isCheckedOpenGroup ? 'Đang mở' : 'Đã đóng'}
-                    </Typography>
-                  </Box>
-                ) : (
-                  <Box mt={10}>
-                    <Typography variant='h6' fontWeight={'bold'} color='primary.dark'>
-                      Trạng thái đăng kí nhóm:
-                    </Typography>
-                    <Typography variant='body1'>
-                      Chưa đến thời gian mở đăng kí nhóm, bắt đầu mở từ:{' '}
-                      {dayjs(values.startDate).format('DD/MM/YYYY hh:mm:ss A')}
-                    </Typography>
-                  </Box>
-                )}
+                <Box mt={6}>
+                  <Typography variant='h6' fontWeight={'bold'} color='primary.dark'>
+                    Trạng thái
+                  </Typography>
+                  <Switch
+                    onChange={() => {
+                      handleChangeStatusGroupRegister();
+                      setFieldValue('endDate', dayjs());
+                    }}
+                    checked={isCheckedOpenGroup}
+                    color='success'
+                  />
+                  <Typography
+                    component={'span'}
+                    variant='h6'
+                    color={isCheckedOpenGroup ? 'primary' : 'error'}
+                  >
+                    {isCheckedOpenGroup ? 'Đang mở' : 'Đã đóng hoặc Sắp diễn ra'}
+                  </Typography>
+                </Box>
                 <Box mt={20} mb={6} justifyContent={'end'} gap={8} display={'flex'}>
                   <Button variant='contained' color='primary' onClick={handleClose}>
                     <Icon width={20} style={{ marginRight: 4 }} icon='mdi:cancel-outline' />
