@@ -15,6 +15,7 @@ import AddEvaluationModal from './Modal/Add';
 import ContextReviewManager from './Context';
 import ExportWordModal from './Modal/ExportWord';
 import ExportExcelButton from '@/components/ui/Export';
+import ExampleExcel from './Modal/ExampleExcel';
 
 function ReviewManagerPage() {
   const [currentTypeReview, setCurrentTypeReview] = useState(TypeEvaluation.ADVISOR);
@@ -31,6 +32,9 @@ function ReviewManagerPage() {
   const [openModalExport, setOpenExportModal] = useState({
     isOpen: false,
   });
+  const [openModalExampleExcel, setOpenExampleExcelModal] = useState({
+    isOpen: false,
+  });
 
   const handleOpenExportModal = () => {
     setOpenExportModal({ isOpen: true });
@@ -44,6 +48,13 @@ function ReviewManagerPage() {
   };
   const handleCloseCreateEvaluationModal = () => {
     setOpenCreateEvaluationModal({ ...openModalCreateEvaluation, isOpen: false });
+  };
+
+  const handleOpenExampleExcelModal = () => {
+    setOpenExampleExcelModal({ isOpen: true });
+  };
+  const handleCloseExampleExcelModal = () => {
+    setOpenExampleExcelModal({ isOpen: false });
   };
 
   return (
@@ -83,6 +94,16 @@ function ReviewManagerPage() {
                       onClick={handleOpenCreateEvaluationModal}
                     >
                       <Icon width={20} icon='ic:baseline-plus' />
+                    </Button>
+                  </Tooltip>
+                  <Tooltip title='Xuất mẫu excel đánh giá'>
+                    <Button
+                      size='small'
+                      color='primary'
+                      variant='contained'
+                      onClick={handleOpenExampleExcelModal}
+                    >
+                      <Icon width={20} icon='ri:download-line' />
                     </Button>
                   </Tooltip>
                   <ModalUpload
@@ -151,6 +172,11 @@ function ReviewManagerPage() {
                 termId={termStore.currentTerm.id}
                 type={currentTypeReview}
                 onClose={handleCloseCreateEvaluationModal}
+              />
+              <ExampleExcel
+                typeEvaluation={currentTypeReview}
+                open={openModalExampleExcel.isOpen}
+                onClose={handleCloseExampleExcelModal}
               />
             </>
           )}
