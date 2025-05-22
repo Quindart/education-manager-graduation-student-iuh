@@ -12,7 +12,6 @@ import {
   WidthType,
 } from 'docx';
 
-
 function convertStudentScores(students) {
   const result = [];
   students?.forEach((student) => {
@@ -74,7 +73,7 @@ export default function docResultTranscript({
             spacing: { after: lineSpacing },
             children: [
               new TextRun({
-                text: 'TRƯỜNG ĐH CÔNG NGHIỆP TP. HCM',
+                text: 'TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP TP.HCM',
                 bold: true,
                 size: 28,
               }),
@@ -95,7 +94,7 @@ export default function docResultTranscript({
             spacing: { after: 50 },
             children: [
               new TextRun({
-                text: '=======//======',
+                text: '=========//=========',
                 size: 28,
               }),
             ],
@@ -124,7 +123,7 @@ export default function docResultTranscript({
             spacing: { after: lineSpacing },
             children: [
               new TextRun({
-                text: `2. Giáo viên hướng dẫn : ${lecturerSupport}`,
+                text: `2. Giáo viên hướng dẫn: ${lecturerSupport}`,
                 size: 24,
               }),
             ],
@@ -142,7 +141,7 @@ export default function docResultTranscript({
             spacing: { after: lineSpacing },
             children: [
               new TextRun({
-                text: `      Mã SV 1: ${students && students[0]?.username}                                            Họ tên sinh viên 1: ${students && students[0]?.fullName}`,
+                text: `      Mã SV 1: ${students && students[0]?.username}                                                Họ tên sinh viên 1: ${students && students[0]?.fullName}`,
                 size: 24,
               }),
             ],
@@ -151,7 +150,7 @@ export default function docResultTranscript({
             spacing: { after: lineSpacing },
             children: [
               new TextRun({
-                text: `      Mã SV 2:  ${students && students[1]?.username}                                          Họ tên sinh viên 2: ${students && students[1]?.fullName}`,
+                text: `      Mã SV 2: ${students && students[1] ? students[1].username : '................'}                                                Họ tên sinh viên 2: ${students && students[1] ? students[1].fullName : '................'}`,
                 size: 24,
               }),
             ],
@@ -360,7 +359,7 @@ export default function docResultTranscript({
                             alignment: 'center',
                             children: [
                               new TextRun({
-                                text: `${row[`student_${students[0].username}_score`]}`,
+                                text: `${students.length > 1 ? row[`student_${students[1].username}_score`] : ''}`,
                                 size: 23,
                               }),
                             ],
@@ -431,7 +430,7 @@ export default function docResultTranscript({
                       new Paragraph({
                         children: [
                           new TextRun({
-                            text: `${students[0]?.evaluations?.map((e) => e.score)?.reduce((a, b) => a + b)}`,
+                            text: `${Number(students[0]?.evaluations?.map((e) => e.score)?.reduce((a, b) => a + b)).toFixed(1)}`,
                             size: 23,
                           }),
                         ],
@@ -449,7 +448,7 @@ export default function docResultTranscript({
                       new Paragraph({
                         children: [
                           new TextRun({
-                            text: `${students[1]?.evaluations?.map((e) => e.score)?.reduce((a, b) => a + b)}`,
+                            text: `${students.length > 1 ? Number(students[1]?.evaluations?.map((e) => e.score)?.reduce((a, b) => a + b)).toFixed(1) : ''}`,
                             size: 23,
                           }),
                         ],

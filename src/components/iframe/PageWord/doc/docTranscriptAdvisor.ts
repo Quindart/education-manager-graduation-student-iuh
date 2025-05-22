@@ -39,7 +39,7 @@ export default function docResultTranscriptAdvisor(
             alignment: 'center',
             children: [
               new TextRun({
-                text: 'TRƯỜNG ĐH CÔNG NGHIỆP TP. HCM',
+                text: 'TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP TP.HCM',
                 bold: true,
                 size: 28,
               }),
@@ -58,7 +58,7 @@ export default function docResultTranscriptAdvisor(
             alignment: 'center',
             children: [
               new TextRun({
-                text: '=======//======',
+                text: '=========//=========',
                 size: 28,
               }),
             ],
@@ -102,7 +102,7 @@ export default function docResultTranscriptAdvisor(
           new Paragraph({
             children: [
               new TextRun({
-                text: ` Mã SV 1:  ${groupMember && groupMember[0]?.student?.username}                                                Họ tên sinh viên 1:  ${groupMember && groupMember[0]?.student?.fullName}`,
+                text: `      Mã SV 1: ${groupMember && groupMember[0]?.student?.username}                                                Họ tên sinh viên 1: ${groupMember && groupMember[0]?.student?.fullName}`,
                 size: 24,
               }),
             ],
@@ -110,7 +110,7 @@ export default function docResultTranscriptAdvisor(
           new Paragraph({
             children: [
               new TextRun({
-                text: ` Mã SV 2: ${groupMember && groupMember[1]?.student?.username}                                                  Họ tên sinh viên 2:   ${groupMember && groupMember[1]?.student?.fullName}                                                      `,
+                text: `      Mã SV 2: ${groupMember && groupMember.length > 1 ? groupMember[1]?.student?.username : '................'}                                                Họ tên sinh viên 2: ${groupMember && groupMember.length > 1 ? groupMember[1]?.student?.fullName : '................'}`,
                 size: 24,
               }),
             ],
@@ -118,7 +118,7 @@ export default function docResultTranscriptAdvisor(
           new Paragraph({
             children: [
               new TextRun({
-                text: `4. Họ và tên người đánh giá:  ${lecturerToScoreName}`,
+                text: `4. Họ và tên người đánh giá: ${lecturerToScoreName}`,
                 size: 24,
               }),
             ],
@@ -126,7 +126,7 @@ export default function docResultTranscriptAdvisor(
           new Paragraph({
             children: [
               new TextRun({
-                text: '5. Vai trò của người đánh giá:   Hướng dẫn ',
+                text: '5. Vai trò của người đánh giá: Người hướng dẫn',
                 size: 24,
               }),
             ],
