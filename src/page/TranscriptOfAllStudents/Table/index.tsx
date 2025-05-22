@@ -1,15 +1,14 @@
-import { checkVietNamTypeEvaluation } from '@/utils/validations/transcript.validation';
-import { Box, Button, Link, TableBody, TableHead, Typography } from '@mui/material';
-import useTranscript from '@/hooks/api/useQueryTranscript';
 import { StyledTableCell, StyledTableRow } from '@/components/iframe/PageWord/style';
-import { useTerm } from '@/hooks/api/useQueryTerm';
-import SekeletonTable from '@/components/ui/Sekeleton';
 import ExportExcelButton from '@/components/ui/Export';
-import { rest } from 'lodash';
-import ExportWordModal from '@/page/ReviewManager/Modal/ExportWord';
+import SekeletonTable from '@/components/ui/Sekeleton';
 import useEvaluation from '@/hooks/api/useQueryEvalutaion';
-import { useState } from 'react';
+import { useTerm } from '@/hooks/api/useQueryTerm';
+import useTranscript from '@/hooks/api/useQueryTranscript';
+import ExportWordModal from '@/page/ReviewManager/Modal/ExportWord';
+import { checkVietNamTypeEvaluation } from '@/utils/validations/transcript.validation';
 import { Icon } from '@iconify/react';
+import { Box, Button, Link, TableBody, TableHead, Typography } from '@mui/material';
+import { useState } from 'react';
 
 /**
  * ? bây giờ groupStudent sẽ số dòng
@@ -29,12 +28,14 @@ const convertRowStudents = (groupStudents: any[]) => {
     return {
       ...student,
       colorRow: randomColor(index),
-      totalScores: totalScores(student?.evaluations.map((std: any) => std.score)),
+      totalScores: Number(
+        (totalScores(student?.evaluations.map((std: any) => std.score)) * 100) / 100,
+      ).toFixed(1),
     };
   });
 };
 
-const columnsExcelTranscripts = (evaluations, type) => {
+const columnsExcelTranscripts = (evaluations, type): any => {
   const init = [
     { header: 'Mã nhóm', key: 'groupName', width: 10 },
     { header: 'Mã sinh viên', key: 'username', width: 12 },
@@ -80,7 +81,9 @@ const grScoresToExportExcel = (tranScripts) => {
         });
       return {
         ...student,
-        totalScores: totalScores(transcript?.evaluations.map((std: any) => std.score)),
+        totalScores: Number(
+          (totalScores(transcript?.evaluations.map((std: any) => std.score)) * 100) / 100,
+        ).toFixed(1),
       };
     })
     .flat();

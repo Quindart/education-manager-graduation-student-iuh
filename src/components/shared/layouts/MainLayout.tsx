@@ -19,8 +19,8 @@ function MainLayout() {
   const { majorStore } = useMajor();
   const { enqueueSnackbar } = useSnackbar();
   useEffect(() => {
-    if (majorStore.currentMajor.majorName !== '')
-      enqueueSnackbar(`Xin chào, bạn đang đăng nhập vào ngành ${majorStore?.currentMajor?.name}`, {
+    if (majorStore?.currentMajor?.name)
+      enqueueSnackbar(`Xin chào, bạn đang đăng nhập vào ngành ${majorStore.currentMajor.name}`, {
         variant: 'success',
       });
   }, [majorStore?.currentMajor]);

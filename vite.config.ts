@@ -10,7 +10,7 @@ export default defineConfig({
     react(),
     removeConsole(),
     sitemap({
-      hostname: 'https://lec.iuh.io.vn:5000',
+      hostname: 'https://lec.iuh.io.vn',
     }),
     imagemin({
       pngquant: {

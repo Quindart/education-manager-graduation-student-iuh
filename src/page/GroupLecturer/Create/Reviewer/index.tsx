@@ -204,10 +204,8 @@ function CreateInstructorGroupPage() {
               alignItems={'center'}
               height={300}
             >
-              {/* <img width={150} src='/images/nodata.webp' /> */}
-              <Typography color='grey.600' variant='h6' mt={1}>
-                Để chọn giảng viên cần tạo nhóm, vui lòng kéo thả vào bảng này. *Lưu ý: chức vụ của
-                giảng viên đảm nhận trong nhóm chấm tuân theo thứ tự ở phía bên dưới:
+              <Typography color='red' variant='h6' mt={1}>
+                Để tạo nhóm, bạn cần kéo giảng viên từ danh sách bên trái vào đây
               </Typography>
               <NoMemberContent />
             </Box>
@@ -215,15 +213,13 @@ function CreateInstructorGroupPage() {
         ) : (
           <Box sx={{ minHeight: 200 }}>
             {dataLecturerGradingAssembly?.length > 0 && (
-              <>
-                <Box>
-                  <Box sx={{ justifyContent: 'end', display: 'flex', flexWrap: 'wrap' }}>
-                    {getUniqueKeywords(dataLecturerGradingAssembly).map((keyword: any) => (
-                      <ChipTag sx={{ mx: 1, my: 2 }} color='info' size='small' label={keyword} />
-                    ))}
-                  </Box>
+              <Box>
+                <Box sx={{ justifyContent: 'end', display: 'flex', flexWrap: 'wrap' }}>
+                  {getUniqueKeywords(dataLecturerGradingAssembly).map((keyword: any) => (
+                    <ChipTag sx={{ mx: 1, my: 2 }} color='info' size='small' label={keyword} />
+                  ))}
                 </Box>
-              </>
+              </Box>
             )}
             {dataLecturerGradingAssembly?.map((task: any, index: number) => (
               <Paper

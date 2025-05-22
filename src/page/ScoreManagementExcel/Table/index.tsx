@@ -395,11 +395,13 @@ function TableScoreManagement({ typeScoreStudent, isInTimeScore }: any) {
                           ))}
                         </>
                         <StyledTableCell sx={{ color: 'success.dark', width: '1%' }}>
-                          {totalScores(
-                            totalList
-                              ?.find((std) => std.id === rows?.id)
-                              ?.evaluations.map((e) => e.score),
-                          )}
+                          {Number(
+                            totalScores(
+                              totalList
+                                ?.find((std) => std.id === rows?.id)
+                                ?.evaluations.map((e) => e.score),
+                            ),
+                          ).toFixed(1)}
                         </StyledTableCell>
                         <StyledTableCell sx={{ color: 'grey.700', width: '3%', fontSize: 14 }}>
                           {rows?.isScored ? (

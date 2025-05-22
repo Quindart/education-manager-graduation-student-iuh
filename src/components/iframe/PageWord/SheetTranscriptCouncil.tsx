@@ -40,14 +40,16 @@ function SheetTranscriptCouncil(props: any) {
             Mã SV 1: {students[0].username}
           </Typography>
         </Box>
-        <Box display={'flex'} justifyContent={'space-between'}>
-          <Typography my={3} variant='body1' color='initial'>
-            Họ tên sinh viên 2: {students[1].fullName}
-          </Typography>
-          <Typography my={3} variant='body1' color='initial'>
-            Mã SV 2: {students[1].username}
-          </Typography>
-        </Box>
+        {students.length > 1 && (
+          <Box display={'flex'} justifyContent={'space-between'}>
+            <Typography my={3} variant='body1' color='initial'>
+              Họ tên sinh viên 2: {students[1].fullName}
+            </Typography>
+            <Typography my={3} variant='body1' color='initial'>
+              Mã SV 2: {students[1].username}
+            </Typography>
+          </Box>
+        )}
         <Typography my={3} variant='body1' color='initial'>
           4. Họ và tên người đánh giá : {evaluatorFullName}
         </Typography>
