@@ -47,7 +47,7 @@ export default function docTranscriptReviewer({
             spacing: { after: lineSpacing },
             children: [
               new TextRun({
-                text: 'TRƯỜNG ĐH CÔNG NGHIỆP TP. HCM',
+                text: 'TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP TP.HCM',
                 bold: true,
                 size: 28,
               }),
@@ -68,7 +68,7 @@ export default function docTranscriptReviewer({
             spacing: { after: lineSpacing },
             children: [
               new TextRun({
-                text: '=======//======',
+                text: '=========//=========',
                 size: 28,
               }),
             ],
@@ -97,7 +97,7 @@ export default function docTranscriptReviewer({
             spacing: { after: lineSpacing },
             children: [
               new TextRun({
-                text: `2. Giáo viên hướng dẫn : ${lecturerSupport}`,
+                text: `2. Giáo viên hướng dẫn: ${lecturerSupport}`,
                 size: 24,
               }),
             ],
@@ -115,7 +115,7 @@ export default function docTranscriptReviewer({
             spacing: { after: lineSpacing },
             children: [
               new TextRun({
-                text: `      Mã SV 1: ${students && students[0]?.username}                                              Họ tên sinh viên 1: ${students && students[0]?.fullName}`,
+                text: `      Mã SV 1: ${students && students[0]?.username}                                                Họ tên sinh viên 1: ${students && students[0]?.fullName}`,
                 size: 24,
               }),
             ],
@@ -124,7 +124,7 @@ export default function docTranscriptReviewer({
             spacing: { after: lineSpacing },
             children: [
               new TextRun({
-                text: `      Mã SV 2: ${students && students[1]?.username}                                              Họ tên sinh viên 2: ${students && students[1]?.fullName}`,
+                text: `      Mã SV 2: ${students && students.length > 1 ? students[1].username : '................'}                                                Họ tên sinh viên 2: ${students && students.length > 1 ? students[1].fullName : '................'}`,
                 size: 24,
               }),
             ],
@@ -133,7 +133,7 @@ export default function docTranscriptReviewer({
             spacing: { after: lineSpacing },
             children: [
               new TextRun({
-                text: ` 4. Họ và tên người đánh giá : ${fileType === 'many' ? nameEvaluatorExport : evaluatorFullName}`,
+                text: ` 4. Họ và tên người đánh giá: ${fileType === 'many' ? nameEvaluatorExport : evaluatorFullName}`,
                 size: 24,
               }),
             ],
@@ -298,7 +298,9 @@ export default function docTranscriptReviewer({
                       new TableCell({
                         verticalAlign: VerticalAlign.CENTER,
                         children: [
-                          new Paragraph({ children: [new TextRun({ text: row.name, size: 23 })] }),
+                          new Paragraph({
+                            children: [new TextRun({ text: row?.name || '', size: 23 })],
+                          }),
                         ],
                       }),
                       new TableCell({
@@ -306,7 +308,9 @@ export default function docTranscriptReviewer({
                         children: [
                           new Paragraph({
                             alignment: 'center',
-                            children: [new TextRun({ text: row.scoreMax.toString(), size: 23 })],
+                            children: [
+                              new TextRun({ text: (row?.scoreMax || '').toString(), size: 23 }),
+                            ],
                           }),
                         ],
                       }),

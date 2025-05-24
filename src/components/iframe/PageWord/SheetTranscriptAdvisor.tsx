@@ -41,19 +41,21 @@ function SheetTranscriptAdvisor(props: any) {
               {groupMember ? groupMember[0]?.student?.username : '......................'}
             </Box>
           </Box>
-          <Typography
-            component={'span'}
-            variant='body1'
-            fontWeight={'500'}
-            color={groupMember[1]?.status === 'FAIL_ADVISOR' ? 'red' : 'black'}
-          >
-            Họ tên sinh viên 2:{' '}
-          </Typography>
-          {groupMember ? groupMember[1]?.student?.fullName : '......................'}
-          <Box ml={14} display={'inline'}>
-            Mã sinh viên 2:{' '}
-            {groupMember ? groupMember[1]?.student?.username : '......................'}{' '}
-          </Box>
+          {groupMember.length > 1 && (
+            <Box color={groupMember[1]?.status === 'FAIL_ADVISOR' ? 'red' : 'black'}>
+              <Typography component={'span'} variant='body1' fontWeight={'500'}>
+                Họ tên sinh viên 2:{' '}
+              </Typography>
+              {groupMember ? groupMember[1]?.student?.fullName : '......................'}{' '}
+              {groupMember[1]?.status === 'FAIL_ADVISOR'
+                ? `(${getStatusGroup(groupMember[1].status)})`
+                : ''}
+              <Box ml={14} display={'inline'}>
+                Mã sinh viên 2:
+                {groupMember ? groupMember[1]?.student?.username : '......................'}
+              </Box>
+            </Box>
+          )}
         </Typography>
         <Typography my={3} variant='body1' color='initial'>
           4. Họ tên người đánh giá: {lecturerToScoreName}
