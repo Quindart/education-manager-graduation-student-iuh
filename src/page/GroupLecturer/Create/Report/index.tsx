@@ -73,36 +73,12 @@ const NoMemberPosterContent = () => {
 const NoMemberCouncilContent = () => {
   return (
     <>
-      <Typography
-        variant='body1'
-        px={10}
-        py={4}
-        width={'100%'}
-        bgcolor={'#fff0df'}
-        color='grey.600'
-      >
-        Chủ tịch
-      </Typography>
-      <Typography
-        variant='body1'
-        px={10}
-        py={4}
-        width={'100%'}
-        bgcolor={'#fee2e2'}
-        color='grey.600'
-      >
-        Ủy viên
-      </Typography>
-      <Typography
-        variant='body1'
+      <Typography   variant='body1'
         px={10}
         py={4}
         width={'100%'}
         bgcolor={'#f4fff3'}
-        color='grey.600'
-      >
-        Thư ký
-      </Typography>
+        color='grey.600'>Danh sách thành viên trống</Typography>
     </>
   );
 };
@@ -118,13 +94,19 @@ function CreateReportGroupPage() {
 
   //TODO: POST DATA
   const { mutate: create, isSuccess: successCreate } = onCreateGroupLecturer(`${currentGroup}`);
+  
   const handleCreateGroup = () => {
     let dataLecturerGradingAssembly = task?.filter(
       (data: any) => data.status === ENUM_STATUS_LECTURER.HAVE_GROUP,
     );
-    const lecturers = dataLecturerGradingAssembly?.map((lec) => lec.lecturerId);
+    // 1. president 2. secretary 3.member
+    const persidentId = dataLecturerGradingAssembly.find(lec => lec.role === 'president').lecturerId
+    const secretaryId = dataLecturerGradingAssembly.find(lec => lec.role === 'secretary').lecturerId
+    const memberId = dataLecturerGradingAssembly.find(lec => lec.role === 'member').lecturerId
     const keywords = getUniqueKeywords(dataLecturerGradingAssembly).join(',');
-    create({ termId: termStore.currentTerm.id, lecturers, keywords });
+    const lecturers = [persidentId,memberId,secretaryId]
+    
+    create({ termId: termStore.currentTerm.id,lecturers , keywords });
   };
 
   //TODO: [GET DATA]
@@ -175,6 +157,7 @@ function CreateReportGroupPage() {
     let updated = task?.map((task: any) => {
       if (task?.lecturerId?.toString() === data.toString()) {
         task.status = status;
+        task.role = null
       }
       return task;
     });
@@ -285,14 +268,18 @@ function CreateReportGroupPage() {
             >
               {' '}
               {/* <img width={150} src='/images/nodata.webp' /> */}
-              <Typography color='grey.600' variant='h6' mt={1}>
-                Để chọn giảng viên cần tạo nhóm, vui lòng kéo thả vào bảng này. *Lưu ý: chức vụ của
-                giảng viên đảm nhận trong nhóm chấm tuân theo thứ tự ở phía bên dưới:
-              </Typography>
+              
               {currentGroup === 'report_council' ? (
                 <NoMemberCouncilContent />
               ) : (
-                <NoMemberPosterContent />
+                <>
+                <Typography color='grey.600' variant='h6' mt={1}>
+                Để chọn giảng viên cần tạo nhóm, vui lòng kéo thả vào bảng này. *Lưu ý: chức vụ của
+                giảng viên đảm nhận trong nhóm chấm tuân theo thứ tự ở phía bên dưới:
+              </Typography>
+              <NoMemberPosterContent />
+
+                </>
               )}
             </Box>
           </Box>
@@ -323,9 +310,22 @@ function CreateReportGroupPage() {
                 onDragEnd={(e) => handleOnDrageStart(e)}
               >
                 <Box px={10}>
-                  <Typography variant='body1' color={checkColorByIndex(index + 1)}>
-                    {checkRoleOfMember(currentGroup, index + 1)}
-                  </Typography>
+                  <DropDown 
+                  onChange={(e)=>{task.role = e.target.value}}
+                  options={[
+                    {
+                      name:"Chủ tịch",
+                      _id: 'president'
+                    },
+                    {
+                      name:"Thư kí",
+                      _id:'secretary'
+                    },
+                    {
+                      name:"Ủy viên",
+                      _id:'member'
+                    }
+                  ]}/>
                   <Typography variant='h6' fontWeight={600} color='grey.700'>
                     Giảng viên
                     <Typography mx={4} fontSize={14} component='span'>
@@ -335,6 +335,8 @@ function CreateReportGroupPage() {
                   <Typography variant='body1' color={'grey.600'}>
                     Ngành: <Typography component='span'>{task.majorName}</Typography>
                   </Typography>
+
+               
                 </Box>
               </Paper>
             ))}{' '}

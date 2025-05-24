@@ -29,7 +29,7 @@ const convertLecturerGroup = (data: any[]) => {
   }
   const newData: any = [];
   data?.map((lecturerTerm: any) => {
-    newData.push({ ...lecturerTerm, status: ENUM_STATUS_LECTURER.NO_GROUP });
+    newData.push({ ...lecturerTerm, status: ENUM_STATUS_LECTURER.NO_GROUP, role: null });
   });
   return newData;
 };
