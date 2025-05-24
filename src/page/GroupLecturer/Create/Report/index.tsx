@@ -77,7 +77,7 @@ const NoMemberCouncilContent = () => {
         px={10}
         py={4}
         width={'100%'}
-        bgcolor={'#f4fff3'}
+        textAlign={'center'}
         color='grey.600'>Danh sách thành viên trống</Typography>
     </>
   );
@@ -292,7 +292,7 @@ function CreateReportGroupPage() {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   my: 6,
-                  py: 6,
+                  py: 4,
                   cursor: 'pointer',
                   boxSizing: 'border-box',
                   border: '2px solid #fefefe',
@@ -312,6 +312,7 @@ function CreateReportGroupPage() {
                 <Box px={10}>
                   <DropDown 
                   onChange={(e)=>{task.role = e.target.value}}
+                  defaultOpen
                   options={[
                     {
                       name:"Chủ tịch",
@@ -326,7 +327,7 @@ function CreateReportGroupPage() {
                       _id:'member'
                     }
                   ]}/>
-                  <Typography variant='h6' fontWeight={600} color='grey.700'>
+                  <Typography mt={3 } variant='h6' fontWeight={600} color='grey.700'>
                     Giảng viên
                     <Typography mx={4} fontSize={14} component='span'>
                       {task.fullName} - {task.username}
